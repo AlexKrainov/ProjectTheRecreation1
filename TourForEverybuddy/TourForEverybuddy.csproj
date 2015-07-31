@@ -85,7 +85,6 @@
     <Content Include="Content\font-awesome.min.css" />
     <Content Include="Content\ie9.css" />
     <Content Include="Content\main.css" />
-    <Content Include="Content\Site.css" />
     <Content Include="fonts\fontawesome-webfont.svg" />
     <Content Include="Global.asax" />
     <Content Include="images\banner.jpg" />
