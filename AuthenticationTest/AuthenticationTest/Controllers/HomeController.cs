@@ -1,4 +1,5 @@
 ﻿using AuthenticationTest.Filter;
+using Microsoft.AspNet.Identity.EntityFramework;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,16 +14,18 @@ namespace AuthenticationTest.Controllers
        
         public ActionResult Login()
         {
+            
             return View();
         }
 
         [HttpPost]
         public ActionResult Login(string login, string pwd, string returnUrl)
         {
-            if (login == "admin" && pwd == "admin")
+            if ((login == "admin" && pwd == "admin" ) || (login == "alex" && pwd == "alex"))
             {
                 var keys = Response.Cookies.AllKeys;
                 FormsAuthentication.SetAuthCookie(login, false); // устанавливаем куки 
+                //FormsAuthentication.SignOut();
 
                var cookie = new HttpCookie("text_cookie");
 //                cookie.Name = "test_cookie";

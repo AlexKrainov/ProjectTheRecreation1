@@ -4,8 +4,10 @@ using System.Linq;
 using System.Security.Principal;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Mvc;
 using System.Web.Mvc.Filters;
 using System.Web.Routing;
+using System.Web.Security;
 
 namespace AuthenticationTest.Filter
 {
@@ -15,7 +17,7 @@ namespace AuthenticationTest.Filter
         {
             IIdentity ident = filterContext.Principal.Identity;
 
-            if (!ident.IsAuthenticated || ident.Name != "admin")
+            if (!ident.IsAuthenticated || !(ident.Name == "admin" || ident.Name == "alex"))
                 filterContext.Result = new HttpUnauthorizedResult(); //доступ к данному ресурсу для пользовател запрещен
         }
 
@@ -30,6 +32,7 @@ namespace AuthenticationTest.Filter
                     {"returnUrl", filterContext.HttpContext.Request.Url }
                 });
             }
+            
         }
     }
 }

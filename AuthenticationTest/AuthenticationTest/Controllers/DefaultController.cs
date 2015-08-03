@@ -24,10 +24,27 @@ namespace AuthenticationTest.Controllers
             return RedirectToAction("NewIndex");
         }
 
+        [HttpGet]
         public ActionResult NewIndex()
         {
             return View();
         }
+        [HttpPost]
+        [Authorize(Users = "admin")]
+        public ActionResult NewIndex(string s )
+        {
+            AuthorizationContext c = new AuthorizationContext();
+            var z = this;
+            return RedirectToAction("NewIndex2");
+        }
+
+        public ActionResult NewIndex2(string s)
+        {
+            AuthorizationContext c = new AuthorizationContext();
+            var z = this;
+            return View();
+        }
+
 
     }
 }
