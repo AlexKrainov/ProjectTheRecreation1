@@ -1,4 +1,7 @@
 ﻿using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.EntityFramework;
+using Microsoft.AspNet.Identity.Owin;
+using Microsoft.Owin;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,12 +10,21 @@ using System.Web;
 
 namespace UserTestIdentity.Models.User
 {
-    public class CustomUserManager : UserManager<ApplicationUser>
+    public class CustomUserManager :   UserManager<ApplicationUser>
     {
-        public CustomUserManager(CustomUserStore store)
+
+        public CustomUserManager(IUserStore<ApplicationUser> store)
             : base (store)
         {
-            this.PasswordHasher = new CustomPasswordHasher();
+           // this.PasswordHasher = new CustomPasswordHasher();
+        }
+
+        public static CustomUserManager Create(IdentityFactoryOptions<CustomUserManager> options,
+                IOwinContext context)
+        {
+            ApplicationContext db = context.Get<ApplicationContext>();
+            CustomUserManager manager = new CustomUserManager( new UserStore<ApplicationUser>(db));
+            return manager;
         }
 
         public override System.Threading.Tasks.Task<ApplicationUser> FindAsync(string userName, string password)
