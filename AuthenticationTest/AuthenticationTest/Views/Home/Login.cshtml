@@ -1,0 +1,25 @@
+﻿@{
+    ViewBag.Title = "Login";
+}
+
+
+<br />
+<br /><br /><br />
+
+@using (Html.BeginForm())
+{
+    <table>
+        <tr>
+            <td>Login : </td>
+            <td>@Html.TextBox("login")</td>
+        </tr>
+        <tr>
+            <td>Password : </td>
+            <td>@Html.TextBox("pwd", "", new { @type = "password" })</td>
+        </tr>
+    </table>
+
+    <input type="submit" value="Отправить" />
+
+}
+
