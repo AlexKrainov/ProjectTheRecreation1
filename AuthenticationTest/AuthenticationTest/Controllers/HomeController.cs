@@ -21,6 +21,7 @@ namespace AuthenticationTest.Controllers
         [HttpPost]
         public ActionResult Login(string login, string pwd, string returnUrl)
         {
+            var user2 = HttpContext.User;
             if ((login == "admin" && pwd == "admin" ) || (login == "alex" && pwd == "alex"))
             {
                 var keys = Response.Cookies.AllKeys;
@@ -42,6 +43,7 @@ namespace AuthenticationTest.Controllers
                 ModelState.AddModelError("", "Некорректное имя пользователя или пароль");
                 return View();
             }
+            var user3 = HttpContext.User;
         }
 
     }

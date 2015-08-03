@@ -1,4 +1,5 @@
-﻿using Owin;
+﻿using Microsoft.Owin;
+using Owin;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,6 +8,7 @@ using UserTestIdentity.Models.User;
 
 namespace UserTestIdentity
 {
+    [assembly: OwinStartupAttribute(typeof(UserTestIdentity.Startup))]
     public class Startup
     {
     
