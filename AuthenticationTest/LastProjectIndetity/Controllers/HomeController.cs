@@ -28,6 +28,7 @@ namespace LastProjectIndetity.Controllers
         [HttpPost]
         public async Task<ActionResult> Login(ApplicationUser user, string returnUrl)
         {
+            
             if (this.ModelState.IsValid)
             {
                 var identity = await AppUserManager.CreateAsync(user);

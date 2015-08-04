@@ -2,14 +2,16 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Security.Principal;
 using System.Web;
 
-namespace LastProjectIndetity.Models.WorkWithUsers
+namespace TourForEverybuddy.Models.AccountUser
 {
-    public class ApplicationUser : IdentityUser 
+    public class ApplicationUser : IdentityUser
     {
+        public string LastName { get; set; }
         public int Age { get; set; }
+        public string Country { get; set; }
         public string Password { get; set; }
+        public bool Guide { get; set; }
     }
 }
