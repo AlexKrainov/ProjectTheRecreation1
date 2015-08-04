@@ -20,8 +20,8 @@ namespace LastProjectIndetity.Controllers
         }
         public ActionResult Main()
         {
-            
 
+            var keys = Response.Cookies.AllKeys;
             var users = AppUserManager.Users;
 
             var user = User.Identity.IsAuthenticated;
