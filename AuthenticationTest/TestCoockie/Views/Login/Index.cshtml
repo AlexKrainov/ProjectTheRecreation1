@@ -1,0 +1,26 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+@Html.ValidationMessage("Login")
+
+@using (Html.BeginForm())
+{
+    <table style="border:solid 1px;">
+        <tr>
+            <td>Login</td>
+            <td>@Html.TextBox("Name")</td>
+        </tr>
+        <tr>
+            <td>Email</td>
+            <td>@Html.TextBox("Email")</td>
+        </tr>
+    </table>
+    
+    <input type="submit" value="Авторизоваться"/>
+    
+}
+
