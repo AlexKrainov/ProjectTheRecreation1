@@ -12,6 +12,7 @@ namespace TourForEverybuddy.Controllers
     {
         public ActionResult Register()
         {
+
             return View();
         }
 
