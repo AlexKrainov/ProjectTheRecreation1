@@ -27,6 +27,8 @@
         </ul>
     </nav>
 
+   
+
     <!-- Banner -->
     <section id="banner">
         <i class="icon fa-diamond"></i>
@@ -36,6 +38,20 @@
             <li><a href="#" class="button big special">Learn More</a></li>
         </ul>
     </section>
+
+    <div style="text-align: right; margin: 5px 25px;">
+        @if (!string.IsNullOrEmpty(HttpContext.Current.User.Identity.Name))
+        {
+            //ToDo: ActionLink to Profil
+            <a>@HttpContext.Current.User.Identity.Name</a>
+        }
+        else
+        {
+            @Html.ActionLink("Авторизоваться ", "Index", "Login")
+        }
+
+        @Html.ActionLink("Зарегистрироваться ", "Register", "Account")
+    </div>
 
     @RenderBody()
 
