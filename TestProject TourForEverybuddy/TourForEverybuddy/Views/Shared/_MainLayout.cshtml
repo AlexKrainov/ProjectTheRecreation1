@@ -27,8 +27,6 @@
         </ul>
     </nav>
 
-   
-
     <!-- Banner -->
     <section id="banner">
         <i class="icon fa-diamond"></i>
@@ -50,7 +48,9 @@
             @Html.ActionLink("Авторизоваться ", "Index", "Login")
         }
 
-        @Html.ActionLink("Зарегистрироваться ", "Register", "Account")
+        <div class="LoginDialog">
+            @Html.ActionLink("Зарегистрироваться ", "Register", "Account")
+        </div>
     </div>
 
     @RenderBody()

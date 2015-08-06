@@ -1,10 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
 
-namespace TourForEverybuddy.Models.Model
+namespace TourForEverybuddy.Models
 {
     [MetadataType(typeof(UserMetaDate))]
     public partial class User
@@ -22,7 +23,12 @@ namespace TourForEverybuddy.Models.Model
         [Required]
         public string Email { get; set; }
         public string Phone { get; set; }
+
+        [Required]
+        [DisplayName("Country")]
         public Nullable<int> CountryId { get; set; }
+        [Required]
+        [DisplayName("Your Roule ...")]
         public Nullable<byte> RouleId { get; set; }
         public byte[] Photo { get; set; }
         public Nullable<System.DateTime> DateRegister { get; set; }

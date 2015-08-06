@@ -13,6 +13,10 @@ namespace TourForEverybuddy.Models
             db = new TourForEverybuddyDatabaseContext();
         }
 
+        public IQueryable<Country> GetCountries()
+        {
+            return db.Countries;
+        }
 
     }
 }

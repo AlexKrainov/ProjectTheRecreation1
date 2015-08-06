@@ -10,8 +10,15 @@ namespace TourForEverybuddy.Controllers
 {
     public class AccountController : Controller
     {
+        private DataManager manager;
+        public AccountController()
+        {
+            manager = new DataManager();
+        }
         public ActionResult Register()
         {
+            ViewBag.Countries =
+                manager.GetCountries().Select(x => new SelectListItem { Text = x.country_name, Value = x.id.ToString() }).ToList();
 
             return View();
         }
@@ -21,7 +28,7 @@ namespace TourForEverybuddy.Controllers
         {
             if (this.ModelState.IsValid)
             {
-                DataManager manager = new DataManager();
+                manager = new DataManager();
                 bool isNew = manager.CheckUserIsNew(user);
 
                 if (isNew)
