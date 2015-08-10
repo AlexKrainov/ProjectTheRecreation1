@@ -41,6 +41,15 @@ namespace TourForEverybuddy.Models.Mapping
             this.Property(t => t.Photo).HasColumnName("Photo");
             this.Property(t => t.DateRegister).HasColumnName("DateRegister");
             this.Property(t => t.LastAuthorization).HasColumnName("LastAuthorization");
+
+            // Relationships
+            this.HasOptional(t => t.Country)
+                .WithMany(t => t.Users)
+                .HasForeignKey(d => d.CountryId);
+            this.HasOptional(t => t.UserType)
+                .WithMany(t => t.Users)
+                .HasForeignKey(d => d.RouleId);
+
         }
     }
 }

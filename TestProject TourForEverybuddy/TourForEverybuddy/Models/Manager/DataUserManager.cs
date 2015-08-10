@@ -30,18 +30,15 @@ namespace TourForEverybuddy.Models
             if (!string.IsNullOrEmpty(loginModel.Name))
                 user = db.Users.FirstOrDefault(x => x.Name == loginModel.Name && x.Password == loginModel.Password);
             else if (!string.IsNullOrEmpty(loginModel.Email))
-            {
                 user = db.Users.FirstOrDefault(x => x.Email == loginModel.Email && x.Password == loginModel.Password);
-                name = user.Name;
-            }
+
+            name = user.Name;
 
             if (user == null)
                 return false;
 
-            //user.LastAuthorization = DateTime.Now;
-            user.Phone = "1233";
-            
-            
+            user.LastAuthorization = DateTime.Now;
+           
             db.SaveChanges();
 
             return true;

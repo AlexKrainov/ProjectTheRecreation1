@@ -24,10 +24,8 @@ namespace TourForEverybuddy.Models
         public string Email { get; set; }
         public string Phone { get; set; }
 
-        [Required]
         [DisplayName("Country")]
         public Nullable<int> CountryId { get; set; }
-        [Required]
         [DisplayName("Your Roule ...")]
         public Nullable<byte> RouleId { get; set; }
         public byte[] Photo { get; set; }

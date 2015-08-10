@@ -17,5 +17,7 @@ namespace TourForEverybuddy.Models
         public byte[] Photo { get; set; }
         public Nullable<System.DateTime> DateRegister { get; set; }
         public Nullable<System.DateTime> LastAuthorization { get; set; }
+        public virtual Country Country { get; set; }
+        public virtual UserType UserType { get; set; }
     }
 }

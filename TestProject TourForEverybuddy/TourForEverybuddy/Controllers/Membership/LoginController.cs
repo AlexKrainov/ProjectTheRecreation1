@@ -19,7 +19,7 @@ namespace TourForEverybuddy.Controllers.Membership
             
               var ab = Index(loginModel, returnUrl);
 
-            return View();
+              return Redirect(returnUrl ?? Url.Action("Index", "Home"));
         }
         [HttpPost]
         public ActionResult Index(LoginViewModel loginModel, string returnUrl)
