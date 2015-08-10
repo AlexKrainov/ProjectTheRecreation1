@@ -36,11 +36,14 @@
 
 .loginDialog {
     display: none;
-    width: 490px;
+    width: 390px;
     position: absolute;
     bottom: 0px;
     right: 0px;
     top: 28px;
+}
+#linkForgot{
+    color :#51BAA4;
 }
 
     .loginDialog table tr td:first-child {
@@ -55,7 +58,7 @@
 .TitleLoginPage {
     display: block;
     margin: 30px auto;
-    width: 250px;
+    width: 180px;
 }
 
 .LoginPageDiv {

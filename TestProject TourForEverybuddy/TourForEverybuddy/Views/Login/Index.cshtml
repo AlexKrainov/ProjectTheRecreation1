@@ -3,7 +3,7 @@
     ViewBag.Title = "Index";
     this.Layout = "~/Views/Shared/_GenericLayout.cshtml";
 }
-
+<link rel="stylesheet" href="~/Content/Elements/Login.css" />
 <h2 class="TitleLoginPage">Authentication</h2>
 
 <div class="LoginPageDiv">
@@ -40,8 +40,11 @@
             </tr>
         </table>
         @Html.ActionLink("Зарегистрироваться ", "Register", "Account", null, new { @style = "display: inline; margin: 10px auto 10px 100px;" })
-        @Html.ActionLink("Forgot password ?", "", "", null, new { @style = "margin-left: 50px;" })
+        @Html.ActionLink("Forgot password ?", "ForgotThePassword", "Account", null, new { @onclick = "Pre_ForgotThePassword(this)", @style = "margin-left: 50px;" })
 
         <input type="submit" value="Go" style="margin: 10px auto 0px 190px;" />
     }
 </div>
+
+
+<script src="~/Scripts/Elements/Login.js"></script>
