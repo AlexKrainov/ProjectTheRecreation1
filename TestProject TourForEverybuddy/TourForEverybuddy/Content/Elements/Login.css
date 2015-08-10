@@ -1,0 +1,66 @@
+﻿/*#region Dialog login */
+
+.LoginDiv {
+    display: inline;
+    padding-right: 50px;
+    position: relative;
+    /*text-align: right;
+    margin: 5px 25px;
+    position: relative;*/
+    /*width: 500px;
+    top: -135px;*/
+    /* bottom: 25px; */
+    /*left: 565px;
+    z-index: 99999;*/
+}
+
+#or {
+    padding: 0px;
+    margin: 0px;
+    position: relative;
+    right: 150px;
+    color: lightgray;
+}
+
+#labelShowLoginDialog {
+    width: 0px;
+    cursor: pointer;
+    color: #51BAA4;
+    text-decoration: underline;
+    display: inline;
+}
+
+    #labelShowLoginDialog:hover {
+        text-decoration: none;
+    }
+
+.loginDialog {
+    display: none;
+    width: 490px;
+    position: absolute;
+    bottom: 0px;
+    right: 0px;
+    top: 28px;
+}
+
+    .loginDialog table tr td:first-child {
+        line-height: 0px;
+    }
+
+/*#endregion */
+
+
+/*#region Login Page */
+
+.TitleLoginPage {
+    display: block;
+    margin: 30px auto;
+    width: 250px;
+}
+
+.LoginPageDiv {
+    display: block;
+    margin: 30px auto;
+    width: 500px;
+}
+/*#endregion */

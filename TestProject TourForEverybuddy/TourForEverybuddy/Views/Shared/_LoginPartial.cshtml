@@ -1,0 +1,51 @@
+﻿@{
+    ViewBag.Title = "_LoginPartial";
+}
+
+@if (!string.IsNullOrEmpty(HttpContext.Current.User.Identity.Name))
+{
+    //ToDo: ActionLink to Profil
+    <a>@HttpContext.Current.User.Identity.Name</a>
+}
+else
+{
+    <label id="labelShowLoginDialog" onclick="ShowLoginDialog()">Авторизоваться</label>
+    // @Html.ActionLink("Авторизоваться ", "Index", "Login")
+}
+
+
+<div class="LoginDiv">
+
+    @using (Html.BeginForm("Index", "Home", FormMethod.Post, new { @class = "loginDialog" }))
+    {
+        <table style="margin-bottom: 0px;">
+            <tr>
+                <td>Name :</td>
+                <td> @Html.TextBox("Name")</td>
+            </tr>
+            @*</table>
+                <h5 id="or">or</h5>
+                <table style="margin-bottom: 0px;">*@
+            <tr>
+                <td></td>
+                <td style="text-align:center; padding:0px;"><h4 style="margin:0px; color: lightgray;">or</h4></td>
+            </tr>
+            <tr>
+                <td>Email :</td>
+                <td>@Html.TextBox("Email")</td>
+            </tr>
+            <tr>    
+                <td>Password :</td>
+                <td>@Html.TextBox("Password", null, new { @type = "password" })</td>
+            </tr>
+        </table>
+        @Html.ActionLink("Зарегистрироваться ", "Register", "Account")
+        @Html.ActionLink("Forgot password ?", "ForgotThePassword", "Account")
+        @Html.Hidden("IsRegister", "false")
+        <br />
+
+        <input type="submit" value="Register" onclick="return $('#IsRegister').val('true');" />
+        <input type="submit" value="LogIn" />
+
+    }
+</div>

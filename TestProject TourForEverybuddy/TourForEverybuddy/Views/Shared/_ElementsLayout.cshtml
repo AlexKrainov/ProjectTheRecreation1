@@ -6,12 +6,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <!--[if lte IE 8]><script src="~/Scripts/ie/html5shiv.js"></script><![endif]-->
     <link rel="stylesheet" href="~/Content/main.css" />
+    <link rel="stylesheet" href="~/Content/Elements/Login.css" />
     <!--[if lte IE 8]><link rel="stylesheet" href="~/Content/ie8.css" /><![endif]-->
     <!--[if lte IE 9]><link rel="stylesheet" href="~/Content/ie9.css" /><![endif]-->
 </head>
 <body>
     <!-- Header -->
     <header id="header" class="skel-layers-fixed">
+        @Html.Partial("_LoginPartial")
         <h1>@Html.ActionLink("Retrospect", "Index", "Home")</h1>
         <a href="#nav">Menu</a>
     </header>
@@ -64,5 +66,6 @@
     <script src="~/Scripts/util.js"></script>
     <!--[if lte IE 8]><script src="~/Scripts/ie/respond.min.js"></script><![endif]-->
     <script src="~/Scripts/main.js"></script>
+    <script src="~/Scripts/Elements/Login.js"></script>
 </body>
 </html>

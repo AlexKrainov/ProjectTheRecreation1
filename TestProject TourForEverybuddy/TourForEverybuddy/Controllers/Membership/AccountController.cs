@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using System.Threading.Tasks;
 using TourForEverybuddy.Models;
+using TourForEverybuddy.Models.ViewModels;
 
 namespace TourForEverybuddy.Controllers
 {
@@ -15,11 +16,13 @@ namespace TourForEverybuddy.Controllers
         {
             manager = new DataManager();
         }
-        public ActionResult Register()
+
+        public ActionResult Register(LoginViewModel loginModel)
         {
             ViewBag.Countries =
                 manager.GetCountries().Select(x => new SelectListItem { Text = x.country_name, Value = x.id.ToString() }).ToList();
 
+            ViewBag.Model = new { Name = loginModel.Name, Email = loginModel.Email };
             return View();
         }
 
@@ -40,6 +43,13 @@ namespace TourForEverybuddy.Controllers
             {
                 ModelState.AddModelError("ValidIsFailed", "Validation Faild");
             }
+
+            return View();
+        }
+
+        [HttpGet]
+        public ActionResult ForgotThePassword(LoginViewModel loginModel)
+        {
 
             return View();
         }

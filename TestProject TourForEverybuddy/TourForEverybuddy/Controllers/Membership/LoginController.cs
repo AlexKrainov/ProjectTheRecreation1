@@ -5,27 +5,36 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.Security;
 using TourForEverybuddy.Models;
+using TourForEverybuddy.Models.ViewModels;
 
 namespace TourForEverybuddy.Controllers.Membership
 {
     [AllowAnonymous]
     public class LoginController : Controller
     {
-        public ActionResult Index()
+        public ActionResult Index(LoginViewModel loginModel, string returnUrl, bool? a = null)
         {
+            if (String.IsNullOrEmpty(loginModel.Name) && String.IsNullOrEmpty(loginModel.Email) && String.IsNullOrEmpty(loginModel.Password))
+                return View();
+            
+              var ab = Index(loginModel, returnUrl);
+
             return View();
         }
         [HttpPost]
-        public ActionResult Index(string Name , string Password, string returnUrl)
+        public ActionResult Index(LoginViewModel loginModel, string returnUrl)
         {
             DataManager manager = new DataManager();
-            bool have = manager.CheckUserLogin(Name, Password);
+            string name = "";
+            bool have = manager.CheckUserLogin(loginModel, ref name);
+
             
-            if(have)
+            if (have)
             {
-                FormsAuthentication.SetAuthCookie(Name, true);
+                FormsAuthentication.SetAuthCookie(name, true);
                 return Redirect(returnUrl ?? Url.Action("Index", "Home"));
-            }else
+            }
+            else
             {
                 ModelState.AddModelError("LoginAndPassword_DoesNotMatch", "Name and password does not match");
                 return View();

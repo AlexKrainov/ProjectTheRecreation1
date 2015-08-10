@@ -7,6 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <!--[if lte IE 8]><script src="~/Scripts/ie/html5shiv.js"></script><![endif]-->
     <link rel="stylesheet" href="~/Content/main.css" />
+    <link rel="stylesheet" href="~/Content/Elements/Login.css" />
     <!--[if lte IE 8]><link rel="stylesheet" href="~/Content/ie8.css" /><![endif]-->
     <!--[if lte IE 9]><link rel="stylesheet" href="~/Content/ie9.css" /><![endif]-->
 </head>
@@ -15,8 +16,10 @@
     <!-- Header -->
     <header id="header" class="alt">
         <h1>@Html.ActionLink("Retrospect", "Index", "Home")</h1>
+        @Html.Partial("_LoginPartial")
         <a href="#nav">Menu</a>
     </header>
+
 
     <!-- Nav -->
     <nav id="nav">
@@ -36,22 +39,6 @@
             <li><a href="#" class="button big special">Learn More</a></li>
         </ul>
     </section>
-
-    <div style="text-align: right; margin: 5px 25px;">
-        @if (!string.IsNullOrEmpty(HttpContext.Current.User.Identity.Name))
-        {
-            //ToDo: ActionLink to Profil
-            <a>@HttpContext.Current.User.Identity.Name</a>
-        }
-        else
-        {
-            @Html.ActionLink("Авторизоваться ", "Index", "Login")
-        }
-
-        <div class="LoginDialog">
-            @Html.ActionLink("Зарегистрироваться ", "Register", "Account")
-        </div>
-    </div>
 
     @RenderBody()
 
@@ -123,6 +110,7 @@
     <script src="~/Scripts/util.js"></script>
     <!--[if lte IE 8]><script src="assets/js/ie/respond.min.js"></script><![endif]-->
     <script src="~/Scripts/main.js"></script>
+    <script src="~/Scripts/Elements/Login.js"></script>
 
 </body>
 </html>

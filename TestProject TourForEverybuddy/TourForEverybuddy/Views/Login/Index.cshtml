@@ -1,44 +1,47 @@
-﻿@model TourForEverybuddy.Models.User
+﻿@model TourForEverybuddy.Models.ViewModels.LoginViewModel
 @{
     ViewBag.Title = "Index";
     this.Layout = "~/Views/Shared/_GenericLayout.cshtml";
 }
 
-<br />
-<br />
-<br />
+<h2 class="TitleLoginPage">Authentication</h2>
 
-@Html.ValidationMessage("LoginAndPassword_DoesNotMatch", new { @style = "color: red;" })
+<div class="LoginPageDiv">
+    @Html.ValidationMessage("LoginAndPassword_DoesNotMatch", new { @style = "color: red;" })
 
-@using (Html.BeginForm())
-{
-    <table>
-        <tr>
-            <td>Name : </td>
-            <td>
-                <div class="form-group">
-                    @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label col-md-2" })
-                    <div class="col-md-10">
-                        @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
-                        @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
-                    </div>
-                </div>
-            </td>
-        </tr>
-        <tr>
-            <td>Password : </td>
-            <td>
-                <div class="form-group">
-                    @Html.LabelFor(model => model.Password, htmlAttributes: new { @class = "control-label col-md-2" })
-                    <div class="col-md-10">
-                        @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "form-control" } })
-                        @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
-                    </div>
-                </div>
-            </td>
-        </tr>
-    </table>
 
-    <input type="submit" value="Go" />
-}
+    @using (Html.BeginForm())
+    {
+        <table style="margin: 25px;">
+            <tr>
+                <td>Name : </td>
+                <td>
+                    @Html.EditorFor(model => model.Name)
+                    @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+                </td>
+            </tr>
+            <tr>
+                <td></td>
+                <td style="text-align:center;"><h4 style="margin:0px">or</h4></td>
+            </tr>
+            <tr>
+                <td>Email : </td>
+                <td>
+                    @Html.EditorFor(model => model.Email)
+                    @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+                </td>
+            </tr>
+            <tr>
+                <td>Password : </td>
+                <td>
+                    @Html.EditorFor(model => model.Password)
+                    @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
+                </td>
+            </tr>
+        </table>
+        @Html.ActionLink("Зарегистрироваться ", "Register", "Account", null, new { @style = "display: inline; margin: 10px auto 10px 100px;" })
+        @Html.ActionLink("Forgot password ?", "", "", null, new { @style = "margin-left: 50px;" })
 
+        <input type="submit" value="Go" style="margin: 10px auto 0px 190px;" />
+    }
+</div>

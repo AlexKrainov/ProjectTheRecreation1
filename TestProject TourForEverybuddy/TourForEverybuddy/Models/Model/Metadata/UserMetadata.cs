@@ -19,7 +19,7 @@ namespace TourForEverybuddy.Models
         public string LastName { get; set; }
         [Required]
         public string Password { get; set; }
-        public int Age { get; set; }
+        public byte Age { get; set; }
         [Required]
         public string Email { get; set; }
         public string Phone { get; set; }
