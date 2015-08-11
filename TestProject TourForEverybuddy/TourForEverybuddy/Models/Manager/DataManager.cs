@@ -18,5 +18,9 @@ namespace TourForEverybuddy.Models
             return db.Countries;
         }
 
+        public IQueryable<Language> GetLanguages()
+        {
+            return db.Languages;
+        }
     }
 }

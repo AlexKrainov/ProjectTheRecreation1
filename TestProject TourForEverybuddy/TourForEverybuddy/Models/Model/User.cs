@@ -13,6 +13,7 @@ namespace TourForEverybuddy.Models
         public string Email { get; set; }
         public string Phone { get; set; }
         public Nullable<int> CountryId { get; set; }
+        public Nullable<int> LanguageId { get; set; }
         public Nullable<byte> RouleId { get; set; }
         public byte[] Photo { get; set; }
         public Nullable<System.DateTime> DateRegister { get; set; }

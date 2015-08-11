@@ -6,7 +6,7 @@
 {
     //ToDo: ActionLink to Profil
     <a>@HttpContext.Current.User.Identity.Name</a>
-    @Html.ActionLink("Exit", "Exit", "Home")
+    @Html.ActionLink("Exit", "Exit", "Home", new { @style = "color: #51BAA4;" })
 }
 else
 {
@@ -16,24 +16,18 @@ else
 
     @using (Html.BeginForm("Index", "Home", FormMethod.Post, new { @class = "loginDialog" }))
     {
-        <table style="margin-bottom: 0px; ">  @*background-color: rgba(85,82,89, .4);*@
+        <table style="margin-bottom: 0px; ">
+            @*background-color: rgba(85,82,89, .4);*@
             <tr>
-                @*<td>Name :</td>*@
                 <td> @Html.TextBox("Name", null, new { @placeholder = "UserName ..." })</td>
             </tr>
-            @*</table>
-                <h5 id="or">or</h5>
-                <table style="margin-bottom: 0px;">*@
             <tr>
-                @*<td></td>*@
                 <td style="text-align:center; padding:0px;"><h4 style="margin:0px; color: lightgray;">or</h4></td>
             </tr>
             <tr>
-                @*<td>Email :</td>*@
                 <td>@Html.TextBox("Email", null, new { @placeholder = "Email ..." })</td>
             </tr>
             <tr>
-                @*<td>Password :</td>*@
                 <td>@Html.TextBox("Password", null, new { @type = "password", @placeholder = "Password ... " })</td>
             </tr>
         </table>

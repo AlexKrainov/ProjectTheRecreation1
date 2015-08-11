@@ -19,3 +19,5 @@ function Pre_ForgotThePassword(o) {
 
     $(o).attr("href", link);
 }
+
+

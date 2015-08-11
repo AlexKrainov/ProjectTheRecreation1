@@ -6,3 +6,7 @@
 .text-danger {
     color: #b94a48;
 }
+
+.Passwords input[type=password]{
+        width: 297px;
+}

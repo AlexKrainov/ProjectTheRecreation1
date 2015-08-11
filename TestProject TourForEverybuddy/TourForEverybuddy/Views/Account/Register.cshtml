@@ -31,12 +31,6 @@
         </div>
 
         <div>
-            @Html.LabelFor(model => model.Password)
-            @Html.EditorFor(model => model.Password)
-            @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
-        </div>
-
-        <div>
             @Html.LabelFor(model => model.Age)
             @Html.EditorFor(model => model.Age)
             @Html.ValidationMessageFor(model => model.Age, "", new { @class = "text-danger" })
@@ -61,12 +55,28 @@
             @Html.DropDownListFor(model => model.CountryId, ViewBag.Countries as IEnumerable<SelectListItem>)
             @Html.ValidationMessageFor(model => model.CountryId, "", new { @class = "text-danger" })
         </div>
+        <div>
+            @Html.LabelFor(model => model.LanguageId)
+            @Html.DropDownListFor(model => model.LanguageId, ViewBag.Languages as IEnumerable<SelectListItem>)
+            @Html.ValidationMessageFor(model => model.LanguageId, "", new { @class = "text-danger" })
+        </div>
+
+        <div class="Passwords">
+            @Html.LabelFor(model => model.Password)
+            @Html.TextBox("Password", null, new { @type = "password" })
+            @Html.LabelFor(model => model.Password, "Confirm password")
+            @Html.TextBox("Password", null, new { @id = "Password2", @type = "password" })
+
+            @*@Html.EditorFor(model => model.Password)*@
+            @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
+        </div>
 
         <div>
-            @Html.ValidationMessageFor(model => model.RouleId, "The Agreement ... field is required. ", new { @class = "text-danger" })
-            <input type="checkbox" /> <em>Agreement</em>
+            @*The Agreement ... field is required.*@
+            @Html.ValidationMessageFor(model => model.RouleId, "", new { @class = "text-danger" })
+            <input type="checkbox" /> <em>@Html.ActionLink("Agreement", "Agreement", null, new { @target = "blank" })</em>
         </div>
-    <input type="submit" value="Create" style="margin: 20px auto auto 230px;" class="button special disabled" />
+        <input type="submit" value="Create" style="margin: 20px auto auto 230px;" onclick="PreClickRegister()" class="button special disabled" />
     }
 </div>
 

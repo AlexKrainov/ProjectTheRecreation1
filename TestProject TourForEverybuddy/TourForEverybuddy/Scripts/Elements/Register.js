@@ -1,3 +1,7 @@
 ﻿function Agreement() {
 
 }
+
+function PreClickRegister() {
+
+}
