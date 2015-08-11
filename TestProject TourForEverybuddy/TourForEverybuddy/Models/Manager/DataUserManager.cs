@@ -32,10 +32,10 @@ namespace TourForEverybuddy.Models
             else if (!string.IsNullOrEmpty(loginModel.Email))
                 user = db.Users.FirstOrDefault(x => x.Email == loginModel.Email && x.Password == loginModel.Password);
 
-            name = user.Name;
-
             if (user == null)
                 return false;
+
+            name = user.Name;
 
             user.LastAuthorization = DateTime.Now;
            
