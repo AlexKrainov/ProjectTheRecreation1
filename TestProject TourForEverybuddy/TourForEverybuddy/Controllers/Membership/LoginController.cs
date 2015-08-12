@@ -12,23 +12,27 @@ namespace TourForEverybuddy.Controllers.Membership
     [AllowAnonymous]
     public class LoginController : Controller
     {
-        public ActionResult Index(LoginViewModel loginModel, string returnUrl, bool? a = null)
+        private string ReturnUrl;
+        public ActionResult Index(LoginViewModel loginModel, string returnUrl)
         {
-            if (String.IsNullOrEmpty(loginModel.Name) && String.IsNullOrEmpty(loginModel.Email) && String.IsNullOrEmpty(loginModel.Password))
+            if (String.IsNullOrEmpty(loginModel.NameOrEmail) && String.IsNullOrEmpty(loginModel.Password))
                 return View();
-            
-              var ab = Index(loginModel, returnUrl);
 
-              return Redirect(returnUrl ?? Url.Action("Index", "Home"));
+            ReturnUrl = returnUrl;
+            Index(loginModel, returnUrl, true);
+
+            if (string.IsNullOrEmpty(ReturnUrl))
+                return View();
+            else
+                return Redirect(ReturnUrl);// ?? Url.Action("Index", "Home"));
         }
         [HttpPost]
-        public ActionResult Index(LoginViewModel loginModel, string returnUrl)
+        public ActionResult Index(LoginViewModel loginModel, string returnUrl, bool? a = null)
         {
             DataManager manager = new DataManager();
             string name = "";
             bool have = manager.CheckUserLogin(loginModel, ref name);
 
-            
             if (have)
             {
                 FormsAuthentication.SetAuthCookie(name, true);
@@ -36,6 +40,9 @@ namespace TourForEverybuddy.Controllers.Membership
             }
             else
             {
+                loginModel.Password = null;
+                ReturnUrl = "";
+                //returnUrl = Url.Action("Index", "Login", new { NameOrEmail = loginModel.NameOrEmail });
                 ModelState.AddModelError("LoginAndPassword_DoesNotMatch", "Name and password does not match");
                 return View();
             }

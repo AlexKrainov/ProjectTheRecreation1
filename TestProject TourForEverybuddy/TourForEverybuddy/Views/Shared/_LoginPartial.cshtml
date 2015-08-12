@@ -17,8 +17,13 @@ else
     @using (Html.BeginForm("Index", "Home", FormMethod.Post, new { @class = "loginDialog" }))
     {
         <table style="margin-bottom: 0px; ">
-            @*background-color: rgba(85,82,89, .4);*@
             <tr>
+                <td>
+                    @Html.TextBox("NameOrEmail", null, new { @placeholder = "UserName or Email ..."})
+                </td>
+            </tr>
+            @*background-color: rgba(85,82,89, .4);*@
+            @*<tr>
                 <td> @Html.TextBox("Name", null, new { @placeholder = "UserName ..." })</td>
             </tr>
             <tr>
@@ -26,7 +31,7 @@ else
             </tr>
             <tr>
                 <td>@Html.TextBox("Email", null, new { @placeholder = "Email ..." })</td>
-            </tr>
+            </tr>*@
             <tr>
                 <td>@Html.TextBox("Password", null, new { @type = "password", @placeholder = "Password ... " })</td>
             </tr>

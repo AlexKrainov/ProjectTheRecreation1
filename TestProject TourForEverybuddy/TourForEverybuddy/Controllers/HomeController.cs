@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Security;
+using TourForEverybuddy.Controllers.Membership;
 using TourForEverybuddy.Models.ViewModels;
 
 namespace TourForEverybuddy.Controllers
@@ -19,15 +20,20 @@ namespace TourForEverybuddy.Controllers
         public ActionResult Index(LoginViewModel loginModel, bool IsRegister)
         {
             if (IsRegister)
+            {
+                if (!string.IsNullOrEmpty(loginModel.NameOrEmail))
+                    ParsingLoginNameOrEmail(loginModel);
                 return RedirectToAction("Register", "Account", new { Name = loginModel.Name, Email = loginModel.Email });
+            }
             else
+            {
                 return RedirectToAction("Index", "Login", new
                 {
-                    Name = loginModel.Name,
-                    Email = loginModel.Email,
+                    NameOrEmail = loginModel.NameOrEmail,
                     Password = loginModel.Password,
                     returnUrl = Request.UrlReferrer.OriginalString,
                 });
+            }
         }
 
         public ActionResult Exit()
@@ -37,6 +43,16 @@ namespace TourForEverybuddy.Controllers
             return Redirect(Request.UrlReferrer.OriginalString);
         }
 
+
+        private void ParsingLoginNameOrEmail(LoginViewModel loginModel)
+        {
+            var z = loginModel.NameOrEmail.IndexOf('@'); ;
+
+            if (loginModel.NameOrEmail.IndexOf('@') == -1)
+                loginModel.Name = loginModel.NameOrEmail;
+            else
+                loginModel.Email = loginModel.NameOrEmail;
+        }
     }
 
 }

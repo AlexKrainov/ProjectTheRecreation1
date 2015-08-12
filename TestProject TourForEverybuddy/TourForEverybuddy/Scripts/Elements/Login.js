@@ -12,10 +12,14 @@ function Pre_ForgotThePassword(o) {
     {
         link = link.replace("?Length=7","");
     }
-    var name = $("#Name").val();
-    var email = $("#Email").val();
 
-    link = link + "?Name=" + name + "&Email=" + email;
+    var UserNameOrEmail = $("#NameOrEmail").val();
+
+    //var name = $("#Name").val();
+    //var email = $("#Email").val();
+    //link = link + "?Name=" + name + "&Email=" + email;
+
+    link = link + "?NameOrEmail=" + UserNameOrEmail;
 
     $(o).attr("href", link);
 }

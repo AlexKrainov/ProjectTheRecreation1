@@ -23,14 +23,17 @@ namespace TourForEverybuddy.Models
 
             return true;
         }
-        internal bool CheckUserLogin(LoginViewModel loginModel,ref string name )
+        internal bool CheckUserLogin(LoginViewModel loginModel, ref string name)
         {
             User user = null;
 
-            if (!string.IsNullOrEmpty(loginModel.Name))
-                user = db.Users.FirstOrDefault(x => x.Name == loginModel.Name && x.Password == loginModel.Password);
-            else if (!string.IsNullOrEmpty(loginModel.Email))
-                user = db.Users.FirstOrDefault(x => x.Email == loginModel.Email && x.Password == loginModel.Password);
+            if (string.IsNullOrEmpty(loginModel.NameOrEmail))
+                return false;
+
+            user = db.Users.FirstOrDefault(x => x.Name == loginModel.NameOrEmail && x.Password == loginModel.Password);
+
+            if (user == null)
+                user = db.Users.FirstOrDefault(x => x.Email == loginModel.NameOrEmail && x.Password == loginModel.Password);
 
             if (user == null)
                 return false;
@@ -38,7 +41,7 @@ namespace TourForEverybuddy.Models
             name = user.Name;
 
             user.LastAuthorization = DateTime.Now;
-           
+
             db.SaveChanges();
 
             return true;

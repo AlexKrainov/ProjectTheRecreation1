@@ -13,7 +13,7 @@
     @using (Html.BeginForm())
     {
         <table style="margin: 25px;">
-            <tr>
+            @*<tr>
                 <td>Name : </td>
                 <td>
                     @Html.EditorFor(model => model.Name)
@@ -30,12 +30,19 @@
                     @Html.EditorFor(model => model.Email)
                     @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
                 </td>
+            </tr>*@
+            <tr>
+                <td>UserName or Email : </td>
+                <td>
+                    @Html.EditorFor(model => model.NameOrEmail)
+                    @Html.ValidationMessageFor(model => model.NameOrEmail, "", new { @class = "text-danger" })
+                </td>
             </tr>
             <tr>
                 <td>Password : </td>
                 <td>
-                    @Html.EditorFor(model => model.Password)
-                    @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
+                    @Html.TextBox("Password", null, new { @type = "password" })
+                    @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger"})
                 </td>
             </tr>
         </table>
