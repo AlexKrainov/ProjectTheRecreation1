@@ -42,13 +42,14 @@
     right: 0px;
     top: 28px;
 }
-#linkForgot{
-    color :#51BAA4;
+
+#linkForgot {
+    color: #51BAA4;
 }
 
-    .loginDialog table tr td:first-child {
-        line-height: 0px;
-    }
+.loginDialog table tr td:first-child {
+    line-height: 0px;
+}
 
 /*#endregion */
 
@@ -67,3 +68,9 @@
     width: 500px;
 }
 /*#endregion */
+
+#Cross {
+    display: block;
+    padding-left: 370px;
+    cursor: pointer;
+}

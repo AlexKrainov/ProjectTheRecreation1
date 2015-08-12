@@ -7,30 +7,12 @@
 <h2 class="TitleLoginPage">Authentication</h2>
 
 <div class="LoginPageDiv">
-    @Html.ValidationMessage("LoginAndPassword_DoesNotMatch", new { @style = "color: red;" })
+    @Html.ValidationMessage("LoginAndPassword_DoesNotMatch", new { @style = "color: red; padding-left: 140px;" })
 
 
     @using (Html.BeginForm())
     {
         <table style="margin: 25px;">
-            @*<tr>
-                <td>Name : </td>
-                <td>
-                    @Html.EditorFor(model => model.Name)
-                    @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
-                </td>
-            </tr>
-            <tr>
-                <td></td>
-                <td style="text-align:center;"><h4 style="margin:0px">or</h4></td>
-            </tr>
-            <tr>
-                <td>Email : </td>
-                <td>
-                    @Html.EditorFor(model => model.Email)
-                    @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
-                </td>
-            </tr>*@
             <tr>
                 <td>UserName or Email : </td>
                 <td>
@@ -42,10 +24,13 @@
                 <td>Password : </td>
                 <td>
                     @Html.TextBox("Password", null, new { @type = "password" })
-                    @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger"})
+                    @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
                 </td>
             </tr>
         </table>
+        <div style="padding-left: 193px;">
+            @Html.CheckBoxFor(model => model.RememberMe)<em>Remember me</em>
+        </div>
         @Html.ActionLink("Зарегистрироваться ", "Register", "Account", null, new { @style = "display: inline; margin: 10px auto 10px 100px;" })
         @Html.ActionLink("Forgot password ?", "ForgotThePassword", "Account", null, new { @onclick = "Pre_ForgotThePassword(this)", @style = "margin-left: 50px;" })
 

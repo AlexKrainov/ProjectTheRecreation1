@@ -24,7 +24,6 @@ namespace TourForEverybuddy.Controllers
             ViewBag.Languages =
                 manager.GetLanguages().Select(x => new SelectListItem { Text = x.name, Value = x.id.ToString() }).ToList();
 
-
             ViewBag.Model = new { Name = loginModel.Name, Email = loginModel.Email };
 
             return View();

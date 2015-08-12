@@ -19,6 +19,8 @@ namespace TourForEverybuddy.Controllers
         [HttpPost]
         public ActionResult Index(LoginViewModel loginModel, bool IsRegister)
         {
+           // IsRegister = IsRegister ?? false;
+
             if (IsRegister)
             {
                 if (!string.IsNullOrEmpty(loginModel.NameOrEmail))
@@ -31,6 +33,7 @@ namespace TourForEverybuddy.Controllers
                 {
                     NameOrEmail = loginModel.NameOrEmail,
                     Password = loginModel.Password,
+                    RememberMe = loginModel.RememberMe,
                     returnUrl = Request.UrlReferrer.OriginalString,
                 });
             }

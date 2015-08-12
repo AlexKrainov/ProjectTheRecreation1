@@ -6,6 +6,7 @@
 
 @Html.ValidationMessage("EmailIsHave", new { @style = "color: red" })
 @Html.ValidationMessage("ValidIsFailed", new { @style = "color: red" })
+
 <div class="RegisterDiv">
     @using (Html.BeginForm())
     {
@@ -15,8 +16,16 @@
 
         <div>
             @Html.LabelFor(model => model.RouleId)
-            @Html.RadioButtonFor(model => model.RouleId, 2) Guied
-            @Html.RadioButtonFor(model => model.RouleId, 3) User
+            @*@Html.RadioButtonFor(model => model.RouleId, 2) Guied
+            @Html.RadioButtonFor(model => model.RouleId, 3) User*@
+            <div class="4u 12u$(xsmall)">
+                @Html.RadioButtonFor(model => model.RouleId, 2, new { id = "priority-low" }) 
+                @*<input type="radio" id="priority-low" name="RouleId" checked>*@
+                <label for="priority-low">Guied</label>
+              @Html.RadioButtonFor(model => model.RouleId, 3, new { id = "priority-normal" })
+                @*<input type="radio" id="priority-low" name="RouleId" checked>*@
+                <label for="priority-low">User</label>
+            </div>
         </div>
 
         <div>

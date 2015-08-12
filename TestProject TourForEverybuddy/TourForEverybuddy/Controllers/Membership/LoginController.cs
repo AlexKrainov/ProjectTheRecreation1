@@ -35,7 +35,7 @@ namespace TourForEverybuddy.Controllers.Membership
 
             if (have)
             {
-                FormsAuthentication.SetAuthCookie(name, true);
+                FormsAuthentication.SetAuthCookie(name, loginModel.RememberMe);
                 return Redirect(returnUrl ?? Url.Action("Index", "Home"));
             }
             else

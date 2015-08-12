@@ -16,33 +16,30 @@ else
 
     @using (Html.BeginForm("Index", "Home", FormMethod.Post, new { @class = "loginDialog" }))
     {
+        <img src="~/images/24_em_cross.png" id="Cross" onclick="ShowLoginDialog()" />
         <table style="margin-bottom: 0px; ">
             <tr>
                 <td>
-                    @Html.TextBox("NameOrEmail", null, new { @placeholder = "UserName or Email ..."})
+                    @Html.TextBox("NameOrEmail", null, new { @placeholder = "UserName or Email ..." })
                 </td>
             </tr>
-            @*background-color: rgba(85,82,89, .4);*@
-            @*<tr>
-                <td> @Html.TextBox("Name", null, new { @placeholder = "UserName ..." })</td>
-            </tr>
-            <tr>
-                <td style="text-align:center; padding:0px;"><h4 style="margin:0px; color: lightgray;">or</h4></td>
-            </tr>
-            <tr>
-                <td>@Html.TextBox("Email", null, new { @placeholder = "Email ..." })</td>
-            </tr>*@
             <tr>
                 <td>@Html.TextBox("Password", null, new { @type = "password", @placeholder = "Password ... " })</td>
             </tr>
         </table>
+        @Html.Hidden("IsRegister", false)
         @*@Html.ActionLink("Registration ", "Register", "Account", null, new { @style = "    color: #51BAA4;" })*@
-        @Html.ActionLink("Forgot password ?", "ForgotThePassword", "Account", null, new { @onclick = "Pre_ForgotThePassword(this)", @style = " color :#51BAA4;" })
-        @Html.Hidden("IsRegister", "false")
+        @Html.CheckBox("RememberMe")<em>Remember me</em>
+        @Html.ActionLink("Forgot password ?", "ForgotThePassword", "Account", null, new
+   {
+       @onclick = "Pre_ForgotThePassword(this)",
+       @style = " color :#51BAA4; padding-left: 40px; padding-right: 0px; margin-right: 6px;"
+   })
+
         <br />
 
-        <input type="submit" value="Register" onclick="return $('#IsRegister').val('true');" />
-        <input type="submit" value="LogIn" />
+        <input type="submit" class="button special small" value="Register" onclick="return $('#IsRegister').val('true');" />
+    <input type="submit" class="button special small" value="LogIn"   />
 
     }
 </div>

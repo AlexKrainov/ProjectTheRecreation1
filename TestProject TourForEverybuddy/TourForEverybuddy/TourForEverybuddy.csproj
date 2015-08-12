@@ -137,6 +137,7 @@
     <Content Include="Content\main.css" />
     <Content Include="fonts\fontawesome-webfont.svg" />
     <Content Include="Global.asax" />
+    <Content Include="images\24_em_cross.png" />
     <Content Include="images\banner.jpg" />
     <Content Include="images\overlay.png" />
     <Content Include="images\pic01.jpg" />
