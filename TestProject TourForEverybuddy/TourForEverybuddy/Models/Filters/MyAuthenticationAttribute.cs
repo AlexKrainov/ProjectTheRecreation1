@@ -15,7 +15,7 @@ namespace TourForEverybuddy.Models.Filters
         {
             IIdentity ident = filterContext.Principal.Identity;
 
-            if (!ident.IsAuthenticated || !(ident.Name == "admin" || ident.Name == "alex"))
+            if (!ident.IsAuthenticated )
                 filterContext.Result = new HttpUnauthorizedResult(); //доступ к данному ресурсу для пользовател запрещен
         }
 
@@ -25,8 +25,8 @@ namespace TourForEverybuddy.Models.Filters
             if (user == null || !user.Identity.IsAuthenticated)
             {
                 filterContext.Result = new RedirectToRouteResult(new System.Web.Routing.RouteValueDictionary{
-                    {"controller", "Home"},
-                    {"action", "Login"},
+                    {"controller", "Login"},
+                    {"action", "Index"},
                     {"returnUrl", filterContext.HttpContext.Request.Url }
                 });
             }

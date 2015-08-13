@@ -31,11 +31,16 @@ namespace TourForEverybuddy.Controllers.Membership
         {
             DataManager manager = new DataManager();
             string name = "";
-            bool have = manager.CheckUserLogin(loginModel, ref name);
+            int id = -1;
+            bool have = manager.CheckUserLogin(loginModel, ref name, ref id);
 
             if (have)
             {
                 FormsAuthentication.SetAuthCookie(name, loginModel.RememberMe);
+                var cookie = new HttpCookie("buddy", id.ToString());
+                cookie.Expires = DateTime.Now.AddYears(1);
+                Request.Cookies.Add(cookie);
+
                 return Redirect(returnUrl ?? Url.Action("Index", "Home"));
             }
             else

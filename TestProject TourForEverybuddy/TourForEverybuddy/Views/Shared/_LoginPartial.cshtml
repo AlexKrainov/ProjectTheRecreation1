@@ -5,6 +5,7 @@
 @if (!string.IsNullOrEmpty(HttpContext.Current.User.Identity.Name))
 {
     //ToDo: ActionLink to Profil
+    @Html.ActionLink(HttpContext.Current.User.Identity.Name, "Index", "Account")
     <a>@HttpContext.Current.User.Identity.Name</a>
     @Html.ActionLink("Exit", "Exit", "Home", new { @style = "color: #51BAA4;" })
 }
@@ -28,9 +29,8 @@ else
             </tr>
         </table>
         @Html.Hidden("IsRegister", false)
-        @*@Html.ActionLink("Registration ", "Register", "Account", null, new { @style = "    color: #51BAA4;" })*@
         @Html.CheckBox("RememberMe")<em>Remember me</em>
-        @Html.ActionLink("Forgot password ?", "ForgotThePassword", "Account", null, new
+        @Html.ActionLink("Forgot password ?", "ForgotThePassword", "Emails", null, new
    {
        @onclick = "Pre_ForgotThePassword(this)",
        @style = " color :#51BAA4; padding-left: 40px; padding-right: 0px; margin-right: 6px;"

@@ -16,21 +16,20 @@
 
         <div>
             @Html.LabelFor(model => model.RouleId)
-            @*@Html.RadioButtonFor(model => model.RouleId, 2) Guied
-            @Html.RadioButtonFor(model => model.RouleId, 3) User*@
-            <div class="4u 12u$(xsmall)">
-                @Html.RadioButtonFor(model => model.RouleId, 2, new { id = "priority-low" }) 
-                @*<input type="radio" id="priority-low" name="RouleId" checked>*@
-                <label for="priority-low">Guied</label>
-              @Html.RadioButtonFor(model => model.RouleId, 3, new { id = "priority-normal" })
-                @*<input type="radio" id="priority-low" name="RouleId" checked>*@
-                <label for="priority-low">User</label>
+            <div class="4u 12u$(xsmall) checkBoxUser">
+                @Html.RadioButtonFor(model => model.RouleId, 3, new { @style = "display: none;", @checked = true })
+                <label for="RouleId">User</label>
             </div>
+            <div class="4u 12u$(xsmall) checkBoxGuied">
+                @Html.RadioButtonFor(model => model.RouleId, 2, new { @id = "RouleId2", @style = "display: none" })
+                <label for="RouleId2">Guied</label>
+            </div>
+            @Html.ValidationMessage("RouleId", "", new { @id= "validRoule", @class = "text-danger" })
         </div>
 
         <div>
             @Html.LabelFor(model => model.Name)
-            @Html.EditorFor(model => model.Name)
+            @Html.EditorFor(model => model.Name,null, new { @onfocusout = "OnFocusOut()" })
             @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
         </div>
         <div>
@@ -72,20 +71,21 @@
 
         <div class="Passwords">
             @Html.LabelFor(model => model.Password)
-            @Html.TextBox("Password", null, new { @type = "password" })
+            @Html.TextBox("Password", null, new { @type = "password", @onfocusout = "onFocusOutPassword()" })
             @Html.LabelFor(model => model.Password, "Confirm password")
-            @Html.TextBox("Password", null, new { @id = "Password2", @type = "password" })
+            @Html.TextBox("Password", null, new { @id = "PasswordConfirm", @type = "password", @onfocusout = "onFocusOutPassword()" })
 
             @*@Html.EditorFor(model => model.Password)*@
             @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
+            @Html.ValidationMessage("PasswordCOnfirm", "", new { @id = "validPass", @class = "text-danger" })
         </div>
 
-        <div>
+        <div style="margin-top: 20px;">
             @*The Agreement ... field is required.*@
-            @Html.ValidationMessageFor(model => model.RouleId, "", new { @class = "text-danger" })
-            <input type="checkbox" /> <em>@Html.ActionLink("Agreement", "Agreement", null, new { @target = "blank" })</em>
+            <input type="checkbox" id="CheckAgreement" /> <em>@Html.ActionLink("Agreement", "Agreement", null, new { @target = "blank" })</em>
+            @Html.ValidationMessage("CheckAgreement", "", new { @id = "validAgreement", @class = "text-danger" })
         </div>
-        <input type="submit" value="Create" style="margin: 20px auto auto 230px;" onclick="PreClickRegister()" class="button special disabled" />
+        <input id="ButtonCreate" type="submit" value="Create" style="margin: 20px auto auto 230px;" onclick="PreClickRegister()" class="button special" />
     }
 </div>
 

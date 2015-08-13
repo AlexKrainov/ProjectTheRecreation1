@@ -25,7 +25,7 @@ namespace TourForEverybuddy.Controllers
             {
                 if (!string.IsNullOrEmpty(loginModel.NameOrEmail))
                     ParsingLoginNameOrEmail(loginModel);
-                return RedirectToAction("Register", "Account", new { Name = loginModel.Name, Email = loginModel.Email });
+                return RedirectToAction("User", "Register", new { Name = loginModel.Name, Email = loginModel.Email });
             }
             else
             {

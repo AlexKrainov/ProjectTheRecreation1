@@ -23,7 +23,7 @@ namespace TourForEverybuddy.Models
 
             return true;
         }
-        internal bool CheckUserLogin(LoginViewModel loginModel, ref string name)
+        internal bool CheckUserLogin(LoginViewModel loginModel, ref string name, ref int id)
         {
             User user = null;
 
@@ -39,7 +39,7 @@ namespace TourForEverybuddy.Models
                 return false;
 
             name = user.Name;
-
+            id = user.id;
             user.LastAuthorization = DateTime.Now;
 
             db.SaveChanges();

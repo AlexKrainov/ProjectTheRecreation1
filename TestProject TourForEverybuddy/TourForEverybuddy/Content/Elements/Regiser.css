@@ -10,3 +10,12 @@
 .Passwords input[type=password]{
         width: 297px;
 }
+
+.checkBoxUser{
+    display: inline;
+    margin: 0px 120px 0px 150px;
+}
+
+.checkBoxGuied{
+    display: inline;
+}
