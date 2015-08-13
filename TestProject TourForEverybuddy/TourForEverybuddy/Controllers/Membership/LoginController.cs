@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Security;
+using TourForEverybuddy.Controllers.Static;
 using TourForEverybuddy.Models;
 using TourForEverybuddy.Models.ViewModels;
 
@@ -37,10 +38,8 @@ namespace TourForEverybuddy.Controllers.Membership
             if (have)
             {
                 FormsAuthentication.SetAuthCookie(name, loginModel.RememberMe);
-                var cookie = new HttpCookie("buddy", id.ToString());
-                cookie.Expires = DateTime.Now.AddYears(1);
-                Request.Cookies.Add(cookie);
-
+                Storage.SaveCookieID(Storage.UserID, id.ToString(), DateTime.Now.AddYears(1));
+                
                 return Redirect(returnUrl ?? Url.Action("Index", "Home"));
             }
             else

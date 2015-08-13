@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.Security;
 using TourForEverybuddy.Controllers.Membership;
+using TourForEverybuddy.Controllers.Static;
 using TourForEverybuddy.Models.ViewModels;
 
 namespace TourForEverybuddy.Controllers
@@ -42,6 +43,7 @@ namespace TourForEverybuddy.Controllers
         public ActionResult Exit()
         {
             FormsAuthentication.SignOut();
+            Storage.RemoveCookie(Storage.UserID);
 
             return Redirect(Request.UrlReferrer.OriginalString);
         }
