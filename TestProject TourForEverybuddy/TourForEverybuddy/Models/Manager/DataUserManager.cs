@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.Web.Security;
 using TourForEverybuddy.Models.ViewModels;
 
 namespace TourForEverybuddy.Models
@@ -51,7 +52,16 @@ namespace TourForEverybuddy.Models
             db.Users.Add(user);
             db.SaveChanges();
         }
+        internal User GetUser(string userID, string userName)
+        {
+            int id = Convert.ToInt32(userID);
+            return db.Users.FirstOrDefault(x => x.id == id && x.Name == userName);
+        }
 
+        internal IQueryable<UserType> GetRoles()
+        {
+            return db.UserTypes;
+        }
 
     }
 }

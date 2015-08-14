@@ -11,12 +11,16 @@ namespace TourForEverybuddy.Controllers.Membership
 {
     public class AccountController : Controller
     {
+        //[MyAuthorize(Users = "admin, Alex", Roles = "admin")]
         [MyAuthentication]
-        public ActionResult Index(int? id)
+        public ActionResult Index()
         {
-            var userID = Storage.GetUserID();
-            var userAuth = FormsAuthentication.GetAuthCookie("admin", true).Value;
-            return View();
+            var user = Storage.currentUser;
+            if (user == null)
+                return RedirectToAction("Index", "Login", new { returnUrl = Request.UrlReferrer.OriginalString });
+
+            //ViewBag.User = user
+            return View(user);
         }
     }
 }

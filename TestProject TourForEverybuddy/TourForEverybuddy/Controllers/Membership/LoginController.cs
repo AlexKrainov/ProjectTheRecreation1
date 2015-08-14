@@ -38,7 +38,7 @@ namespace TourForEverybuddy.Controllers.Membership
             if (have)
             {
                 FormsAuthentication.SetAuthCookie(name, loginModel.RememberMe);
-                Storage.SaveCookieID(Storage.UserID, id.ToString(), DateTime.Now.AddYears(1));
+                Storage.SaveCookieID(Storage.aliasUserID, id.ToString(), DateTime.Now.AddYears(1));
                 
                 return Redirect(returnUrl ?? Url.Action("Index", "Home"));
             }
@@ -46,7 +46,6 @@ namespace TourForEverybuddy.Controllers.Membership
             {
                 loginModel.Password = null;
                 ReturnUrl = "";
-                //returnUrl = Url.Action("Index", "Login", new { NameOrEmail = loginModel.NameOrEmail });
                 ModelState.AddModelError("LoginAndPassword_DoesNotMatch", "Name and password does not match");
                 return View();
             }

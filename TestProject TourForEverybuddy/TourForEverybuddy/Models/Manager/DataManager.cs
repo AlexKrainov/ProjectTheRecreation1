@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.Web.Security;
 
 namespace TourForEverybuddy.Models
 {
@@ -22,5 +23,7 @@ namespace TourForEverybuddy.Models
         {
             return db.Languages;
         }
+
+      
     }
 }

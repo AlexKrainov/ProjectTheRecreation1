@@ -226,6 +226,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\Membership\EmailsController.cs" />
     <Compile Include="Controllers\Membership\LoginController.cs" />
+    <Compile Include="Models\Filters\MyAuthorizeAttribute.cs" />
     <Compile Include="Models\Static\Encryption.cs" />
     <Compile Include="Models\Static\Storage.cs" />
     <Compile Include="Global.asax.cs">
@@ -266,6 +267,7 @@
     <Content Include="Views\Emails\Web.config" />
     <Content Include="Views\Emails\_ViewStart.cshtml" />
     <Content Include="Views\Emails\ForgotThePassword.cshtml" />
+    <Content Include="Views\Account\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -275,7 +277,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\Account\" />
     <Folder Include="Views\Profile\" />
   </ItemGroup>
   <PropertyGroup>

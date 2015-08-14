@@ -43,7 +43,8 @@ namespace TourForEverybuddy.Controllers
         public ActionResult Exit()
         {
             FormsAuthentication.SignOut();
-            Storage.RemoveCookie(Storage.UserID);
+            Storage.RemoveCookie(Storage.aliasUserID);
+            Storage.currentUser = null;
 
             return Redirect(Request.UrlReferrer.OriginalString);
         }
