@@ -7,15 +7,38 @@
     color: #b94a48;
 }
 
-.Passwords input[type=password]{
-        width: 297px;
+.Passwords input[type=password] {
+    width: 297px;
 }
 
-.checkBoxUser{
+.checkBoxUser {
     display: inline;
     margin: 0px 120px 0px 150px;
 }
 
-.checkBoxGuied{
+.checkBoxGuied {
     display: inline;
 }
+
+#ButtonCreate {
+    margin: 20px auto auto 230px;
+}
+
+
+/*#region Media screen */
+@media screen and (max-width: 640px) {
+    .RegisterDiv {
+        width: 330px;
+    }
+
+    .checkBoxUser {
+        margin: 0px 0px 0px 0px;
+    }
+
+    #ButtonCreate {
+        margin: 20px auto auto 65px;
+    }
+}
+
+
+/*#endregion */

@@ -12,10 +12,10 @@
 
 function ShowLoginDialog() {
 
-    if ($(".loginDialog").css("display") === "none")
-        $(".loginDialog").css("display", "block");
+    if ($(".LoginDiv").css("display") === "none")
+        $(".LoginDiv").css("display", "block");
     else
-        $(".loginDialog").css("display", "none");
+        $(".LoginDiv").css("display", "none");
 }
 
 function Pre_ForgotThePassword(o) {

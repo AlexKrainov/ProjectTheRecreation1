@@ -1,6 +1,6 @@
 ﻿/*#region Dialog login */
 
-.LoginDiv {
+.LoginDivOld {
     display: inline;
     padding-right: 50px;
     position: relative;
@@ -12,6 +12,21 @@
     /* bottom: 25px; */
     /*left: 565px;
     z-index: 99999;*/
+}
+
+.LoginDiv {
+    display: none;
+    background-color: rgba(150,150,150, 0.3);
+    width: 380px;
+    border-radius: 15px;
+    height: 253px;
+    position: absolute;
+    left: 800px;
+    top: 64px;
+}
+
+.loginDialog {
+    margin: 10px;
 }
 
 #or {
@@ -28,13 +43,14 @@
     color: #51BAA4;
     text-decoration: underline;
     display: inline;
+    margin-right: 50px;
 }
 
     #labelShowLoginDialog:hover {
         text-decoration: none;
     }
 
-.loginDialog {
+.loginDialogOld {
     display: none;
     width: 390px;
     position: absolute;
@@ -50,6 +66,78 @@
 .loginDialog table tr td:first-child {
     line-height: 0px;
 }
+
+/*#region Media screen */
+
+/*@media screen and (max-width: 1680px) {
+}
+
+@media screen and (max-width: 1120px) {
+    .LoginDiv {
+        left: 586px;
+        height: 283px;
+    }
+}*/
+@media screen and (max-width: 1215px) {
+    .LoginDiv {
+        left: 10px;
+        /*height: 283px;*/
+    }
+}
+
+@media screen and (max-width: 1050px) {
+    .LoginDiv {
+        left: 10px;
+        position: static;
+        margin-top: -75px;
+    }
+}
+
+@media screen and (max-width: 735px) {
+    .LoginDiv {
+          margin-top: -36px;
+    }
+}
+/*@media screen and (max-width: 1063px) {
+    .LoginDiv {
+        left: 586px;
+        height: 257px;
+    }
+}
+
+@media screen and (max-width : 1000px) {
+    .LoginDiv {
+        left: 3px;
+        top: 50px;
+    }
+}
+
+@media screen and (max-width: 876px) {
+    .LoginDiv {
+        position: static;
+        margin: -85px 0px 0px 0px;
+    }
+}
+
+@media screen and (max-width: 740px) {
+    .LoginDiv {
+        position: static;
+        margin: -38px 0px 0px 0px;
+    }
+}
+
+@media screen and (max-width: 450px) {
+    .LoginDiv {
+        width: 278px;
+        height: 341px;
+    }
+
+    #ForgotThePassword {
+        display: block;
+    }
+}*/
+
+/*#endregion */
 
 /*#endregion */
 

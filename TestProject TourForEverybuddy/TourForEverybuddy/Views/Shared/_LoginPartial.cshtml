@@ -1,45 +1,12 @@
-﻿@{
-    ViewBag.Title = "_LoginPartial";
-}
-
+﻿
 @if (!string.IsNullOrEmpty(HttpContext.Current.User.Identity.Name))
 {
     //ToDo: ActionLink to Profil
     @Html.ActionLink(HttpContext.Current.User.Identity.Name, "Index", "Account")
     <a>@HttpContext.Current.User.Identity.Name</a>
-    @Html.ActionLink("Exit", "Exit", "Home", new { @style = "color: #51BAA4;" })
+    @Html.ActionLink("Exit", "Exit", "Home", null, new { @style = "color: #51BAA4;" })
 }
 else
 {
     <label id="labelShowLoginDialog" onclick="ShowLoginDialog()">Log in</label>
 }
-<div class="LoginDiv">
-
-    @using (Html.BeginForm("Index", "Home", FormMethod.Post, new { @class = "loginDialog" }))
-    {
-        <img src="~/images/24_em_cross.png" id="Cross" onclick="ShowLoginDialog()" />
-        <table style="margin-bottom: 0px; ">
-            <tr>
-                <td>
-                    @Html.TextBox("NameOrEmail", null, new { @placeholder = "UserName or Email ..." })
-                </td>
-            </tr>
-            <tr>
-                <td>@Html.TextBox("Password", null, new { @type = "password", @placeholder = "Password ... " })</td>
-            </tr>
-        </table>
-        @Html.Hidden("IsRegister", false)
-        @Html.CheckBox("RememberMe")<em>Remember me</em>
-        @Html.ActionLink("Forgot password ?", "ForgotThePassword", "Emails", null, new
-   {
-       @onclick = "Pre_ForgotThePassword(this)",
-       @style = " color :#51BAA4; padding-left: 40px; padding-right: 0px; margin-right: 6px;"
-   })
-
-        <br />
-
-        <input type="submit" class="button special small" value="Register" onclick="return $('#IsRegister').val('true');" />
-    <input type="submit" class="button special small" value="LogIn"   />
-
-    }
-</div>

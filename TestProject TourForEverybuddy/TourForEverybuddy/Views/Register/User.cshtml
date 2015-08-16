@@ -22,7 +22,7 @@
             </div>
             <div class="4u 12u$(xsmall) checkBoxGuied">
                 @Html.RadioButtonFor(model => model.RouleId, 2, new { @id = "RouleId2", @style = "display: none" })
-                <label for="RouleId2">Guied</label>
+                <label for="RouleId2">Guide</label>
             </div>
             @Html.ValidationMessage("RouleId", "", new { @id= "validRoule", @class = "text-danger" })
         </div>
@@ -85,7 +85,7 @@
             <input type="checkbox" id="CheckAgreement" /> <em>@Html.ActionLink("Agreement", "Agreement", null, new { @target = "blank" })</em>
             @Html.ValidationMessage("CheckAgreement", "", new { @id = "validAgreement", @class = "text-danger" })
         </div>
-        <input id="ButtonCreate" type="submit" value="Create" style="margin: 20px auto auto 230px;" onclick="PreClickRegister()" class="button special" />
+        <input id="ButtonCreate" type="submit" value="Create" onclick="PreClickRegister()" class="button special" />
     }
 </div>
 

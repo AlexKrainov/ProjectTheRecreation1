@@ -28,7 +28,7 @@ namespace TourForEverybuddy.Models
         public Nullable<int> CountryId { get; set; }
         [DisplayName("Language")]
         public Nullable<int> LanguageId { get; set; }
-        [DisplayName("Your Roule ...")]
+        [DisplayName("Your role ...")]
         public Nullable<byte> RouleId { get; set; }
         public byte[] Photo { get; set; }
 
