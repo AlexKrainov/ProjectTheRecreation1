@@ -24,12 +24,12 @@
                 @Html.RadioButtonFor(model => model.RouleId, 2, new { @id = "RouleId2", @style = "display: none" })
                 <label for="RouleId2">Guide</label>
             </div>
-            @Html.ValidationMessage("RouleId", "", new { @id= "validRoule", @class = "text-danger" })
+            @Html.ValidationMessage("RouleId", "", new { @id = "validRoule", @class = "text-danger" })
         </div>
 
         <div>
             @Html.LabelFor(model => model.Name)
-            @Html.EditorFor(model => model.Name,null, new { @onfocusout = "OnFocusOut()" })
+            @Html.EditorFor(model => model.Name)
             @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
         </div>
         <div>
@@ -63,10 +63,19 @@
             @Html.DropDownListFor(model => model.CountryId, ViewBag.Countries as IEnumerable<SelectListItem>)
             @Html.ValidationMessageFor(model => model.CountryId, "", new { @class = "text-danger" })
         </div>
-        <div>
+        @*<div>
+                @Html.LabelFor(model => model.LanguageId)
+                @Html.DropDownListFor(model => model.LanguageId, ViewBag.Languages as IEnumerable<SelectListItem>)
+                @Html.ValidationMessageFor(model => model.LanguageId, "", new { @class = "text-danger" })
+            </div>*@
+        <div class="ArrayLanguageList">
             @Html.LabelFor(model => model.LanguageId)
-            @Html.DropDownListFor(model => model.LanguageId, ViewBag.Languages as IEnumerable<SelectListItem>)
-            @Html.ValidationMessageFor(model => model.LanguageId, "", new { @class = "text-danger" })
+            @Html.DropDownList("Language", ViewBag.Languages as IEnumerable<SelectListItem>)
+            @Html.DropDownList("Language", ViewBag.Languages as IEnumerable<SelectListItem>, new { @style = "display: none" })
+            @Html.DropDownList("Language", ViewBag.Languages as IEnumerable<SelectListItem>, new { @style = "display: none" })
+            @Html.DropDownList("Language", ViewBag.Languages as IEnumerable<SelectListItem>, new { @style = "display: none" })
+            @Html.DropDownList("Language", ViewBag.Languages as IEnumerable<SelectListItem>, new { @style = "display: none" })
+            <a onclick="AddChoiceLanguage()">Yet ?</a>
         </div>
 
         <div class="Passwords">
@@ -82,10 +91,10 @@
 
         <div style="margin-top: 20px;">
             @*The Agreement ... field is required.*@
-            <input type="checkbox" id="CheckAgreement" /> <em>@Html.ActionLink("Agreement", "Agreement", null, new { @target = "blank" })</em>
+            <input type="checkbox" id="CheckAgreement" onclick="Agreement()" /> <em>@Html.ActionLink("Agreement", "Agreement", null, new { @target = "blank" })</em>
             @Html.ValidationMessage("CheckAgreement", "", new { @id = "validAgreement", @class = "text-danger" })
         </div>
-        <input id="ButtonCreate" type="submit" value="Create" onclick="PreClickRegister()" class="button special" />
+        <input id="ButtonCreate" type="submit" value="Create" onclick=" return PreClickRegister()" class="button special" />
     }
 </div>
 

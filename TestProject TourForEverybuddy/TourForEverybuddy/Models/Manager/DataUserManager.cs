@@ -16,11 +16,6 @@ namespace TourForEverybuddy.Models
 
             if (oldUser != null)
                 return false;
-            else
-            {
-                user.DateRegister = DateTime.Now;
-                SaveNewUser(user);
-            }
 
             return true;
         }
@@ -47,11 +42,33 @@ namespace TourForEverybuddy.Models
 
             return true;
         }
-        private void SaveNewUser(User user)
+        public void SaveNewUser(User user)
         {
+            user.DateRegister = DateTime.Now;
+
             db.Users.Add(user);
-            db.SaveChanges();
+             db.SaveChanges();
         }
+        
+        public bool SaveUserLanguages(int userID, string[] Languages)
+        {
+            Languages = Languages.AsEnumerable().Where(x => x != "-1").ToArray();
+            if (Languages.Count() == 0)
+                return false;
+
+            var oldUserLanguages = db.UserLanguages.Where(x => x.UserID == userID);
+            db.UserLanguages.RemoveRange(oldUserLanguages);
+
+            for (int i = 0; i < Languages.Length; i++)
+            {
+                db.UserLanguages.Add(new UserLanguage { UserID = userID, LanguageID = Convert.ToInt16(Languages[i]) });
+            }
+
+            db.SaveChanges();
+
+            return true;
+        }
+
         internal User GetUser(string userID, string userName)
         {
             int id = Convert.ToInt32(userID);

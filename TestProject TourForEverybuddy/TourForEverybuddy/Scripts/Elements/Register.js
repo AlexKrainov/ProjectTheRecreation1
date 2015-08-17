@@ -9,10 +9,14 @@ $(document).ready(function () {
     $("#Email").on("focusout", function () {
         CheckAllSpan();
     });
+    $("#Age").on("click", function () {
+        ChangeIndexAge($(this));
+    });
 });
 
 function Agreement() {
-
+    validAgreement();
+    CheckAllSpan();
 }
 
 
@@ -25,10 +29,11 @@ function PreClickRegister() {
     RemoveAllSpan();
 
     validAgreement();
+
+    var result = CheckAllSpan();
     PasswordCheckTheSimilarity();
 
-    //if (VerificationAgreement && VerificationPassword)
-    //    $("#ButtonCreate").removeClass("disabled");
+    return VerificationAgreement && VerificationPassword;
 }
 
 function validAgreement() {
@@ -55,6 +60,7 @@ function RemoveAllSpan() {
 }
 
 function OnFocusOut() {
+    validAgreement();
     CheckAllSpan();
 }
 
@@ -78,19 +84,38 @@ function CheckAllSpan() {
     if ($("#Name").val().length === 0 ||
         $("#Age").val().length === 0 ||
         $("#Password").val().length === 0 ||
-        $("#PasswordConfirm").val().length === 0) {
+        $("#PasswordConfirm").val().length === 0 ||
+        !VerificationAgreement) {
         $("#ButtonCreate").addClass("disabled");
-        return;
+        return false;
     }
 
     $(".text-danger").each(function () {
         if ($(this).text().length != 0) {
             Span = true;
             $("#ButtonCreate").addClass("disabled");
-            console.log($(this));
+            return false;
         }
     });
 
     if (!Span)
         $("#ButtonCreate").removeClass("disabled");
+    return true;
+}
+
+
+function AddChoiceLanguage() {
+    console.log($(".ArrayLanguageList > select"));
+    $(".ArrayLanguageList > select").each(function () {
+        if ($(this).css("display") === "none") {
+            console.log(($(this)));
+            $(this).css("display", "block");
+            return false;
+        }
+    })
+}
+
+function ChangeIndexAge(o) {
+    if ($(o).val() < 1)
+        $(o).val("1");
 }

@@ -78,10 +78,27 @@
         height: 283px;
     }
 }*/
+@media screen and (max-width: 1800px) {
+    .LoginDiv {
+        left: 1050px;
+    }
+}
+
+@media screen and (max-width: 1465px) {
+    .LoginDiv {
+        left: 888px;
+    }
+}
+
+@media screen and (max-width: 1305px) {
+    .LoginDiv {
+        left: 800px;
+    }
+}
+
 @media screen and (max-width: 1215px) {
     .LoginDiv {
         left: 10px;
-        /*height: 283px;*/
     }
 }
 
@@ -95,7 +112,7 @@
 
 @media screen and (max-width: 735px) {
     .LoginDiv {
-          margin-top: -36px;
+        margin-top: -36px;
     }
 }
 /*@media screen and (max-width: 1063px) {

@@ -5,6 +5,11 @@ namespace TourForEverybuddy.Models
 {
     public partial class User
     {
+        public User()
+        {
+            this.UserLanguages = new List<UserLanguage>();
+        }
+
         public int id { get; set; }
         public string Name { get; set; }
         public string LastName { get; set; }
@@ -19,6 +24,7 @@ namespace TourForEverybuddy.Models
         public Nullable<System.DateTime> DateRegister { get; set; }
         public Nullable<System.DateTime> LastAuthorization { get; set; }
         public virtual Country Country { get; set; }
+        public virtual ICollection<UserLanguage> UserLanguages { get; set; }
         public virtual UserType UserType { get; set; }
     }
 }
