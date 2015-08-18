@@ -1,13 +1,13 @@
 ﻿
 $(document).ready(function () {
-    $("#Name").on("focusout", function () {
-        CheckAllSpan();
+    $("#Name").on("keyup", function () {
+        OnChange("#Name");
     });
-    $("#Age").on("focusout", function () {
-        CheckAllSpan();
+    $("#Age").on("change", function () {
+        OnChange("#Age");
     });
-    $("#Email").on("focusout", function () {
-        CheckAllSpan();
+    $("#Email").on("keyup", function () {
+        OnChange("#Email");
     });
     $("#Age").on("click", function () {
         ChangeIndexAge($(this));
@@ -16,7 +16,6 @@ $(document).ready(function () {
 
 function Agreement() {
     validAgreement();
-    CheckAllSpan();
 }
 
 
@@ -26,18 +25,67 @@ var Span = false;
 
 function PreClickRegister() {
 
-    RemoveAllSpan();
+    var nameResult = CheckFieldForEmpty("#Name");
+    var ageResult = CheckFieldForEmpty("#Age");
+    var emailResult = CheckFieldForEmpty("#Email");
+    var passwordResultEmpty = CheckPasswordForEmpty();
+    if (passwordResultEmpty)
+        VerificationPassword = PasswordCheckTheSimilarity();
+    var agreementResult = validAgreement();
 
-    validAgreement();
+    if (nameResult == true && ageResult == true && emailResult == true && passwordResultEmpty == true && VerificationPassword == true && agreementResult == true) {
+        $("#ButtonCreate").removeClass("disabled");
+        return true;
+    }
+    else {
+        $("#ButtonCreate").addClass("disabled");
+        return false;
+    }
+}
 
-    var result = CheckAllSpan();
-    PasswordCheckTheSimilarity();
+function CheckFieldForEmpty(o) {
+    var el = $(o);
+    if (el.val().length === 0) {
+        el.css("border", "1px solid red");
+        return false;
+    }
+    else {
+        el.css("border", "");
+        return true;
+    }
+}
 
-    return VerificationAgreement && VerificationPassword;
+function CheckPasswordForEmpty() {
+    var result = false;
+    var pass1 = $("#Password").val();
+    var pass2 = $("#PasswordConfirm").val();
+
+    if (pass1.length === 0) {
+        $("#Password").css("border", "1px solid red");
+        result = false;
+    } else {
+        $("#Password").css("border", "");
+        result = true;
+    }
+
+    if (pass2.length === 0) {
+        $("#PasswordConfirm").css("border", "1px solid red");
+        result = false;
+    } else {
+        $("#Password").css("border", "");
+        result = true;
+    }
+
+    return result;
 }
 
 function validAgreement() {
     VerificationAgreement = $("#CheckAgreement").prop("checked");
+
+    if (!VerificationAgreement)
+        $("#CheckAgreementValid").text("Required the agreement ...");
+
+    return VerificationAgreement;
 }
 
 function PasswordCheckTheSimilarity() {
@@ -45,62 +93,34 @@ function PasswordCheckTheSimilarity() {
     var pass2 = $("#PasswordConfirm").val();
 
 
-    if (pass1 === pass2)
-        VerificationPassword = true;
-    else {
-        VerificationPassword = false;
-        $("#validPass").text("Password and confirmation password do not match.");
-    }
-}
-
-function RemoveAllSpan() {
-    $(".text-danger").each(function () {
-        $(this).text("");
-    });
-}
-
-function OnFocusOut() {
-    validAgreement();
-    CheckAllSpan();
-}
-
-
-function onFocusOutPassword() {
-    var pass1 = $("#Password").val();
-    var pass2 = $("#PasswordConfirm").val();
-
     if (pass1 === pass2) {
+        $("#Password").css("border", "");
+        $("#PasswordConfirm").css("border", "");
         $("#validPass").text("");
+        return true;
     }
-    else
+    else {
+        $("#Password").css("border", "1px solid red");
+        $("#PasswordConfirm").css("border", "1px solid red");
         $("#validPass").text("Password and confirmation password do not match.");
-
-    CheckAllSpan();
-}
-
-function CheckAllSpan() {
-    Span = false;
-
-    if ($("#Name").val().length === 0 ||
-        $("#Age").val().length === 0 ||
-        $("#Password").val().length === 0 ||
-        $("#PasswordConfirm").val().length === 0 ||
-        !VerificationAgreement) {
-        $("#ButtonCreate").addClass("disabled");
         return false;
     }
+}
 
-    $(".text-danger").each(function () {
-        if ($(this).text().length != 0) {
-            Span = true;
-            $("#ButtonCreate").addClass("disabled");
-            return false;
-        }
-    });
+function onFocusOutPassword() {
+    PasswordCheckTheSimilarity();
+}
 
-    if (!Span)
-        $("#ButtonCreate").removeClass("disabled");
-    return true;
+function OnChange(o) {
+    var el = $(o);
+    if (el.val().length === 0) {
+        el.css("border", "1px solid red");
+        return false;
+    }
+    else {
+        el.css("border", "");
+        return true;
+    }
 }
 
 

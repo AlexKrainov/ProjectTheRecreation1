@@ -4,8 +4,8 @@
     this.Layout = "~/Views/Shared/_GenericLayout.cshtml";
 }
 
-@Html.ValidationMessage("EmailIsHave", new { @style = "color: red" })
-@Html.ValidationMessage("ValidIsFailed", new { @style = "color: red" })
+@Html.ValidationMessage("EmailIsHave", new { @style = "color: red; font-size: large;" })
+@Html.ValidationMessage("ValidIsFailed", new { @style = "color: red; font-size: large;" })
 
 <div class="RegisterDiv">
     @using (Html.BeginForm())
@@ -60,7 +60,8 @@
 
         <div>
             @Html.LabelFor(model => model.CountryId)
-            @Html.DropDownListFor(model => model.CountryId, ViewBag.Countries as IEnumerable<SelectListItem>)
+            @Html.DropDownListFor(model => model.CountryId, ViewBag.Countries as IEnumerable<SelectListItem>, "Not chosen")
+            @*@Html.DropDownList("CountryId", ViewBag.Countries as IEnumerable<SelectListItem>)*@
             @Html.ValidationMessageFor(model => model.CountryId, "", new { @class = "text-danger" })
         </div>
         @*<div>
@@ -70,11 +71,11 @@
             </div>*@
         <div class="ArrayLanguageList">
             @Html.LabelFor(model => model.LanguageId)
-            @Html.DropDownList("Language", ViewBag.Languages as IEnumerable<SelectListItem>)
-            @Html.DropDownList("Language", ViewBag.Languages as IEnumerable<SelectListItem>, new { @style = "display: none" })
-            @Html.DropDownList("Language", ViewBag.Languages as IEnumerable<SelectListItem>, new { @style = "display: none" })
-            @Html.DropDownList("Language", ViewBag.Languages as IEnumerable<SelectListItem>, new { @style = "display: none" })
-            @Html.DropDownList("Language", ViewBag.Languages as IEnumerable<SelectListItem>, new { @style = "display: none" })
+            @Html.DropDownList("Language", ViewBag.Languages as IEnumerable<SelectListItem>, "Not chosen")
+            @Html.DropDownList("Language", ViewBag.Languages as IEnumerable<SelectListItem>, "Not chosen", new { @style = "display: none" })
+            @Html.DropDownList("Language", ViewBag.Languages as IEnumerable<SelectListItem>, "Not chosen", new { @style = "display: none" })
+            @Html.DropDownList("Language", ViewBag.Languages as IEnumerable<SelectListItem>, "Not chosen", new { @style = "display: none" })
+            @Html.DropDownList("Language", ViewBag.Languages as IEnumerable<SelectListItem>, "Not chosen", new { @style = "display: none" })
             <a onclick="AddChoiceLanguage()">Yet ?</a>
         </div>
 
@@ -84,7 +85,6 @@
             @Html.LabelFor(model => model.Password, "Confirm password")
             @Html.TextBox("Password", null, new { @id = "PasswordConfirm", @type = "password", @onfocusout = "onFocusOutPassword()" })
 
-            @*@Html.EditorFor(model => model.Password)*@
             @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
             @Html.ValidationMessage("PasswordCOnfirm", "", new { @id = "validPass", @class = "text-danger" })
         </div>
@@ -92,7 +92,7 @@
         <div style="margin-top: 20px;">
             @*The Agreement ... field is required.*@
             <input type="checkbox" id="CheckAgreement" onclick="Agreement()" /> <em>@Html.ActionLink("Agreement", "Agreement", null, new { @target = "blank" })</em>
-            @Html.ValidationMessage("CheckAgreement", "", new { @id = "validAgreement", @class = "text-danger" })
+            @Html.ValidationMessage("CheckAgreementValid", "", new { @id = "CheckAgreementValid", @class = "text-danger" })
         </div>
         <input id="ButtonCreate" type="submit" value="Create" onclick=" return PreClickRegister()" class="button special" />
     }

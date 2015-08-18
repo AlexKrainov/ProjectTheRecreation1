@@ -13,6 +13,7 @@ namespace TourForEverybuddy.Controllers
     public class RegisterController : Controller
     {
         private DataManager manager;
+
         public RegisterController()
         {
             manager = new DataManager();
@@ -20,16 +21,7 @@ namespace TourForEverybuddy.Controllers
 
         public ActionResult User(LoginViewModel loginModel)
         {
-            ViewBag.Countries =
-                manager.GetCountries().Select(x => new SelectListItem { Text = x.country_name, Value = x.id.ToString() }).ToList();
-
-            var Languages = new List<SelectListItem>();
-            Languages.Add(new SelectListItem { Text = "Not chosen", Value = "-1" });
-            Languages.AddRange(
-                manager.GetLanguages().Select(x => new SelectListItem { Text = x.name, Value = x.id.ToString() }));
-
-            ViewBag.Languages = Languages;
-
+            FillDropDownList();
             ViewBag.Model = new { Name = loginModel.Name, Email = loginModel.Email };
 
             return View();
@@ -51,23 +43,28 @@ namespace TourForEverybuddy.Controllers
                     return RedirectToAction("Index", "Home");
                 }
                 else
-                    ModelState.AddModelError("EmailIsHave", "This email is already registered");
+                {
+                    FillDropDownList();
+                    ModelState.AddModelError("EmailIsHave", "This user is already registered.");
+                }
             }
             else
-            {
-                ModelState.AddModelError("ValidIsFailed", "Validation Faild");
-            }
+                ModelState.AddModelError("ValidIsFailed", "Fail.");
 
             return View();
         }
 
-        [HttpGet]
-        public ActionResult Agreement()
+        /// <summary>
+        /// Заполняет DropDownList's для Countries and Languages
+        /// </summary>
+        private void FillDropDownList()
         {
+            ViewBag.Countries =
+                manager.GetCountries().Select(x => new SelectListItem { Text = x.country_name, Value = x.id.ToString() }).ToList();
 
-            return View();
+            ViewBag.Languages =
+                manager.GetLanguages().Select(x => new SelectListItem { Text = x.name, Value = x.id.ToString() });
         }
-
 
     }
 }

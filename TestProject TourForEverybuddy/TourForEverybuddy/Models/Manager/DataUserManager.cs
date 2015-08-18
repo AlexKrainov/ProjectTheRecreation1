@@ -11,8 +11,9 @@ namespace TourForEverybuddy.Models
     {
         internal bool CheckUserIsNew(User user)
         {
-            //ToDo: Дописать провеку ...
-            var oldUser = db.Users.FirstOrDefault(x => x.Email == user.Email && x.Name == user.Name);
+            var oldUser = db.Users.FirstOrDefault(x => (x.Email == user.Email && x.Name == user.Name)
+                || (x.Name == user.Name && x.Password == user.Password)
+                || (x.Email == user.Email && x.Password == user.Password));
 
             if (oldUser != null)
                 return false;
@@ -42,17 +43,17 @@ namespace TourForEverybuddy.Models
 
             return true;
         }
-        public void SaveNewUser(User user)
+        internal void SaveNewUser(User user)
         {
             user.DateRegister = DateTime.Now;
 
             db.Users.Add(user);
-             db.SaveChanges();
+            db.SaveChanges();
         }
-        
-        public bool SaveUserLanguages(int userID, string[] Languages)
+
+        internal bool SaveUserLanguages(int userID, string[] Languages)
         {
-            Languages = Languages.AsEnumerable().Where(x => x != "-1").ToArray();
+            Languages = Languages.AsEnumerable().Where(x => x != "").ToArray();
             if (Languages.Count() == 0)
                 return false;
 
