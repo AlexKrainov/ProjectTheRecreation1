@@ -4,104 +4,35 @@
     ViewBag.Title = "Index";
     this.Layout = "~/Views/Shared/_GenericLayout.cshtml";
 }
+<link rel="stylesheet" href="~/Content/Elements/Profile.css" />
+<link rel="stylesheet" href="~/Content/Elements/Regiser.css" />
 
-<h2>Index</h2>
-
-<div>
+<div class="RegisterDiv">
     <h4>User</h4>
     <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Name)
-        </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Name)
-        </dd>
+    @using (Html.BeginForm())
+    {
+        @Html.Hidden("id", Model.id)
 
-        <dt>
-            @Html.DisplayNameFor(model => model.LastName)
-        </dt>
+        @Html.Partial("_AccountPartial")
 
-        <dd>
-            @Html.DisplayFor(model => model.LastName)
-        </dd>
+        <div class="Passwords">
+            @Html.LabelFor(model => model.Password)
+            @Html.TextBox("Password", null, new { @type = "password", @onfocusout = "onFocusOutPassword()" })
+            @Html.LabelFor(model => model.Password, "Confirm password")
+            @Html.TextBox("Password", null, new { @id = "PasswordConfirm", @type = "password", @onfocusout = "onFocusOutPassword()" })
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Password)
-        </dt>
+            @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
+            @Html.ValidationMessage("PasswordCOnfirm", "", new { @id = "validPass", @class = "text-danger" })
+        </div>
 
-        <dd>
-            @Html.DisplayFor(model => model.Password)
-        </dd>
+        <input type="submit" value="click" />
+    }
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Age)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Age)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Email)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Email)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Phone)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Phone)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.CountryId)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.CountryId)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.LanguageId)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.LanguageId)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.RouleId)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.RouleId)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.DateRegister)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.DateRegister)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.LastAuthorization)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.LastAuthorization)
-        </dd>
-
-    </dl>
 </div>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.id }) |
     @Html.ActionLink("Back to List", "Index")
 </p>
+<script src="~/Scripts/Elements/Register.js"></script>
+

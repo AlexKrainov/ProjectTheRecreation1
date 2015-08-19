@@ -20,9 +20,8 @@ function ShowLoginDialog() {
 
 function Pre_ForgotThePassword(o) {
     var link = $(o).attr("href"); ///Home/ForgotThePassword?Length=7
-    if (link.indexOf("?Length=7") != -1)
-    {
-        link = link.replace("?Length=7","");
+    if (link.indexOf("?Length=7") != -1) {
+        link = link.replace("?Length=7", "");
     }
 
     var UserNameOrEmail = $("#NameOrEmail").val();
@@ -32,4 +31,12 @@ function Pre_ForgotThePassword(o) {
     $(o).attr("href", link);
 }
 
+function CheckTextBoxForEmpty() {
+    if ($("#NameOrEmail").val() == 0 || $("#Pasword").val() == 0) {
+        return false;
+    }
+    else {
+        return true;
+    }
+}
 

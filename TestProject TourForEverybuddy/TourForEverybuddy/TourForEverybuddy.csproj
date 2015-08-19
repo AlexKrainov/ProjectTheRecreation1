@@ -152,6 +152,7 @@
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\Elements\Login.css" />
+    <Content Include="Content\Elements\Profile.css" />
     <Content Include="Content\Elements\Regiser.css" />
     <Content Include="Content\font-awesome.min.css" />
     <Content Include="Content\ie9.css" />
@@ -172,6 +173,21 @@
     <Content Include="images\pic09.jpg" />
     <Content Include="images\pic10.jpg" />
     <Content Include="images\pic11.jpg" />
+    <Content Include="images\Profile\edit.png" />
+    <Content Include="images\squeeze\24_em_cross.png" />
+    <Content Include="images\squeeze\banner.jpg" />
+    <Content Include="images\squeeze\overlay.png" />
+    <Content Include="images\squeeze\pic01.jpg" />
+    <Content Include="images\squeeze\pic02.jpg" />
+    <Content Include="images\squeeze\pic03.jpg" />
+    <Content Include="images\squeeze\pic04.jpg" />
+    <Content Include="images\squeeze\pic05.jpg" />
+    <Content Include="images\squeeze\pic06.jpg" />
+    <Content Include="images\squeeze\pic07.jpg" />
+    <Content Include="images\squeeze\pic08.jpg" />
+    <Content Include="images\squeeze\pic09.jpg" />
+    <Content Include="images\squeeze\pic10.jpg" />
+    <Content Include="images\squeeze\pic11.jpg" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Content\sass\ie9.scss" />
@@ -289,6 +305,7 @@
     <Content Include="Views\Emails\ForgotThePassword.cshtml" />
     <Content Include="Views\Account\Index.cshtml" />
     <Content Include="Views\Shared\_LoginDialog.cshtml" />
+    <Content Include="Views\Shared\_AccountPartial.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

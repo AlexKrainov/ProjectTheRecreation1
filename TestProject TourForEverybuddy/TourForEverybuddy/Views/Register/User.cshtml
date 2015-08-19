@@ -14,70 +14,7 @@
 
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
 
-        <div>
-            @Html.LabelFor(model => model.RouleId)
-            <div class="4u 12u$(xsmall) checkBoxUser">
-                @Html.RadioButtonFor(model => model.RouleId, 3, new { @style = "display: none;", @checked = true })
-                <label for="RouleId">Tourist</label>
-            </div>
-            <div class="4u 12u$(xsmall) checkBoxGuied">
-                @Html.RadioButtonFor(model => model.RouleId, 2, new { @id = "RouleId2", @style = "display: none" })
-                <label for="RouleId2">Guide</label>
-            </div>
-            @Html.ValidationMessage("RouleId", "", new { @id = "validRoule", @class = "text-danger" })
-        </div>
-
-        <div>
-            @Html.LabelFor(model => model.Name)
-            @Html.EditorFor(model => model.Name)
-            @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
-        </div>
-        <div>
-            @Html.LabelFor(model => model.LastName)
-            @Html.EditorFor(model => model.LastName)
-            @Html.ValidationMessageFor(model => model.LastName, "", new { @class = "text-danger" })
-        </div>
-
-        <div>
-            @Html.LabelFor(model => model.Age)
-            @Html.EditorFor(model => model.Age)
-            @Html.ValidationMessageFor(model => model.Age, "", new { @class = "text-danger" })
-        </div>
-
-        <div>
-            @Html.LabelFor(model => model.Email)
-
-            @Html.EditorFor(model => model.Email)
-            @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
-        </div>
-
-        <div>
-            @Html.LabelFor(model => model.Phone)
-            @Html.EditorFor(model => model.Phone)
-            @Html.ValidationMessageFor(model => model.Phone, "", new { @class = "text-danger" })
-
-        </div>
-
-        <div>
-            @Html.LabelFor(model => model.CountryId)
-            @Html.DropDownListFor(model => model.CountryId, ViewBag.Countries as IEnumerable<SelectListItem>, "Not chosen")
-            @*@Html.DropDownList("CountryId", ViewBag.Countries as IEnumerable<SelectListItem>)*@
-            @Html.ValidationMessageFor(model => model.CountryId, "", new { @class = "text-danger" })
-        </div>
-        @*<div>
-                @Html.LabelFor(model => model.LanguageId)
-                @Html.DropDownListFor(model => model.LanguageId, ViewBag.Languages as IEnumerable<SelectListItem>)
-                @Html.ValidationMessageFor(model => model.LanguageId, "", new { @class = "text-danger" })
-            </div>*@
-        <div class="ArrayLanguageList">
-            @Html.LabelFor(model => model.LanguageId)
-            @Html.DropDownList("Language", ViewBag.Languages as IEnumerable<SelectListItem>, "Not chosen")
-            @Html.DropDownList("Language", ViewBag.Languages as IEnumerable<SelectListItem>, "Not chosen", new { @style = "display: none" })
-            @Html.DropDownList("Language", ViewBag.Languages as IEnumerable<SelectListItem>, "Not chosen", new { @style = "display: none" })
-            @Html.DropDownList("Language", ViewBag.Languages as IEnumerable<SelectListItem>, "Not chosen", new { @style = "display: none" })
-            @Html.DropDownList("Language", ViewBag.Languages as IEnumerable<SelectListItem>, "Not chosen", new { @style = "display: none" })
-            <a onclick="AddChoiceLanguage()">Add language </a>
-        </div>
+        @Html.Partial("_AccountPartial")
 
         <div class="Passwords">
             @Html.LabelFor(model => model.Password)
