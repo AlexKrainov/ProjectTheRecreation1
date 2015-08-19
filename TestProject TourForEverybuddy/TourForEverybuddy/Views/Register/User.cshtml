@@ -18,7 +18,7 @@
             @Html.LabelFor(model => model.RouleId)
             <div class="4u 12u$(xsmall) checkBoxUser">
                 @Html.RadioButtonFor(model => model.RouleId, 3, new { @style = "display: none;", @checked = true })
-                <label for="RouleId">User</label>
+                <label for="RouleId">Tourist</label>
             </div>
             <div class="4u 12u$(xsmall) checkBoxGuied">
                 @Html.RadioButtonFor(model => model.RouleId, 2, new { @id = "RouleId2", @style = "display: none" })
@@ -76,7 +76,7 @@
             @Html.DropDownList("Language", ViewBag.Languages as IEnumerable<SelectListItem>, "Not chosen", new { @style = "display: none" })
             @Html.DropDownList("Language", ViewBag.Languages as IEnumerable<SelectListItem>, "Not chosen", new { @style = "display: none" })
             @Html.DropDownList("Language", ViewBag.Languages as IEnumerable<SelectListItem>, "Not chosen", new { @style = "display: none" })
-            <a onclick="AddChoiceLanguage()">Yet ?</a>
+            <a onclick="AddChoiceLanguage()">Add language </a>
         </div>
 
         <div class="Passwords">
@@ -91,7 +91,7 @@
 
         <div style="margin-top: 20px;">
             @*The Agreement ... field is required.*@
-            <input type="checkbox" id="CheckAgreement" onclick="Agreement()" /> <em>@Html.ActionLink("Agreement", "Agreement", null, new { @target = "blank" })</em>
+            <input type="checkbox" id="CheckAgreement" onclick="Agreement()" /> <em>I accept the terms of @Html.ActionLink("Agreement", "agreement", null, new { @target = "blank" })</em>
             @Html.ValidationMessage("CheckAgreementValid", "", new { @id = "CheckAgreementValid", @class = "text-danger" })
         </div>
         <input id="ButtonCreate" type="submit" value="Create" onclick=" return PreClickRegister()" class="button special" />

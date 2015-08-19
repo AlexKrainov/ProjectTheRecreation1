@@ -16,6 +16,7 @@ namespace TourForEverybuddy.Models
     {
         [Required]
         public string Name { get; set; }
+        [DisplayName("Last name")]
         public string LastName { get; set; }
         [Required]
         public string Password { get; set; }
@@ -28,7 +29,7 @@ namespace TourForEverybuddy.Models
         public Nullable<int> CountryId { get; set; }
         [DisplayName("Language")]
         public Nullable<int> LanguageId { get; set; }
-        [DisplayName("Your role ...")]
+        [DisplayName("You are ...")]
         public Nullable<byte> RouleId { get; set; }
         public byte[] Photo { get; set; }
 

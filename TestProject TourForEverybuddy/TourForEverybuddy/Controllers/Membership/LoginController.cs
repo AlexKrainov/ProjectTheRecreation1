@@ -46,7 +46,7 @@ namespace TourForEverybuddy.Controllers.Membership
             {
                 loginModel.Password = null;
                 ReturnUrl = "";
-                ModelState.AddModelError("LoginAndPassword_DoesNotMatch", "Name and password does not match");
+                ModelState.AddModelError("LoginAndPassword_DoesNotMatch", "Oops, either name or password does not match, try again");
                 return View();
             }
         }
