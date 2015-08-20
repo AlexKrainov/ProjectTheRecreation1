@@ -16,18 +16,21 @@ namespace TourForEverybuddy.Controllers.Membership
         //[MyAuthorize(Users = "admin, Alex", Roles = "admin")]
 
         public ActionResult Index()
-        {
+        {            
+            var user = Storage.currentUser;
+            if (user == null)
+                return RedirectToAction("Index", "Login", new { returnUrl = Request.UrlReferrer.OriginalString });
+
             DataManager manager = new DataManager();
 
             ViewBag.Countries =
                manager.GetCountries().Select(x => new SelectListItem { Text = x.country_name, Value = x.id.ToString() }).ToList();
 
-            ViewBag.Languages =
-                manager.GetLanguages().Select(x => new SelectListItem { Text = x.name, Value = x.id.ToString() });
+            ViewBag.Languages =  manager.GetLanguages();
+                //manager.GetLanguages().Select(x => new SelectList( { Text = x.name, Value = x.id.ToString() });
 
-            var user = Storage.currentUser;
-            if (user == null)
-                return RedirectToAction("Index", "Login", new { returnUrl = Request.UrlReferrer.OriginalString });
+            var list = manager.GetUserLanguages(user.id);
+            ViewBag.ArrayLanguages = list;
 
             //ViewBag.User = user
             return View(user);

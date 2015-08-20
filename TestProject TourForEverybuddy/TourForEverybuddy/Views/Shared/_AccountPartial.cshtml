@@ -58,12 +58,3 @@
         @Html.DropDownListFor(model => model.LanguageId, ViewBag.Languages as IEnumerable<SelectListItem>)
         @Html.ValidationMessageFor(model => model.LanguageId, "", new { @class = "text-danger" })
     </div>*@
-<div class="ArrayLanguageList">
-    @Html.LabelFor(model => model.LanguageId)
-    @Html.DropDownList("Language", ViewBag.Languages as IEnumerable<SelectListItem>, "Not chosen")
-    @Html.DropDownList("Language", ViewBag.Languages as IEnumerable<SelectListItem>, "Not chosen", new { @style = "display: none" })
-    @Html.DropDownList("Language", ViewBag.Languages as IEnumerable<SelectListItem>, "Not chosen", new { @style = "display: none" })
-    @Html.DropDownList("Language", ViewBag.Languages as IEnumerable<SelectListItem>, "Not chosen", new { @style = "display: none" })
-    @Html.DropDownList("Language", ViewBag.Languages as IEnumerable<SelectListItem>, "Not chosen", new { @style = "display: none" })
-    <a onclick="AddChoiceLanguage()">Add language </a>
-</div>

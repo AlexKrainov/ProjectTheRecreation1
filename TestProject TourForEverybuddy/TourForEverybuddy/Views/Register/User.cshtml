@@ -16,6 +16,16 @@
 
         @Html.Partial("_AccountPartial")
 
+        <div class="ArrayLanguageList">
+            @Html.LabelFor(model => model.LanguageId)
+            @Html.DropDownList("Language", ViewBag.Languages as IEnumerable<SelectListItem>, "Not chosen")
+            @Html.DropDownList("Language", ViewBag.Languages as IEnumerable<SelectListItem>, "Not chosen", new { @style = "display: none" })
+            @Html.DropDownList("Language", ViewBag.Languages as IEnumerable<SelectListItem>, "Not chosen", new { @style = "display: none" })
+            @Html.DropDownList("Language", ViewBag.Languages as IEnumerable<SelectListItem>, "Not chosen", new { @style = "display: none" })
+            @Html.DropDownList("Language", ViewBag.Languages as IEnumerable<SelectListItem>, "Not chosen", new { @style = "display: none" })
+            <a onclick="AddChoiceLanguage()">Add language </a>
+        </div>
+
         <div class="Passwords">
             @Html.LabelFor(model => model.Password)
             @Html.TextBox("Password", null, new { @type = "password", @onfocusout = "onFocusOutPassword()" })

@@ -24,6 +24,9 @@ namespace TourForEverybuddy.Models
             return db.Languages;
         }
 
-      
+        internal IQueryable<UserLanguage> GetUserLanguages(int userID)
+        {
+            return db.UserLanguages.Where(x => x.UserID == userID);
+        }
     }
 }
