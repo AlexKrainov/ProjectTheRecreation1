@@ -28,5 +28,7 @@ namespace TourForEverybuddy.Models
         {
             return db.UserLanguages.Where(x => x.UserID == userID);
         }
+
+      
     }
 }

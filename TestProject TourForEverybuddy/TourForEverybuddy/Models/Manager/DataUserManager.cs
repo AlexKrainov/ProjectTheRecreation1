@@ -43,7 +43,7 @@ namespace TourForEverybuddy.Models
 
             return true;
         }
-        internal void SaveNewUser(User user)
+        internal void CreateUser(User user)
         {
             user.DateRegister = DateTime.Now;
 
@@ -61,9 +61,7 @@ namespace TourForEverybuddy.Models
             db.UserLanguages.RemoveRange(oldUserLanguages);
 
             for (int i = 0; i < Languages.Length; i++)
-            {
                 db.UserLanguages.Add(new UserLanguage { UserID = userID, LanguageID = Convert.ToInt16(Languages[i]) });
-            }
 
             db.SaveChanges();
 
@@ -81,5 +79,29 @@ namespace TourForEverybuddy.Models
             return db.UserTypes;
         }
 
+        internal bool UpdateUser(User user, string[] Language)
+        {
+            var checkUser = db.Users.Where(x => x.Name == user.Name && x.Password == user.Password);
+            if (checkUser.Count() > 1)
+                return false;
+            checkUser = db.Users.Where(x => x.Email == user.Email && x.Password == user.Password);
+            if (checkUser.Count() > 1)
+                return false;
+
+            var oldUser = db.Users.FirstOrDefault(x => x.id == user.id);
+            oldUser.Age = user.Age;
+            oldUser.CountryId = user.CountryId;
+            oldUser.Email = user.Email;
+            oldUser.LastName = user.LastName;
+            oldUser.Name = user.Name;
+            oldUser.Password = user.Password;
+            oldUser.Phone = user.Phone;
+
+            db.SaveChanges();
+
+            SaveUserLanguages(user.id, Language);
+
+            return true;
+        }
     }
 }

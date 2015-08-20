@@ -1,0 +1,58 @@
+﻿@model TourForEverybuddy.Models.User
+
+@{
+    ViewBag.Title = "Edit";
+    this.Layout = "~/Views/Shared/_GenericLayout.cshtml";
+}
+<link rel="stylesheet" href="~/Content/Elements/Profile.css" />
+<link rel="stylesheet" href="~/Content/Elements/Regiser.css" />
+
+@Html.ValidationMessage("EmailIsHave", new { @style = "color: red; font-size: large;" })
+@Html.ValidationMessage("ValidIsFailed", new { @style = "color: red; font-size: large;" })
+
+<div class="RegisterDiv">
+    <hr />
+
+    @using (Html.BeginForm())
+    {
+        @Html.Hidden("id", Model.id)
+
+        @Html.Partial("_AccountPartial")
+        <div class="ArrayLanguageList">
+            @Html.LabelFor(model => model.LanguageId)
+
+            @{
+
+        var arrayLanguages = (ViewBag.ArrayLanguages as IQueryable<TourForEverybuddy.Models.UserLanguage>).ToList();
+        for (int i = 0; i < arrayLanguages.Count(); i++)
+        {
+            @Html.DropDownList("Language", new SelectList(ViewBag.Languages, "id", "name", arrayLanguages[i].LanguageID))
+        }
+
+            }
+            @for (int i = 0; i < (10 - arrayLanguages.Count); i++)
+            {
+                @Html.DropDownList("Language", new SelectList(ViewBag.Languages, "id", "name"), "Not chosen", new { @style = "display: none" })
+            }
+
+            <a onclick="AddChoiceLanguage()">Add language </a>
+        </div>
+        <div class="Passwords">
+            @Html.LabelFor(model => model.Password)
+            @Html.TextBox("Password", null, new { @type = "password", @onfocusout = "onFocusOutPassword()" })
+            @Html.LabelFor(model => model.Password, "Confirm password")
+            @Html.TextBox("Password", null, new { @id = "PasswordConfirm", @type = "password", @onfocusout = "onFocusOutPassword()" })
+
+            @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
+            @Html.ValidationMessage("PasswordCOnfirm", "", new { @id = "validPass", @class = "text-danger" })
+        </div>
+
+        <input type="submit" value="click" />
+    }
+
+</div>
+<p>
+    @Html.ActionLink("Back to List", "Index")
+</p>
+<script src="~/Scripts/Elements/Register.js"></script>
+

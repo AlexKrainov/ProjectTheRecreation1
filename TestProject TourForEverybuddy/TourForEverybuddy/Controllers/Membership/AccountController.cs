@@ -13,48 +13,68 @@ namespace TourForEverybuddy.Controllers.Membership
     [MyAuthentication]
     public class AccountController : Controller
     {
+        private DataManager manager;
         //[MyAuthorize(Users = "admin, Alex", Roles = "admin")]
-
+        public AccountController()
+        {
+            manager = new DataManager();
+        }
         public ActionResult Index()
-        {            
+        {
             var user = Storage.currentUser;
             if (user == null)
+                return RedirectToAction("Index", "Login", new { returnUrl = Request.UrlReferrer != null ? Request.UrlReferrer.OriginalString : "" });
+            //ToDo: add Langues
+            return View(user);
+        }
+
+#warning Нужно ли передовать id ? (Он засветичиватеся в URL  троке )
+        [HttpGet]
+        public ActionResult Edit(int id) 
+        {            
+            var user = Storage.currentUser;
+            if (user == null || user.id != id)
                 return RedirectToAction("Index", "Login", new { returnUrl = Request.UrlReferrer.OriginalString });
 
-            DataManager manager = new DataManager();
+            FillDropDownList(user.id);
 
+            return View(user);
+        }
+
+        [HttpPost]
+        public ActionResult Edit(User user, string[] Language)
+        {
+            if(this.ModelState.IsValid)
+            {
+               var updated = manager.UpdateUser(user, Language);
+
+               if (updated)
+               {
+                   Storage.currentUser = null;
+                   return RedirectToAction("Index");
+               }
+               else
+               {
+                   FillDropDownList(user.id);
+                   ModelState.AddModelError("EmailIsHave", "This user is already registered.");
+               }
+            }
+            else
+                ModelState.AddModelError("ValidIsFailed", "Fail.");
+
+            return View();
+            
+        }
+
+        private void FillDropDownList(int userID)
+        {
             ViewBag.Countries =
-               manager.GetCountries().Select(x => new SelectListItem { Text = x.country_name, Value = x.id.ToString() }).ToList();
+              manager.GetCountries().Select(x => new SelectListItem { Text = x.country_name, Value = x.id.ToString() }).ToList();
 
-            ViewBag.Languages =  manager.GetLanguages();
-                //manager.GetLanguages().Select(x => new SelectList( { Text = x.name, Value = x.id.ToString() });
+            ViewBag.Languages = manager.GetLanguages();
 
-            var list = manager.GetUserLanguages(user.id);
+            var list = manager.GetUserLanguages(userID);
             ViewBag.ArrayLanguages = list;
-
-            //ViewBag.User = user
-            return View(user);
-        }
-        [HttpPost]
-        public ActionResult Index(User user)
-        {
-            user = Storage.currentUser;
-            if (user == null)
-                return RedirectToAction("Index", "Login", new { returnUrl = Request.UrlReferrer.OriginalString });
-
-            //ViewBag.User = user
-            return View(user);
-        }
-
-        [HttpPost]
-        public ActionResult EditName(User user)
-        {
-            user = Storage.currentUser;
-            if (user == null)
-                return RedirectToAction("Index", "Login", new { returnUrl = Request.UrlReferrer.OriginalString });
-
-            //ViewBag.User = user
-            return View(user);
         }
     }
 }

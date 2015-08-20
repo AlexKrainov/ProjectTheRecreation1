@@ -4,55 +4,104 @@
     ViewBag.Title = "Index";
     this.Layout = "~/Views/Shared/_GenericLayout.cshtml";
 }
-<link rel="stylesheet" href="~/Content/Elements/Profile.css" />
-<link rel="stylesheet" href="~/Content/Elements/Regiser.css" />
 
-<div class="RegisterDiv">
+<h2>Index</h2>
+
+<div>
+    <h4>User</h4>
     <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
 
-    @using (Html.BeginForm())
-    {
-        @Html.Hidden("id", Model.id)
+        <dd>
+            @Html.DisplayFor(model => model.Name)
+        </dd>
 
-        @Html.Partial("_AccountPartial")
-        <div class="ArrayLanguageList">
-            @Html.LabelFor(model => model.LanguageId)
+        <dt>
+            @Html.DisplayNameFor(model => model.LastName)
+        </dt>
 
-            @{
-        var arrayLanguages = (ViewBag.ArrayLanguages as IQueryable<TourForEverybuddy.Models.UserLanguage>).ToList();
-       // var Languages = ;
-        for (int i = 0; i < arrayLanguages.Count(); i++)
-        {
-            //Languages.FirstOrDefault(x => x.Value == arrayLanguages.ElementAt(i).LanguageID.ToString()).Selected = true;
-            @*@Html.DropDownList("Language", Languages)*@
-            
-            var list = new SelectList(ViewBag.Languages, "id", "name", arrayLanguages[i].LanguageID);
-                @Html.DropDownList("Language", list) //arrayLanguages.ElementAt(i).LanguageID.ToString()
+        <dd>
+            @Html.DisplayFor(model => model.LastName)
+        </dd>
 
-        }
+        <dt>
+            @Html.DisplayNameFor(model => model.Password)
+        </dt>
 
-            }
+        <dd>
+            @Html.DisplayFor(model => model.Password)
+        </dd>
 
+        <dt>
+            @Html.DisplayNameFor(model => model.Age)
+        </dt>
 
+        <dd>
+            @Html.DisplayFor(model => model.Age)
+        </dd>
 
-            <a onclick="AddChoiceLanguage()">Add language </a>
-        </div>
-        <div class="Passwords">
-            @Html.LabelFor(model => model.Password)
-            @Html.TextBox("Password", null, new { @type = "password", @onfocusout = "onFocusOutPassword()" })
-            @Html.LabelFor(model => model.Password, "Confirm password")
-            @Html.TextBox("Password", null, new { @id = "PasswordConfirm", @type = "password", @onfocusout = "onFocusOutPassword()" })
+        <dt>
+            @Html.DisplayNameFor(model => model.Email)
+        </dt>
 
-            @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
-            @Html.ValidationMessage("PasswordCOnfirm", "", new { @id = "validPass", @class = "text-danger" })
-        </div>
+        <dd>
+            @Html.DisplayFor(model => model.Email)
+        </dd>
 
-        <input type="submit" value="click" />
-    }
+        <dt>
+            @Html.DisplayNameFor(model => model.Phone)
+        </dt>
 
+        <dd>
+            @Html.DisplayFor(model => model.Phone)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CountryId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CountryId)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.LanguageId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LanguageId)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.RouleId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.RouleId)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DateRegister)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DateRegister)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.LastAuthorization)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LastAuthorization)
+        </dd>
+
+    </dl>
 </div>
 <p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.id }) |
     @Html.ActionLink("Back to List", "Index")
 </p>
-<script src="~/Scripts/Elements/Register.js"></script>
-

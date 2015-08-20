@@ -13,16 +13,29 @@
         @Html.AntiForgeryToken()
 
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        
+        <div>
+            @Html.LabelFor(model => model.RouleId)
+            <div class="4u 12u$(xsmall) checkBoxUser">
+                @Html.RadioButtonFor(model => model.RouleId, 3, new { @style = "display: none;", @checked = true })
+                <label for="RouleId">Tourist</label>
+            </div>
+            <div class="4u 12u$(xsmall) checkBoxGuied">
+                @Html.RadioButtonFor(model => model.RouleId, 2, new { @id = "RouleId2", @style = "display: none" })
+                <label for="RouleId2">Guide</label>
+            </div>
+            @Html.ValidationMessage("RouleId", "", new { @id = "validRoule", @class = "text-danger" })
+        </div>
 
         @Html.Partial("_AccountPartial")
 
         <div class="ArrayLanguageList">
             @Html.LabelFor(model => model.LanguageId)
             @Html.DropDownList("Language", ViewBag.Languages as IEnumerable<SelectListItem>, "Not chosen")
-            @Html.DropDownList("Language", ViewBag.Languages as IEnumerable<SelectListItem>, "Not chosen", new { @style = "display: none" })
-            @Html.DropDownList("Language", ViewBag.Languages as IEnumerable<SelectListItem>, "Not chosen", new { @style = "display: none" })
-            @Html.DropDownList("Language", ViewBag.Languages as IEnumerable<SelectListItem>, "Not chosen", new { @style = "display: none" })
-            @Html.DropDownList("Language", ViewBag.Languages as IEnumerable<SelectListItem>, "Not chosen", new { @style = "display: none" })
+            @for (int i = 0; i < 10; i++)
+            {
+                @Html.DropDownList("Language", ViewBag.Languages as IEnumerable<SelectListItem>, "Not chosen", new { @style = "display: none" })
+            }
             <a onclick="AddChoiceLanguage()">Add language </a>
         </div>
 

@@ -37,7 +37,7 @@ namespace TourForEverybuddy.Controllers
 
                 if (isNew)
                 {
-                    manager.SaveNewUser(user);
+                    manager.CreateUser(user);
                     manager.SaveUserLanguages(user.id, Language);
 
                     return RedirectToAction("Index", "Home");
