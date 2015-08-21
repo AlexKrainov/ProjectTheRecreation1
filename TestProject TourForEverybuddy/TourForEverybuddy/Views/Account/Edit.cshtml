@@ -37,7 +37,9 @@
 
             <a onclick="AddChoiceLanguage()">Add language </a>
         </div>
-        <div class="Passwords">
+        
+        <lable onclick="ShowOrHideContainerPwd()">Change password ? </lable>
+        <div class="Passwords DisabledPassword">
             @Html.LabelFor(model => model.Password)
             @Html.TextBox("Password", null, new { @type = "password", @onfocusout = "onFocusOutPassword()" })
             @Html.LabelFor(model => model.Password, "Confirm password")

@@ -1,10 +1,19 @@
-﻿dl dd {
-    background-color: #bbb;
-    color: white;
-    width: 200px;
-    margin: 5px;
+﻿.UserTable {
+    width: 1000px;
+    margin: 30px auto;
 }
 
-.EditImage{
+    .UserTable tr th:first-child {
+           width: 200px;
+    }
+
+.userBtn {
+    width: 1000px;
+    margin: 3px auto;
+}
+
+
+
+.EditImage {
     width: 30px;
 }

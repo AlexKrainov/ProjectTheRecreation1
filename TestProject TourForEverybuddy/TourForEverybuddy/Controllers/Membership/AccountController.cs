@@ -65,6 +65,32 @@ namespace TourForEverybuddy.Controllers.Membership
             return View();
             
         }
+        [HttpGet]
+        public ActionResult AddTour()
+        {
+            var user = Storage.currentUser;
+            if (user == null)
+                return RedirectToAction("Index", "Login", new { returnUrl = Request.UrlReferrer.OriginalString });
+
+            //manager.GetUserTour(user.id);
+
+
+
+            return View();
+        }
+        [HttpGet]
+        public ActionResult EditTour()
+        {
+            var user = Storage.currentUser;
+            if (user == null )
+                return RedirectToAction("Index", "Login", new { returnUrl = Request.UrlReferrer.OriginalString });
+
+            //manager.GetUserTour(user.id);
+
+
+
+            return View();
+        }
 
         private void FillDropDownList(int userID)
         {

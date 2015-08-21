@@ -307,6 +307,8 @@
     <Content Include="Views\Shared\_LoginDialog.cshtml" />
     <Content Include="Views\Shared\_AccountPartial.cshtml" />
     <Content Include="Views\Account\Index.cshtml" />
+    <Content Include="Views\Account\EditTour.cshtml" />
+    <Content Include="Views\Account\AddTour.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

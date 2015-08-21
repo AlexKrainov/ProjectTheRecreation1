@@ -1,0 +1,17 @@
+﻿@{
+    ViewBag.Title = "AddTour";
+    this.Layout = "~/Views/Shared/_GenericLayout.cshtml";
+}
+<div class="container">
+    <section>
+        <div class="12u$">
+            <input type="file" value="Загрузить фотки" />
+            @Html.TextBox("title")
+            <div class="12u$">
+                @Html.TextArea("Message", null, new { @rows = "6", @placeholder = "Enter your massage" })
+            </div>
+        </div>
+        <a onclick="AddTour()">Add new tour</a>
+    </section>
+</div>
+

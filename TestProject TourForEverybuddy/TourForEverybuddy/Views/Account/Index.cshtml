@@ -4,104 +4,60 @@
     ViewBag.Title = "Index";
     this.Layout = "~/Views/Shared/_GenericLayout.cshtml";
 }
+<link rel="stylesheet" href="~/Content/Elements/Profile.css" />
 
-<h2>Index</h2>
+<hr />
+<div class="container">
+    <section>
+        <table @*class="UserTable"*@>
+            <tr>
+                <th>@Html.DisplayNameFor(model => model.Name)</th>
+                <td>@Html.DisplayFor(model => model.Name)</td>
+            </tr>
+            <tr>
+                <th>@Html.DisplayNameFor(model => model.LastName)</th>
+                <td>@Html.DisplayFor(model => model.LastName)</td>
+            </tr>
+            <tr>
+                <th>@Html.DisplayNameFor(model => model.Age)</th>
+                <td>@Html.DisplayFor(model => model.Age)</td>
+            </tr>
+            <tr>
+                <th>@Html.DisplayNameFor(model => model.Email)</th>
+                <td>@Html.DisplayFor(model => model.Email)</td>
+            </tr>
+            <tr>
+                <th>@Html.DisplayNameFor(model => model.Phone)</th>
+                <td>@Html.DisplayFor(model => model.Phone)</td>
+            </tr>
+            <tr>
+                <th>@Html.DisplayNameFor(model => model.CountryId)</th>
+                <td>@Html.DisplayFor(model => model.CountryId)</td>
+            </tr>
+        </table>
 
-<div>
-    <h4>User</h4>
+        <p class="userBtn">
+            @Html.ActionLink("Edit", "Edit", new { id = Model.id }) |
+            @Html.ActionLink("Back to Home", "Index", "Home")
+        </p>
+
+
+    </section>
+
     <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Name)
-        </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Name)
-        </dd>
+    <section>
+        <h1>if Guide ? show this tour </h1>
+        <table>
+            <tr>
+                <td></td>
+                <td></td>
+            </tr>
+        </table>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.LastName)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.LastName)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Password)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Password)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Age)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Age)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Email)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Email)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Phone)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Phone)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.CountryId)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.CountryId)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.LanguageId)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.LanguageId)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.RouleId)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.RouleId)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.DateRegister)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.DateRegister)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.LastAuthorization)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.LastAuthorization)
-        </dd>
-
-    </dl>
+        <p>
+            @Html.ActionLink("Add new tour", "AddTour") |
+            @Html.ActionLink("Edit Tour", "EditTour")
+        </p>
+    </section>
 </div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.id }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>
