@@ -7,6 +7,8 @@ namespace TourForEverybuddy.Models
     {
         public User()
         {
+            this.Tours = new List<Tour>();
+            this.Tour_CommentOfTour = new List<Tour_CommentOfTour>();
             this.UserLanguages = new List<UserLanguage>();
         }
 
@@ -18,12 +20,13 @@ namespace TourForEverybuddy.Models
         public string Email { get; set; }
         public string Phone { get; set; }
         public Nullable<int> CountryId { get; set; }
-        public Nullable<int> LanguageId { get; set; }
         public Nullable<byte> RouleId { get; set; }
         public byte[] Photo { get; set; }
         public Nullable<System.DateTime> DateRegister { get; set; }
         public Nullable<System.DateTime> LastAuthorization { get; set; }
         public virtual Country Country { get; set; }
+        public virtual ICollection<Tour> Tours { get; set; }
+        public virtual ICollection<Tour_CommentOfTour> Tour_CommentOfTour { get; set; }
         public virtual ICollection<UserLanguage> UserLanguages { get; set; }
         public virtual UserType UserType { get; set; }
     }

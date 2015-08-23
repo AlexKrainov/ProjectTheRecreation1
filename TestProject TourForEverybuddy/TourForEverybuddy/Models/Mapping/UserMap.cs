@@ -37,7 +37,6 @@ namespace TourForEverybuddy.Models.Mapping
             this.Property(t => t.Email).HasColumnName("Email");
             this.Property(t => t.Phone).HasColumnName("Phone");
             this.Property(t => t.CountryId).HasColumnName("CountryId");
-            this.Property(t => t.LanguageId).HasColumnName("LanguageId");
             this.Property(t => t.RouleId).HasColumnName("RouleId");
             this.Property(t => t.Photo).HasColumnName("Photo");
             this.Property(t => t.DateRegister).HasColumnName("DateRegister");

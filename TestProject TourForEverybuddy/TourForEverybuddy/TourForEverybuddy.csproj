@@ -225,6 +225,7 @@
     <None Include="Properties\PublishProfiles\TourForEveryBuddy.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\Elements\Login.js" />
+    <Content Include="Scripts\Elements\Profile.js" />
     <Content Include="Scripts\Elements\Register.js" />
     <Content Include="Scripts\ie\html5shiv.js" />
     <Content Include="Scripts\ie\respond.min.js" />
@@ -261,10 +262,14 @@
     <Compile Include="Controllers\Membership\EmailsController.cs" />
     <Compile Include="Controllers\Membership\LoginController.cs" />
     <Compile Include="Models\Model\Country.cs" />
-    <Compile Include="Models\Filters\MyAuthorizeAttribute.cs" />
     <Compile Include="Models\Model\Language.cs" />
+    <Compile Include="Models\Manager\DataTourManager.cs" />
+    <Compile Include="Models\Filters\MyAuthorizeAttribute.cs" />
     <Compile Include="Models\Mapping\CountryMap.cs" />
     <Compile Include="Models\Mapping\LanguageMap.cs" />
+    <Compile Include="Models\Mapping\TourMap.cs" />
+    <Compile Include="Models\Mapping\Tour_CommentOfTourMap.cs" />
+    <Compile Include="Models\Mapping\Tour_PictureOfTourMap.cs" />
     <Compile Include="Models\Mapping\UserLanguageMap.cs" />
     <Compile Include="Models\Mapping\UserMap.cs" />
     <Compile Include="Models\Mapping\UserTypeMap.cs" />
@@ -282,7 +287,10 @@
     <Compile Include="Models\DeleteAccountUser\Class1.cs" />
     <Compile Include="Models\Filters\MyAuthenticationAttribute.cs" />
     <Compile Include="Models\Model\Metadata\UserMetadata.cs" />
+    <Compile Include="Models\Model\Tour.cs" />
     <Compile Include="Models\Model\TourForEverybuddyDatabaseContext.cs" />
+    <Compile Include="Models\Model\Tour_CommentOfTour.cs" />
+    <Compile Include="Models\Model\Tour_PictureOfTour.cs" />
     <Compile Include="Models\Model\User.cs" />
     <Compile Include="Models\Model\UserLanguage.cs" />
     <Compile Include="Models\Model\UserType.cs" />

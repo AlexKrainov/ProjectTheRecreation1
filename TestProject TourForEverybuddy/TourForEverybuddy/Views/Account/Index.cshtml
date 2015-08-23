@@ -37,7 +37,7 @@
         </table>
 
         <p class="userBtn">
-            @Html.ActionLink("Edit", "Edit", new { id = Model.id }) |
+            @Html.ActionLink("Edit", "Edit") |
             @Html.ActionLink("Back to Home", "Index", "Home")
         </p>
 
@@ -56,8 +56,12 @@
         </table>
 
         <p>
+            <a onclick="NewTour()">Add new tour</a>
             @Html.ActionLink("Add new tour", "AddTour") |
             @Html.ActionLink("Edit Tour", "EditTour")
         </p>
+        @*@Html.Partial("_AddTourDialog")*@
     </section>
 </div>
+
+<script src="~/Scripts/Elements/Profile.js"></script>
