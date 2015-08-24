@@ -19,13 +19,13 @@ namespace TourForEverybuddy.Controllers.Membership
         public AccountController()
         {
             manager = new DataManager();
+            //if (user == null)
+            //    return RedirectToAction("Index", "Login", new { returnUrl = Request.UrlReferrer != null ? Request.UrlReferrer.OriginalString : "" });
         }
         public ActionResult Index()
         {
             var user = Storage.currentUser;
-            if (user == null)
-                return RedirectToAction("Index", "Login", new { returnUrl = Request.UrlReferrer != null ? Request.UrlReferrer.OriginalString : "" });
-
+           
             //ToDo: add Langues
             return View(user);
         }
@@ -34,8 +34,6 @@ namespace TourForEverybuddy.Controllers.Membership
         public ActionResult Edit()
         {
             var user = Storage.currentUser;
-            if (user == null)
-                return RedirectToAction("Index", "Login", new { returnUrl = Request.UrlReferrer.OriginalString });
 
             FillDropDownList(user.id);
 
@@ -76,15 +74,12 @@ namespace TourForEverybuddy.Controllers.Membership
         [HttpPost]
         public ActionResult AddTour(Tour tour, HttpPostedFileBase[] Pictures)
         {
-            //Перенести Storage.currentUser (добычу) currentUser  в MyAuthentication
             var user = Storage.currentUser;
-            if (user == null)
-                return RedirectToAction("Index", "Login", new { returnUrl = Request.UrlReferrer.OriginalString });
 
             tour.userID = user.id;
 
             #region Get pictures
-            if (Pictures.Count() > 0)
+            if (Pictures.Count() > 0 && Pictures[0] != null)
             {
                 for (int i = 0; i < Pictures.Count(); i++)
                 {
@@ -104,7 +99,7 @@ namespace TourForEverybuddy.Controllers.Membership
 
             if (!manager.CreateTour(tour))
             {
-                ModelState.AddModelError("ValidIsFailed", "I can't save the tour");
+                ModelState.AddModelError("TourIsHave", "Sorry , this tour already exists. Please, change the name of the tour. ");
                 return View();
             }
 
@@ -114,8 +109,6 @@ namespace TourForEverybuddy.Controllers.Membership
         public ActionResult EditTour()
         {
             var user = Storage.currentUser;
-            if (user == null)
-                return RedirectToAction("Index", "Login", new { returnUrl = Request.UrlReferrer.OriginalString });
 
             //manager.GetUserTour(user.id);
 

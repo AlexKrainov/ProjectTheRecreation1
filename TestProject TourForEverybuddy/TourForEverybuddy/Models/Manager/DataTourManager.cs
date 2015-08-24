@@ -10,8 +10,10 @@ namespace TourForEverybuddy.Models
         internal bool CreateTour(Tour tour)
         {
             //ToDo: Проверка
-            db.Tours.Add(tour);
+            if (db.Tours.FirstOrDefault(x => x.title == tour.title) != null)
+                return false;
 
+            db.Tours.Add(tour);
             db.SaveChanges();
 
             return true;

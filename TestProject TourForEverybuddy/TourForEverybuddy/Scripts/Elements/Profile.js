@@ -26,10 +26,23 @@ function handleFileSelect(e) {
         //}
 
         reader.onload = function (e) {
-            $(".images").append(" <img src='" + e.target.result + "' width='50' height='50' />");
+            $(".images").append(" <img class='arrayimg' src='" + e.target.result + "' width='50' height='50' />");
         }
         reader.readAsDataURL(file);
     }
     $(".images").html(fileNames);
 
+}
+
+function CheckEmptyFild() {
+    if ($("#Title").val().length == 0 || $("#description").val().length == 0) {
+        $("#ValidIsFailed").text("Field title or the message can not be empty.");
+        $("#submitCreate").addClass("disabled");
+        return false;
+    }
+    return true;
+}
+function TextBoxChange() {
+    $("#ValidIsFailed").text("");
+    $("#submitCreate").removeClass("disabled");
 }

@@ -5,6 +5,7 @@ using System.Security.Principal;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Mvc.Filters;
+using TourForEverybuddy.Controllers.Static;
 
 namespace TourForEverybuddy.Models.Filters
 {
@@ -14,8 +15,9 @@ namespace TourForEverybuddy.Models.Filters
         public void OnAuthentication(AuthenticationContext filterContext)
         {
             IIdentity ident = filterContext.Principal.Identity;
+            var user = Storage.currentUser;
 
-            if (!ident.IsAuthenticated )
+            if (!ident.IsAuthenticated || user == null )
                 filterContext.Result = new HttpUnauthorizedResult(); //доступ к данному ресурсу для пользовател запрещен
         }
 

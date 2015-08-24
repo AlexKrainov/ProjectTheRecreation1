@@ -4,7 +4,7 @@
 }
 
     .UserTable tr th:first-child {
-           width: 200px;
+        width: 200px;
     }
 
 .userBtn {
@@ -16,6 +16,55 @@
     width: 30px;
 }
 
-.tourDialog{
-
+.tourDialog {
 }
+
+.arrayimg {
+    -webkit-box-shadow: 5px 5px 10px 0px rgba(0,0,0,0.35);
+    -moz-box-shadow: 5px 5px 10px 0px rgba(0,0,0,0.35);
+    box-shadow: 5px 5px 10px 0px rgba(0,0,0,0.35);
+}
+
+/*#region input=file */
+.file-input-wrapper {
+    width: 200px;
+    height: 40px;
+    overflow: hidden;
+    position: relative;
+}
+
+    .file-input-wrapper > input[type="file"] {
+        font-size: 29px;
+        position: absolute;
+        top: 0;
+        right: 0;
+        opacity: 0;
+    }
+
+    .file-input-wrapper > .btn-file-input {
+        -webkit-appearance: none;
+        -ms-appearance: none;
+        appearance: none;
+        -moz-transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
+        -webkit-transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
+        -ms-transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
+        transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
+        border-radius: 2.5em;
+        border: 0;
+        cursor: pointer;
+        display: inline-block;
+        font-weight: 700;
+        height: 2.85em;
+        line-height: 2.95em;
+        min-width: 10em;
+        padding: 0 1.5em;
+        text-align: center;
+        text-decoration: none;
+        text-decoration: none;
+        text-transform: uppercase;
+        white-space: nowrap;
+        background-color: #63c1ae;
+    }
+
+/*#endregion */
+
