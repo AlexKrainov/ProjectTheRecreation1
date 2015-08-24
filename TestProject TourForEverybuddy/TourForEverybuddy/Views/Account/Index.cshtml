@@ -37,30 +37,65 @@
         </table>
 
         <p class="userBtn">
-            @Html.ActionLink("Edit", "Edit") |
-            @Html.ActionLink("Back to Home", "Index", "Home")
-        </p>
+            @Html.ActionLink("Back to Home", "Index", "Home") |
+            @Html.ActionLink("Edit profile", "Edit") |
+            @Html.ActionLink("Add new tour", "AddTour") |
 
+        </p>
 
     </section>
 
     <hr />
 
     <section>
-        <h1>if Guide ? show this tour </h1>
-        <table>
-            <tr>
-                <td></td>
-                <td></td>
-            </tr>
-        </table>
+        <section id="one" class="wrapper style1">
+            <div class="inner">
+                @{
+                    byte iterator = 0;
+                    string side;
+                    foreach (TourForEverybuddy.Models.Tour tour in Model.Tours)
+                    {
+                        //foreach (TourForEverybuddy.Models.Tour_PictureOfTour picture in tour.Tour_PictureOfTour)
+                        //{
+                        //    var file = File(picture.Picture, )
+                        //}
+                        if (iterator == 0)
+                        {
+                            side = "right";
+                            iterator++;
+                        }
+                        else
+                        {
+                            side = "left";
+                            iterator--;
+                        }
+                        <article class="feature @side">
 
-        <p>
-            <a onclick="NewTour()">Add new tour</a>
-            @Html.ActionLink("Add new tour", "AddTour") |
-            @Html.ActionLink("Edit Tour", "EditTour")
-        </p>
-        @*@Html.Partial("_AddTourDialog")*@
+                            <span class="image">
+                                @if (tour.Tour_PictureOfTour.Count > 0)
+                                {
+                                    <img src="@Url.Action("Show", "Picture", new { id = tour.Id } )" alt="" />
+                                    @*<img src="@string.Concat("data:",tour.Tour_PictureOfTour.ElementAt(0).ContentType,";base64,") @Convert.ToBase64String(tour.Tour_PictureOfTour.ElementAt(0).Picture, 0, tour.Tour_PictureOfTour.ElementAt(0).Picture.Length)" alt="" />*@
+                                }
+                            </span>
+                            <div class="content">
+                                <h2>@tour.title </h2>
+                                <p>@tour.description</p>
+                                <ul class="actions">
+                                    <li>
+
+                                        @Html.ActionLink("Edit tour", "EditTour", new { id = tour.Id }, new { @class = "button alt" })
+                                    </li>
+                                    <li>
+                                        @Html.ActionLink("Delete tour", "Delete", new { id = tour.Id }, new { @class = "button" })
+                                    </li>
+                                </ul>
+                            </div>
+                        </article>
+                    }
+                }
+            </div>
+        </section>
     </section>
 </div>
 

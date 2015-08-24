@@ -25,11 +25,12 @@ namespace TourForEverybuddy.Controllers.Membership
         public ActionResult Index()
         {
             var user = Storage.currentUser;
-           
+            
             //ToDo: add Langues
             return View(user);
         }
 
+        #region Edit
         [HttpGet]
         public ActionResult Edit()
         {
@@ -64,7 +65,9 @@ namespace TourForEverybuddy.Controllers.Membership
             return View();
 
         }
+        #endregion
 
+        #region AddTour
         [HttpGet]
         public ActionResult AddTour()
         {
@@ -99,18 +102,17 @@ namespace TourForEverybuddy.Controllers.Membership
 
             if (!manager.CreateTour(tour))
             {
-                ModelState.AddModelError("TourIsHave", "Sorry , this tour already exists. Please, change the name of the tour. ");
+                ModelState.AddModelError(
+@"TourIsHave", "Sorry , this tour already exists. Please, change the title of the tour. ");
                 return View();
             }
 
             return RedirectToAction("Index");
         }
-        [HttpGet]
-        public ActionResult EditTour()
-        {
-            var user = Storage.currentUser;
+        #endregion
 
-            //manager.GetUserTour(user.id);
+        public ActionResult EditTour(int id)
+        {
 
             return View();
         }
