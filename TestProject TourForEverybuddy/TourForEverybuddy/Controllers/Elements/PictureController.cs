@@ -20,5 +20,16 @@ namespace TourForEverybuddy.Controllers.Elements
 
             return File("pic01.jpg", "image/jpeg");
         }
+
+        public ActionResult ShowPicture(int pictureId, int tourID)
+        {
+            var picture = Storage.currentUser.Tours.FirstOrDefault(x => x.Id == tourID).Tour_PictureOfTour.FirstOrDefault(x => x.Id == pictureId);
+
+            if (picture != null)
+                return File(picture.Picture, picture.ContentType);
+
+            return File("pic01.jpg", "image/jpeg");
+        }
+
     }
 }

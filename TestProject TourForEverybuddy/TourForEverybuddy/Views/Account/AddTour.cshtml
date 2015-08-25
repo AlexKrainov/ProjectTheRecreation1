@@ -17,7 +17,7 @@
                 </div>
                 @*<input class="button alt small" id="Pictures" name="Pictures" type="file" value="Загрузить фотки" multiple onchange="handleFileSelect(this);" />*@
                 <div class="images"><br /></div>
-                @Html.TextBox("Title", null, new { @placeholder = "Enter you title", @onchange = "TextBoxChange()", @style = "margin: 10px auto 10px 0px;" })
+                @Html.TextBox("title", null, new { @placeholder = "Enter you title", @onchange = "TextBoxChange()", @style = "margin: 10px auto 10px 0px;" })
                 <div class="12u$">
                     @Html.TextArea("description", null, new { @rows = "6", @placeholder = "Enter your massage", @onchange = "TextBoxChange()" })
                 </div>

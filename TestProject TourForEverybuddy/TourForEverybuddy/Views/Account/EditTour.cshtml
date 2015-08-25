@@ -1,9 +1,85 @@
-﻿@{
+﻿@model TourForEverybuddy.Models.Tour
+
+@{
     ViewBag.Title = "EditTour";
     this.Layout = "~/Views/Shared/_GenericLayout.cshtml";
 }
+<link href="~/Content/Elements/Profile.css" rel="stylesheet" />
+
+<div>
+    @Html.ActionLink("Back to List", "Index", null, new { @style = "    margin-left: 25px;" })
+
+</div>
+<div id="tourDialog" class="container tourDialog">
+    <section>
+        <div class="12u$">
+
+            @using (Html.BeginForm("EditTour", "Account", null, FormMethod.Post, new { enctype = "multipart/form-data" }))
+            {
+                @Html.AntiForgeryToken()
+                <div class="file-input-wrapper">
+                    <button class="btn-file-input">Upload File</button>
+                    <input type="file" id="Pictures" name="Pictures" value="Загрузить фотки" multiple onchange="handleFileSelect(this);" />
+                </div>
+                <div class="images"><br /></div>
+                <div>
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                    @Html.HiddenFor(model => model.Id)
+
+                    <div>
+                        @Html.Label("Title")
+                        <div>
+                            @Html.TextBoxFor(model => model.title, new { @placeholder = "Enter you title", @onchange = "TextBoxChange()", @style = "margin: 10px auto 10px 0px;" })
+                            @Html.ValidationMessageFor(model => model.title, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div>
+                        @Html.Label("Massage")
+                        <div>
+                            @Html.TextAreaFor(model => model.description, new { @rows = "6", @placeholder = "Enter your massage", @onchange = "TextBoxChange()" })
+                            @Html.ValidationMessageFor(model => model.description, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <input class="button special" id="submitCreate" type="submit" style="margin-top: 15px;" value="Create" onclick="return CheckEmptyFild()" />
+                    @Html.ValidationMessage("ValidIsFailed", new { @style = "color: red; font-size: large;", @id = "ValidIsFailed" })
+                </div>
+            }
+
+            @using (Html.BeginForm("DeleteImages", "Account"))
+            {
+                @Html.Hidden("id", Model.Id);
+                @Html.Hidden("PictureArray");
+                   <!-- Two -->
+                <section id="two" class="wrapper special">
+                    <div class="inner">
+                        <header class="major narrow">
+                            <h2>Album</h2>
+                            <p>Select the pictures to delete</p>
+                        </header>
+                        <div class="image-grid">
+                            @{
+                foreach (TourForEverybuddy.Models.Tour_PictureOfTour picture in Model.Tour_PictureOfTour)
+                {
+                    @*<img src="@Url.Action("Show", "Picture", new { id = picture.Id } )" alt="" />*@
+                                <a class="image" id="@picture.Id" onclick="SelectPicture(this)">
+
+                                    <img src="@string.Concat("data:",picture.ContentType,";base64,") @Convert.ToBase64String(picture.Picture, 0, picture.Picture.Length)"
+                                         alt="" />
+                                </a>
+                }
+                            }
+                        </div>
+                    </div>
+                </section>
+                <input id="RemoveBtn" type="submit" class="button disabled" value="Delete images" onclick="return RemovePicture(this);" />
+                @Html.ValidationMessage("DeletePicture", new { @style = "color: red; font-size: large;", @id = "DeletePicture" })
+            }
+
+        </div>
+    </section>
+</div>
 
 
-
-
-
+<script src="~/Scripts/Elements/Profile.js"></script>

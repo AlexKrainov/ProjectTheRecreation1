@@ -68,3 +68,18 @@
 
 /*#endregion */
 
+/*#region Picture */
+.pagePicture {
+    list-style: none;
+}
+
+    .pagePicture li {
+        display: inline;
+    }
+
+        .pagePicture li:hover {
+            cursor: pointer;
+        }
+
+/*#endregion */
+

@@ -8,95 +8,115 @@
 
 <hr />
 <div class="container">
-    <section>
-        <table @*class="UserTable"*@>
-            <tr>
-                <th>@Html.DisplayNameFor(model => model.Name)</th>
-                <td>@Html.DisplayFor(model => model.Name)</td>
-            </tr>
-            <tr>
-                <th>@Html.DisplayNameFor(model => model.LastName)</th>
-                <td>@Html.DisplayFor(model => model.LastName)</td>
-            </tr>
-            <tr>
-                <th>@Html.DisplayNameFor(model => model.Age)</th>
-                <td>@Html.DisplayFor(model => model.Age)</td>
-            </tr>
-            <tr>
-                <th>@Html.DisplayNameFor(model => model.Email)</th>
-                <td>@Html.DisplayFor(model => model.Email)</td>
-            </tr>
-            <tr>
-                <th>@Html.DisplayNameFor(model => model.Phone)</th>
-                <td>@Html.DisplayFor(model => model.Phone)</td>
-            </tr>
-            <tr>
-                <th>@Html.DisplayNameFor(model => model.CountryId)</th>
-                <td>@Html.DisplayFor(model => model.CountryId)</td>
-            </tr>
-        </table>
+    <section id="one" class="wrapper style1">
+        <div class="inner">
+            <table @*class="UserTable"*@>
+                <tr>
+                    <th>@Html.DisplayNameFor(model => model.Name)</th>
+                    <td>@Html.DisplayFor(model => model.Name)</td>
+                </tr>
+                <tr>
+                    <th>@Html.DisplayNameFor(model => model.LastName)</th>
+                    <td>@Html.DisplayFor(model => model.LastName)</td>
+                </tr>
+                <tr>
+                    <th>@Html.DisplayNameFor(model => model.Age)</th>
+                    <td>@Html.DisplayFor(model => model.Age)</td>
+                </tr>
+                <tr>
+                    <th>@Html.DisplayNameFor(model => model.Email)</th>
+                    <td>@Html.DisplayFor(model => model.Email)</td>
+                </tr>
+                <tr>
+                    <th>@Html.DisplayNameFor(model => model.Phone)</th>
+                    <td>@Html.DisplayFor(model => model.Phone)</td>
+                </tr>
+                <tr>
+                    <th>@Html.DisplayNameFor(model => model.CountryId)</th>
+                    <td>@Html.DisplayFor(model => model.CountryId)</td>
+                </tr>
+            </table>
 
-        <p class="userBtn">
-            @Html.ActionLink("Back to Home", "Index", "Home") |
-            @Html.ActionLink("Edit profile", "Edit") |
-            @Html.ActionLink("Add new tour", "AddTour") |
+            <p class="userBtn">
+                @Html.ActionLink("Back to Home", "Index", "Home") |
+                @Html.ActionLink("Edit profile", "Edit") |
+                @Html.ActionLink("Add new tour", "AddTour") |
 
-        </p>
-
+            </p>
+        </div>
     </section>
-
     <hr />
 
-    <section>
-        <section id="one" class="wrapper style1">
-            <div class="inner">
-                @{
-                    byte iterator = 0;
-                    string side;
-                    foreach (TourForEverybuddy.Models.Tour tour in Model.Tours)
-                    {
-                        //foreach (TourForEverybuddy.Models.Tour_PictureOfTour picture in tour.Tour_PictureOfTour)
-                        //{
-                        //    var file = File(picture.Picture, )
-                        //}
-                        if (iterator == 0)
+        <section>
+            <section id="one" class="wrapper style1">
+                <div class="inner">
+                    @{
+                        byte iterator = 0;
+                        string side;
+                        foreach (TourForEverybuddy.Models.Tour tour in Model.Tours)
                         {
-                            side = "right";
-                            iterator++;
-                        }
-                        else
-                        {
-                            side = "left";
-                            iterator--;
-                        }
-                        <article class="feature @side">
+                            if (iterator == 0)
+                            {
+                                side = "right";
+                                iterator++;
+                            }
+                            else
+                            {
+                                side = "left";
+                                iterator--;
+                            }
+                            <article class="feature @side">
 
-                            <span class="image">
-                                @if (tour.Tour_PictureOfTour.Count > 0)
+                                <div class="image">
+                                    @{
+
+                            int[] arrayImage = new int[tour.Tour_PictureOfTour.Count];
+
+                            for (int i = 0; i < tour.Tour_PictureOfTour.Count; i++)
+                            {
+                                <img src="@Url.Action("ShowPicture", "Picture", new { pictureId = arrayImage[i] = tour.Tour_PictureOfTour.ElementAt(i).Id, tourID = tour.Tour_PictureOfTour.ElementAt(i).TourID })" alt="" />
+                            }
+                            <ul class="pagePicture">
+                                @for (int i = 0; i < arrayImage.Length; i++)
                                 {
-                                    <img src="@Url.Action("Show", "Picture", new { id = tour.Id } )" alt="" />
-                                    @*<img src="@string.Concat("data:",tour.Tour_PictureOfTour.ElementAt(0).ContentType,";base64,") @Convert.ToBase64String(tour.Tour_PictureOfTour.ElementAt(0).Picture, 0, tour.Tour_PictureOfTour.ElementAt(0).Picture.Length)" alt="" />*@
+                                    <li>@arrayImage[i]</li>
                                 }
-                            </span>
-                            <div class="content">
-                                <h2>@tour.title </h2>
-                                <p>@tour.description</p>
-                                <ul class="actions">
-                                    <li>
+                            </ul>
+                                        @*foreach (TourForEverybuddy.Models.Tour_PictureOfTour picture in tour.Tour_PictureOfTour)
+                                            {
 
-                                        @Html.ActionLink("Edit tour", "EditTour", new { id = tour.Id }, new { @class = "button alt" })
-                                    </li>
-                                    <li>
-                                        @Html.ActionLink("Delete tour", "Delete", new { id = tour.Id }, new { @class = "button" })
-                                    </li>
-                                </ul>
-                            </div>
-                        </article>
+                                                <img src="@Url.Action("ShowPicture", "Picture", new { pictureId = picture.Id, tourID = picture.TourID })" alt="" />
+                                            }*@
+
+
+                                    }
+                                    @*<img src="@Url.Action("Show", "Picture", new { id = tour.Id } )" alt="" />*@
+                                    @*<img src="@string.Concat("data:",tour.Tour_PictureOfTour.ElementAt(0).ContentType,";base64,") @Convert.ToBase64String(tour.Tour_PictureOfTour.ElementAt(0).Picture, 0, tour.Tour_PictureOfTour.ElementAt(0).Picture.Length)" alt="" />*@
+                                    @*<span>
+                                            <img src="~/images/Profile/left_grey-min.png" alt="" />
+                                            <img src="~/images/Profile/magnifier-min.png" alt="" />
+                                            <img src="~/images/Profile/right_grey-min.png" alt="" />
+                                        </span>*@
+                                </div>
+
+                                <div class="content">
+                                    <h2>@tour.title </h2>
+                                    <p>@tour.description</p>
+                                    <ul class="actions">
+                                        <li>
+                                            @Html.ActionLink("Edit tour", "EditTour", new { id = tour.Id }, new { @class = "button alt" })
+                                        </li>
+                                        <li>
+                                            @Html.ActionLink("Delete tour", "Delete", new { id = tour.Id }, new { @class = "button" })
+                                        </li>
+                                    </ul>
+                                </div>
+                            </article>
+                        }
                     }
-                }
-            </div>
+                </div>
+            </section>
         </section>
-    </section>
 </div>
 
 <script src="~/Scripts/Elements/Profile.js"></script>

@@ -35,7 +35,7 @@ function handleFileSelect(e) {
 }
 
 function CheckEmptyFild() {
-    if ($("#Title").val().length == 0 || $("#description").val().length == 0) {
+    if ($("#title").val().length == 0 || $("#description").val().length == 0) {
         $("#ValidIsFailed").text("Field title or the message can not be empty.");
         $("#submitCreate").addClass("disabled");
         return false;
@@ -46,3 +46,71 @@ function TextBoxChange() {
     $("#ValidIsFailed").text("");
     $("#submitCreate").removeClass("disabled");
 }
+
+// EditTour Remove Picture
+function SelectPicture(o) {
+    if ($(o).css("opacity") == "1") {
+        $(o).css("opacity", ".4");
+    } else {
+        $(o).css("opacity", "1");
+    }
+    AddHiddenID();
+}
+
+function AddHiddenID() {
+    var array = "";
+    $(".image").each(function () {
+        if ($(this).css("opacity") != "1") {
+            array += $(this).attr("id") + ",";
+            console.log(array);
+        }
+    });
+    console.log(array);
+    $("#PictureArray").val(array);
+
+    if ($("#PictureArray").val().length != 0) {
+        $("#RemoveBtn").removeClass("disabled");
+        $("#DeletePicture").text("");
+    }
+    else
+        $("#RemoveBtn").addClass("disabled");
+}
+
+function RemovePicture(o) {
+    if ($("#PictureArray").val().length == 0) {
+        $(o).addClass("disabled");
+        $("#DeletePicture").text("Please, select images for delete.");
+        return false;
+    } else {
+        $(o).removeClass("disabled");
+        $("#DeletePicture").text("");
+        return true;
+    }
+    return false;
+}
+
+// End Remove Picutre
+
+//Slide picture
+$(document).ready(function () {
+    $(".pagePicture > li").attr("onclick", "pagePicture(this)");
+
+});
+
+function pagePicture(o) {
+    var id = $(o).attr("id");
+    var value = $(o).text();
+    //Из расчета (<div> <img> <img> <ul> <li><li> </ul></div ) добираемся до div и получаем массив картинок
+    var arrayImg = $(o).parent().parent().children("img"); 
+
+    for (var i = 0; i < arrayImg.length; i++) {
+        if (i == id)
+           $(arrayImg[i]).css("display","block");
+        else
+            $(arrayImg[i]).css("display","none"); // arrayImg[i].style = "display: none;";
+    }
+
+    console.log($(o));
+}
+
+//end Slide picture

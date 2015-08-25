@@ -1,0 +1,59 @@
+﻿@model TourForEverybuddy.Models.Tour
+
+@{
+    ViewBag.Title = "Index";
+
+    this.Layout = "~/Views/Shared/_GenericLayout.cshtml";
+}
+
+<link rel="stylesheet" href="~/Content/Elements/Profile.css" />
+<h2>Index</h2>
+
+<div class="container">
+    <section>
+        <section id="one" class="wrapper style1">
+            <div class="inner">
+                <article class="feature left">
+
+                    <div class="image">
+                        @{
+                            int[] arrayImage = new int[Model.Tour_PictureOfTour.Count];
+                            string style = "";
+                            for (int i = 0; i < Model.Tour_PictureOfTour.Count; i++)
+                            {
+                                style = i == 0 ? "" : "display: none;";
+                                <img src="@Url.Action("ShowPicture", "Picture", new { pictureId = arrayImage[i] = Model.Tour_PictureOfTour.ElementAt(i).Id, tourID = Model.Tour_PictureOfTour.ElementAt(i).TourID })"
+                                     alt="" style="@style">
+                            }
+                            <ul class="pagePicture">
+                                @for (int i = 0; i < arrayImage.Length; i++)
+                                {
+                                    <li id="@i">○</li>
+                                    //onclick="pagePicture(this)"
+                                }
+                            </ul>
+                        }
+                    </div>
+
+                    <div class="content">
+                        <h2>@Model.title </h2>
+                        <p>@Model.description</p>
+                        <ul class="actions">
+                            <li>
+                                @Html.ActionLink("Edit tour", "EditTour", new { id = Model.Id }, new { @class = "button alt" })
+                            </li>
+                            <li>
+                                @Html.ActionLink("Delete tour", "Delete", new { id = Model.Id }, new { @class = "button" })
+                            </li>
+                        </ul>
+                    </div>
+                </article>
+
+            </div>
+        </section>
+    </section>
+
+
+</div>
+
+<script src="~/Scripts/Elements/Profile.js"></script>

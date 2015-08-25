@@ -25,12 +25,12 @@ namespace TourForEverybuddy.Controllers.Membership
         public ActionResult Index()
         {
             var user = Storage.currentUser;
-            
+
             //ToDo: add Langues
             return View(user);
         }
 
-        #region Edit
+        #region Edit profile
         [HttpGet]
         public ActionResult Edit()
         {
@@ -80,8 +80,70 @@ namespace TourForEverybuddy.Controllers.Membership
             var user = Storage.currentUser;
 
             tour.userID = user.id;
+            GetPicture(tour, Pictures);
 
-            #region Get pictures
+            if (!manager.CreateTour(tour))
+            {
+                ModelState.AddModelError(
+@"TourIsHave", "Sorry , this tour already exists. Please, change the title of the tour. ");
+                return View();
+            }
+
+            return RedirectToAction("Index");
+        }
+
+
+
+        #endregion
+
+        #region Edit tour
+        public ActionResult EditTour(int id)
+        {
+            var tour = Storage.currentUser.Tours.FirstOrDefault(x => x.Id == id);
+
+            if (tour != null)
+                return View(tour);
+            else
+                return RedirectToAction("Index");
+        }
+
+        [HttpPost]
+        public ActionResult EditTour(Tour tour, HttpPostedFileBase[] Pictures)
+        {
+            
+            GetPicture(tour, Pictures);
+
+            if (ModelState.IsValid && manager.UpdateTour(tour))
+                return RedirectToAction("Index"); //, new { id = tour.Id });
+            else
+                return View(tour);
+        }
+
+        [HttpPost]
+        public ActionResult DeleteImages(int id, string PictureArray)
+        {
+            if (String.IsNullOrEmpty(PictureArray))
+            {
+                ModelState.AddModelError("ValidIsFailed", "Please, select images for delete.");
+                return RedirectToAction("EditTour", new { id = id });
+            }
+
+            var array = PictureArray.Split(',');
+
+            if (array.Length != 0)
+                if (!manager.DeletePictures(id, array))
+                    ModelState.AddModelError("ValidIsFailed", "Sorry, failed to delete the images, please try again later.");
+
+            //Storage.currentUser = null; Нужно ли , что бы обновить информацию ?
+            return RedirectToAction("EditTour", new { id = id });
+        }
+
+        #endregion
+
+        #region Get pictures
+
+        private void GetPicture(Tour tour, HttpPostedFileBase[] Pictures)
+        {
             if (Pictures.Count() > 0 && Pictures[0] != null)
             {
                 for (int i = 0; i < Pictures.Count(); i++)
@@ -98,24 +160,8 @@ namespace TourForEverybuddy.Controllers.Membership
                     tour.Tour_PictureOfTour.Add(picture);
                 }
             }
-            #endregion
-
-            if (!manager.CreateTour(tour))
-            {
-                ModelState.AddModelError(
-@"TourIsHave", "Sorry , this tour already exists. Please, change the title of the tour. ");
-                return View();
-            }
-
-            return RedirectToAction("Index");
         }
         #endregion
-
-        public ActionResult EditTour(int id)
-        {
-
-            return View();
-        }
 
         private void FillDropDownList(int userID)
         {
