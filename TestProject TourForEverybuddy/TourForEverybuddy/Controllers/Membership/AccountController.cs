@@ -26,7 +26,8 @@ namespace TourForEverybuddy.Controllers.Membership
         public ActionResult Index()
         {
             var user = Storage.currentUser;
-
+            ViewBag.UserLanguage = manager.GetUserLanguages(user.id).Select(x => x.Language.name).ToList(); 
+            
             //ToDo: add Langues
             return View(user);
         }
@@ -92,8 +93,6 @@ namespace TourForEverybuddy.Controllers.Membership
 
             return RedirectToAction("Index");
         }
-
-
 
         #endregion
 

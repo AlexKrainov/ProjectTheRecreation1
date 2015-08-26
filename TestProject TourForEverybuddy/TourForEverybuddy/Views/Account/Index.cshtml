@@ -5,124 +5,143 @@
     this.Layout = "~/Views/Shared/_GenericLayout.cshtml";
 }
 <link rel="stylesheet" href="~/Content/Elements/Profile.css" />
-@Html.ActionLink("Back to Home", "Index", "Home", null, new { @style = "    margin-left: 25px;" })
-<div class="container">
-    <section id="one" class="wrapper style1">
-        <div class="inner">
-            <table @*class="UserTable"*@>
-                <tr>
-                    <th>@Html.DisplayNameFor(model => model.Name)</th>
-                    <td>@Html.DisplayFor(model => model.Name)</td>
-                </tr>
-                <tr>
-                    <th>@Html.DisplayNameFor(model => model.LastName)</th>
-                    <td>@Html.DisplayFor(model => model.LastName)</td>
-                </tr>
-                <tr>
-                    <th>@Html.DisplayNameFor(model => model.Age)</th>
-                    <td>@Html.DisplayFor(model => model.Age)</td>
-                </tr>
-                <tr>
-                    <th>@Html.DisplayNameFor(model => model.Email)</th>
-                    <td>@Html.DisplayFor(model => model.Email)</td>
-                </tr>
-                <tr>
-                    <th>@Html.DisplayNameFor(model => model.Phone)</th>
-                    <td>@Html.DisplayFor(model => model.Phone)</td>
-                </tr>
-                <tr>
-                    <th>@Html.DisplayNameFor(model => model.CountryId)</th>
-                    <td>@Html.DisplayFor(model => model.CountryId)</td>
-                </tr>
-            </table>
 
-            <p class="userBtn">
-                @Html.ActionLink("Edit profile", "Edit")
-            </p>
-        </div>
-    </section>
+@*<div class="container">*@
 
-    @if (Model.RouleId == 2)
-    {
-        <hr />
-        @Html.ActionLink("Add new tour", "AddTour", null, new { @style = "    margin-left: 25px;" })
-        <section>
-            <section id="one" class="wrapper style1">
-
-                <div class="inner">
-                    @{
-        byte iterator = 0;
-        string side;
-        foreach (TourForEverybuddy.Models.Tour tour in Model.Tours)
-        {
-            if (iterator == 0)
-            {
-                side = "right";
-                iterator++;
-            }
-            else
-            {
-                side = "left";
-                iterator--;
-            }
-            <article class="feature @side">
-
-                <div class="image">
-                    @{
-
-            int[] arrayImage = new int[tour.Tour_PictureOfTour.Count];
-            string style = "";
-            for (int i = 0; i < tour.Tour_PictureOfTour.Count; i++)
-            {
-                style = i == 0 ? "" : "display: none;";
-                <img src="@Url.Action("ShowPicture", "Picture", new { pictureId = arrayImage[i] = tour.Tour_PictureOfTour.ElementAt(i).Id, tourID = tour.Tour_PictureOfTour.ElementAt(i).TourID })"
-                     alt="" style="@style" />
-            }
-            <ul class="slideSelectors">
-                @for (int i = 0; i < arrayImage.Length; i++)
-                {
-                    if (i != 0)
-                    {
-                        <li id="@i"></li>
-                    }
-                    else
-                    {
-                        <li id="@i" style="margin: -1px 1px 1px 10px; background: #777; width: 18px; height: 18px;"></li>
-                    }
-                }
-            </ul>
-                        @*foreach (TourForEverybuddy.Models.Tour_PictureOfTour picture in tour.Tour_PictureOfTour)
+<section id="one" class="wrapper style1">
+    @Html.ActionLink("Back to Home", "Index", "Home", null, new { @style = "    margin-left: 25px;" })
+    <div class="inner">
+        <table class="ProfileUserTable">
+            <tr>
+                <th>@Html.DisplayNameFor(model => model.Name)</th>
+                <td>@Html.DisplayFor(model => model.Name)</td>
+            </tr>
+            <tr>
+                <th>@Html.DisplayNameFor(model => model.LastName)</th>
+                <td>@Html.DisplayFor(model => model.LastName)</td>
+            </tr>
+            <tr>
+                <th>@Html.DisplayNameFor(model => model.Age)</th>
+                <td>@Html.DisplayFor(model => model.Age)</td>
+            </tr>
+            <tr>
+                <th>@Html.DisplayNameFor(model => model.Email)</th>
+                <td>@Html.DisplayFor(model => model.Email)</td>
+            </tr>
+            <tr>
+                <th>@Html.DisplayNameFor(model => model.Phone)</th>
+                <td>@Html.DisplayFor(model => model.Phone)</td>
+            </tr>
+            <tr>
+                <th>@Html.DisplayNameFor(model => model.CountryId)</th>
+                <td>@Html.DisplayFor(model => model.Country.country_name)</td>
+            </tr>
+            <tr>
+                <th>Languages</th>
+                <td>
+                    <p>
+                        @{
+                            var listLanguage = ViewBag.UserLanguage as List<string>;
+                            for (int i = 0; i < listLanguage.Count; i++)
                             {
+                                <i>  @listLanguage[i]</i>
+                            }
+                        }
+                    </p>
+                </td>
+            </tr>
 
-                                <img src="@Url.Action("ShowPicture", "Picture", new { pictureId = picture.Id, tourID = picture.TourID })" alt="" />
-                            }*@
 
+        </table>
 
-                    }
-                    @*<img src="@Url.Action("Show", "Picture", new { id = tour.Id } )" alt="" />*@
-                    @*<img src="@string.Concat("data:",tour.Tour_PictureOfTour.ElementAt(0).ContentType,";base64,") @Convert.ToBase64String(tour.Tour_PictureOfTour.ElementAt(0).Picture, 0, tour.Tour_PictureOfTour.ElementAt(0).Picture.Length)" alt="" />*@
-                </div>
+        <p class="userBtn">
+            @Html.ActionLink("Edit profile", "Edit")
+        </p>
+    </div>
+</section>
 
-                <div class="content">
-                    <h2>@tour.title </h2>
-                    <p class="contentDescription">@tour.description</p>
-                    <ul class="actions">
-                        <li>
-                            @Html.ActionLink("Edit tour", "EditTour", new { id = tour.Id }, new { @class = "button alt" })
-                        </li>
-                        <li>
-                            @Html.ActionLink("Delete tour", "DeleteTour", new { id = tour.Id }, new { @class = "button" })
-                        </li>
-                    </ul>
-                </div>
-            </article>
+@if (Model.RouleId == 2)
+{
+    @*<hr />*@
+    <section>
+
+        <section id="one" class="wrapper style1">
+
+            <div class="inner">
+                @Html.ActionLink("Add new tour", "AddTour") @*, null, new { @style = "margin-left: 25px;" })*@
+                @{
+    byte iterator = 0;
+    string side;
+    foreach (TourForEverybuddy.Models.Tour tour in Model.Tours)
+    {
+        if (iterator == 0)
+        {
+            side = "right";
+            iterator++;
         }
-                    }
-                </div>
-            </section>
-        </section>
+        else
+        {
+            side = "left";
+            iterator--;
+        }
+        <article class="feature @side">
+
+            <div class="image">
+                @{
+
+        int[] arrayImage = new int[tour.Tour_PictureOfTour.Count];
+        string style = "";
+        for (int i = 0; i < tour.Tour_PictureOfTour.Count; i++)
+        {
+            style = i == 0 ? "" : "display: none;";
+            <img src="@Url.Action("ShowPicture", "Picture", new { pictureId = arrayImage[i] = tour.Tour_PictureOfTour.ElementAt(i).Id, tourID = tour.Tour_PictureOfTour.ElementAt(i).TourID })"
+                 alt="" style="@style" />
+        }
+        <ul class="slideSelectors">
+            @for (int i = 0; i < arrayImage.Length; i++)
+            {
+                if (i != 0)
+                {
+                    <li id="@i"></li>
+                }
+                else
+                {
+                    <li id="@i" style="margin: -1px 1px 1px 10px; background: #777; width: 18px; height: 18px;"></li>
+                }
+            }
+        </ul>
+                    @*foreach (TourForEverybuddy.Models.Tour_PictureOfTour picture in tour.Tour_PictureOfTour)
+                        {
+
+                            <img src="@Url.Action("ShowPicture", "Picture", new { pictureId = picture.Id, tourID = picture.TourID })" alt="" />
+                        }*@
+
+
+                }
+                @*<img src="@Url.Action("Show", "Picture", new { id = tour.Id } )" alt="" />*@
+                @*<img src="@string.Concat("data:",tour.Tour_PictureOfTour.ElementAt(0).ContentType,";base64,") @Convert.ToBase64String(tour.Tour_PictureOfTour.ElementAt(0).Picture, 0, tour.Tour_PictureOfTour.ElementAt(0).Picture.Length)" alt="" />*@
+            </div>
+
+            <div class="content">
+                <h2>@tour.title </h2>
+                <p class="contentDescription">@tour.description</p>
+                <ul class="actions">
+                    <li>
+                        @Html.ActionLink("Edit tour", "EditTour", new { id = tour.Id }, new { @class = "button alt" })
+                    </li>
+                    <li>
+                        @Html.ActionLink("Delete tour", "DeleteTour", new { id = tour.Id }, new { @class = "button" })
+                    </li>
+                </ul>
+            </div>
+        </article>
     }
-</div>
+                }
+            </div>
+        </section>
+    </section>
+}
+    @*</div>*@
 
 
-<script src="~/Scripts/Elements/Profile.js"></script>
+    <script src="~/Scripts/Elements/Profile.js"></script>

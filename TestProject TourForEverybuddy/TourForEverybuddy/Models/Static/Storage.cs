@@ -71,7 +71,7 @@ namespace TourForEverybuddy.Controllers.Static
                 }
 
                 return HttpContext.Current.Application.Get("UserType") as IQueryable<UserType>;
-                }
+            }
         }
 
         /// <summary>
@@ -96,7 +96,7 @@ namespace TourForEverybuddy.Controllers.Static
         {
             var cookie = HttpContext.Current.Request.Cookies[nameCookie];
 
-            return cookie.Value.Decrypt();
+            return cookie == null ? null : cookie.Value.Decrypt();
         }
 
         /// <summary>
