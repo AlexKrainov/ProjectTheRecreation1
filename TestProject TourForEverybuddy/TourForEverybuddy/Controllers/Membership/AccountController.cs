@@ -5,6 +5,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Security;
+using TourForEverybuddy.Controllers.Elements;
 using TourForEverybuddy.Controllers.Static;
 using TourForEverybuddy.Models;
 using TourForEverybuddy.Models.Filters;
@@ -110,7 +111,7 @@ namespace TourForEverybuddy.Controllers.Membership
         [HttpPost]
         public ActionResult EditTour(Tour tour, HttpPostedFileBase[] Pictures)
         {
-            
+
             GetPicture(tour, Pictures);
 
             if (ModelState.IsValid && manager.UpdateTour(tour))
@@ -138,6 +139,15 @@ namespace TourForEverybuddy.Controllers.Membership
             return RedirectToAction("EditTour", new { id = id });
         }
 
+        [HttpGet]
+        public ActionResult DeleteTour(int id)
+        {
+            if (!manager.DeleteTour(id))
+                ModelState.AddModelError("ValidIsFailed", "Sorry, failed to delete the tour, please try again later.");
+
+            return RedirectToAction("Index");
+        }
+
         #endregion
 
         #region Get pictures
@@ -154,7 +164,8 @@ namespace TourForEverybuddy.Controllers.Membership
 
                     using (var reader = new BinaryReader(Pictures[i].InputStream))
                     {
-                        picture.Picture = reader.ReadBytes(Pictures[i].ContentLength);
+                        //picture.Picture = reader.ReadBytes(Pictures[i].ContentLength);
+                        picture.Picture = PictureController.GetCroppedImage(reader.ReadBytes(Pictures[i].ContentLength), PictureController.GetFormatImage(Pictures[i].ContentType)); 
                     }
 
                     tour.Tour_PictureOfTour.Add(picture);

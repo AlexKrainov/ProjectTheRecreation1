@@ -69,17 +69,32 @@
 /*#endregion */
 
 /*#region Picture */
-.pagePicture {
-    list-style: none;
+.slideSelectors{
+   margin-top: -27px;
+   position: relative;
 }
+.slideSelectors li {
+    cursor: pointer;
+    display: inline;
+    float: left;
+    width: 13px;
+    height: 13px;
+    background: #aaa;
+    margin: 1px 1px 1px 11px;
+    filter: alpha(opacity=25);
+    border-radius: 10px;
+}
+/*.selectedSlide {
+     margin: -1px 1px 1px 10px;
+    background: #eee;
+    width: 18px;
+    height: 18px;
+}*/
 
-    .pagePicture li {
-        display: inline;
-    }
-
-        .pagePicture li:hover {
-            cursor: pointer;
-        }
 
 /*#endregion */
 
+.contentDescription {
+    max-height: 170px;
+    overflow: hidden;
+}

@@ -19,7 +19,7 @@
                 @Html.AntiForgeryToken()
                 <div class="file-input-wrapper">
                     <button class="btn-file-input">Upload File</button>
-                    <input type="file" id="Pictures" name="Pictures" value="Загрузить фотки" multiple onchange="handleFileSelect(this);" />
+                    <input type="file" id="Pictures" name="Pictures" value="Загрузить фотки" multiple accept="image/*" onchange="handleFileSelect(this);" />
                 </div>
                 <div class="images"><br /></div>
                 <div>
@@ -42,7 +42,7 @@
                         </div>
                     </div>
 
-                    <input class="button special" id="submitCreate" type="submit" style="margin-top: 15px;" value="Create" onclick="return CheckEmptyFild()" />
+                    <input class="button special" id="submitCreate" type="submit" style="margin-top: 15px;" value="Save" onclick="return CheckEmptyFild()" />
                     @Html.ValidationMessage("ValidIsFailed", new { @style = "color: red; font-size: large;", @id = "ValidIsFailed" })
                 </div>
             }

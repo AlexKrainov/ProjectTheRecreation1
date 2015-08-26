@@ -93,21 +93,30 @@ function RemovePicture(o) {
 
 //Slide picture
 $(document).ready(function () {
-    $(".pagePicture > li").attr("onclick", "pagePicture(this)");
-
+    $(".slideSelectors > li").attr("onclick", "pagePicture(this)");
 });
 
 function pagePicture(o) {
     var id = $(o).attr("id");
     var value = $(o).text();
-    //Из расчета (<div> <img> <img> <ul> <li><li> </ul></div ) добираемся до div и получаем массив картинок
-    var arrayImg = $(o).parent().parent().children("img"); 
+    //Из расчета (<div> <img> <img> <ul> <li><li>$(o).css("margin", "-1px 1px 1px 10px"); </ul></div ) добираемся до div и получаем массив картинок
+
+    var ul = $(o).parent();
+    $(ul).children("li").attr("style", "");
+
+    var arrayImg = $(o).parent().parent().children("img");
 
     for (var i = 0; i < arrayImg.length; i++) {
-        if (i == id)
-           $(arrayImg[i]).css("display","block");
-        else
-            $(arrayImg[i]).css("display","none"); // arrayImg[i].style = "display: none;";
+        if (i == id) {
+            $(arrayImg[i]).css("display", "block");
+            $(o).css("margin", "-1px 1px 1px 10px");
+            $(o).css("background", "#777");
+            $(o).css("width", "18px");
+            $(o).css("height", "18px");
+        }
+        else {
+            $(arrayImg[i]).css("display", "none"); // arrayImg[i].style = "display: none;";
+        }
     }
 
     console.log($(o));

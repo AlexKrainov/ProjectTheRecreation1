@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using TourForEverybuddy.Controllers.Static;
 
 namespace TourForEverybuddy.Models
 {
@@ -74,5 +75,24 @@ namespace TourForEverybuddy.Models
 
             return true;
         }
+
+        //Удалять ли или помечать как удаленный тур
+        internal bool DeleteTour(int tourID)
+        {
+            try
+            {
+                DeletePictures(tourID, db.Tour_PictureOfTour.Where(x => x.TourID == tourID).Select(x => x.Id.ToString()).ToArray());
+                db.Tours.Remove(db.Tours.FirstOrDefault(x => x.Id == tourID));
+
+                db.SaveChanges();
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
+
+            return true;
+        }
+
     }
 }
