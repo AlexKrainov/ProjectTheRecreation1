@@ -20,6 +20,7 @@ namespace TourForEverybuddy.Models.Mapping
             this.Property(t => t.title).HasColumnName("title");
             this.Property(t => t.description).HasColumnName("description");
             this.Property(t => t.userID).HasColumnName("userID");
+            this.Property(t => t.disable).HasColumnName("disable");
 
             // Relationships
             this.HasOptional(t => t.User)

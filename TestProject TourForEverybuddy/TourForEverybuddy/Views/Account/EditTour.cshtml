@@ -11,9 +11,8 @@
 
 </div>
 <div id="tourDialog" class="container tourDialog">
-    <section>
-        <div class="12u$">
-
+    <section id="two" class="wrapper special" style="padding-top: 0px;">
+        <div class="inner">
             @using (Html.BeginForm("EditTour", "Account", null, FormMethod.Post, new { enctype = "multipart/form-data" }))
             {
                 @Html.AntiForgeryToken()
@@ -27,7 +26,7 @@
                     @Html.HiddenFor(model => model.Id)
 
                     <div>
-                        @Html.Label("Title")
+                        <em>@Html.Label("Title")</em>
                         <div>
                             @Html.TextBoxFor(model => model.title, new { @placeholder = "Enter you title", @onchange = "TextBoxChange()", @style = "margin: 10px auto 10px 0px;" })
                             @Html.ValidationMessageFor(model => model.title, "", new { @class = "text-danger" })
@@ -35,7 +34,7 @@
                     </div>
 
                     <div>
-                        @Html.Label("Massage")
+                        <em>@Html.Label("Massage")</em>
                         <div>
                             @Html.TextAreaFor(model => model.description, new { @rows = "6", @placeholder = "Enter your massage", @onchange = "TextBoxChange()" })
                             @Html.ValidationMessageFor(model => model.description, "", new { @class = "text-danger" })
@@ -46,39 +45,39 @@
                     @Html.ValidationMessage("ValidIsFailed", new { @style = "color: red; font-size: large;", @id = "ValidIsFailed" })
                 </div>
             }
-
-            @using (Html.BeginForm("DeleteImages", "Account"))
-            {
-                @Html.Hidden("id", Model.Id);
-                @Html.Hidden("PictureArray");
-                   <!-- Two -->
-                <section id="two" class="wrapper special">
-                    <div class="inner">
-                        <header class="major narrow">
-                            <h2>Album</h2>
-                            <p>Select the pictures to delete</p>
-                        </header>
-                        <div class="image-grid">
-                            @{
-                foreach (TourForEverybuddy.Models.Tour_PictureOfTour picture in Model.Tour_PictureOfTour)
-                {
-                    @*<img src="@Url.Action("GetUrlFromPictureOfTour", "Picture", new { id = picture.Id } )" alt="" />*@
-                                <a class="image" id="@picture.Id" onclick="SelectPicture(this)">
-
-                                    <img src="@string.Concat("data:",picture.ContentType,";base64,") @Convert.ToBase64String(picture.Picture, 0, picture.Picture.Length)"
-                                         alt="" />
-                                </a>
-                }
-                            }
-                        </div>
-                    </div>
-                </section>
-                <input id="RemoveBtn" type="submit" class="button disabled" value="Delete images" onclick="return RemovePicture(this);" />
-                @Html.ValidationMessage("DeletePicture", new { @style = "color: red; font-size: large;", @id = "DeletePicture" })
-            }
-
         </div>
     </section>
+    @using (Html.BeginForm("DeleteImages", "Account"))
+    {
+        @Html.Hidden("id", Model.Id);
+        @Html.Hidden("PictureArray");
+                   <!-- Two -->
+        <section id="two" class="wrapper special" style="padding-top: 0px;">
+            <div class="inner">
+                <header class="major narrow">
+                    <h2>Album</h2>
+
+                    <p>Select the pictures to delete</p>
+                    <input id="RemoveBtn" type="submit" class="button disabled" value="Delete images" onclick="return RemovePicture(this);" />
+                    @Html.ValidationMessage("DeletePicture", new { @style = "color: red; font-size: large;", @id = "DeletePicture" })
+                </header>
+                <div class="image-grid">
+                    @{
+        foreach (TourForEverybuddy.Models.Tour_PictureOfTour picture in Model.Tour_PictureOfTour)
+        {
+            @*<img src="@Url.Action("GetUrlFromPictureOfTour", "Picture", new { id = picture.Id } )" alt="" />*@
+                        <a class="image" id="@picture.Id" onclick="SelectPicture(this)">
+
+                            <img src="@string.Concat("data:",picture.ContentType,";base64,") @Convert.ToBase64String(picture.Picture, 0, picture.Picture.Length)"
+                                 alt="" />
+                        </a>
+        }
+                    }
+                </div>
+            </div>
+        </section>
+    }
+
 </div>
 
 

@@ -8,15 +8,15 @@
 
 @*<div class="container">*@
 
-<section id="one" class="wrapper style1">
+<section id="one" class="wrapper style1" style="padding-top: 0px; padding-bottom: 0px;">
     @Html.ActionLink("Back to Home", "Index", "Home", null, new { @style = "    margin-left: 25px;" })
     <div class="inner">
-        <article class="feature left">
+        <article class="feature left" style=" margin-bottom: 0px;">
 
             <div class="image">
                 <img class="profileImage" src="@Url.Action("PictureForProfile", "Picture", new { userID = Model.id })"
                      alt="" />
-                
+
             </div>
             <div class="content">
                 <dl class="dl-horizontal">
@@ -49,69 +49,25 @@
                 </dl>
             </div>
         </article>
-        @*<table class="ProfileUserTable">
-                <tr>
-                    <th>@Html.DisplayNameFor(model => model.Name)</th>
-                    <td>@Html.DisplayFor(model => model.Name)</td>
-                </tr>
-                <tr>
-                    <th>@Html.DisplayNameFor(model => model.LastName)</th>
-                    <td>@Html.DisplayFor(model => model.LastName)</td>
-                </tr>
-                <tr>
-                    <th>@Html.DisplayNameFor(model => model.Age)</th>
-                    <td>@Html.DisplayFor(model => model.Age)</td>
-                </tr>
-                <tr>
-                    <th>@Html.DisplayNameFor(model => model.Email)</th>
-                    <td>@Html.DisplayFor(model => model.Email)</td>
-                </tr>
-                <tr>
-                    <th>@Html.DisplayNameFor(model => model.Phone)</th>
-                    <td>@Html.DisplayFor(model => model.Phone)</td>
-                </tr>
-                <tr>
-                    <th>@Html.DisplayNameFor(model => model.CountryId)</th>
-                    <td>@Html.DisplayFor(model => model.Country.country_name)</td>
-                </tr>
-                <tr>
-                    <th>Languages</th>
-                    <td>
-                        <p>
-                            @{
-                                var listLanguage = ViewBag.UserLanguage as List<string>;
-                                for (int i = 0; i < listLanguage.Count; i++)
-                                {
-                                    <i>  @listLanguage[i]</i>
-                                }
-                            }
-                        </p>
-                    </td>
-                </tr>
-
-
-            </table>*@
-
-        <p class="userBtn">
-            @Html.ActionLink("Edit profile", "Edit")
-        </p>
+        @*<p class="userBtn">*@
+        @Html.ActionLink("Edit profile", "Edit")
+        @*</p>*@
     </div>
 
 </section>
-
+<br />
 @if (Model.RouleId == 2)
 {
     @*<hr />*@
-    <section>
 
-        <section id="one" class="wrapper style1">
+    <section id="one" class="wrapper style1" style="padding-top: 0px; padding-bottom: 0px;">
 
-            <div class="inner">
-                @Html.ActionLink("Add new tour", "AddTour") @*, null, new { @style = "margin-left: 25px;" })*@
-                @{
+        <div class="inner">
+            @Html.ActionLink("Add new tour", "AddTour") @*, null, new { @style = "margin-left: 25px;" })*@
+            @{
     byte iterator = 0;
     string side;
-    foreach (TourForEverybuddy.Models.Tour tour in Model.Tours)
+    foreach (TourForEverybuddy.Models.Tour tour in Model.Tours.Where(x => x.disable == null))
     {
         if (iterator == 0)
         {
@@ -175,9 +131,8 @@
             </div>
         </article>
     }
-                }
-            </div>
-        </section>
+            }
+        </div>
     </section>
 }
     @*</div>*@

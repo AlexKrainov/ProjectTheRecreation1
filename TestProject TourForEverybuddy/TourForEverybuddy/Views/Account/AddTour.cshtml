@@ -9,8 +9,8 @@
 
     @using (Html.BeginForm("AddTour", "Account", null, FormMethod.Post, new { enctype = "multipart/form-data" }))
     {
-        <section>
-            <div class="12u$">
+        <section id="two" class="wrapper special" style="padding-top: 0px;">
+            <div class="inner">
                 <div class="file-input-wrapper">
                     <button class="btn-file-input">Upload File</button>
                     <input type="file" id="Pictures" name="Pictures" value="Загрузить фотки" multiple accept="image/*" onchange="handleFileSelect(this);" />
@@ -22,12 +22,10 @@
                     @Html.TextArea("description", null, new { @rows = "6", @placeholder = "Enter your massage", @onchange = "TextBoxChange()" })
                 </div>
             </div>
-            @*<a onclick="AddTour()">Add new tour</a>*@
-
+            <input class="button special" id="submitCreate" type="submit" style="margin-top: 15px;" value="Create" onclick="return CheckEmptyFild()" />
+            @Html.ValidationMessage("TourIsHave", new { @style = "color: red; font-size: large;" })
+            @Html.ValidationMessage("ValidIsFailed", new { @style = "color: red; font-size: large;", @id = "ValidIsFailed" })
         </section>
-        <input class="button special" id="submitCreate" type="submit" style="margin-top: 15px;" value="Create" onclick="return CheckEmptyFild()" />
-        @Html.ValidationMessage("TourIsHave", new { @style = "color: red; font-size: large;" })
-        @Html.ValidationMessage("ValidIsFailed", new { @style = "color: red; font-size: large;", @id = "ValidIsFailed" })
     }
 
 </div>

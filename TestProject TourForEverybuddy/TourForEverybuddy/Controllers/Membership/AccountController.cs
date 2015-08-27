@@ -48,6 +48,7 @@ namespace TourForEverybuddy.Controllers.Membership
         {
             if (this.ModelState.IsValid)
             {
+                
                 GetPictureForUser(user, Picture);
                 bool updated = manager.UpdateUser(user, Language);
 

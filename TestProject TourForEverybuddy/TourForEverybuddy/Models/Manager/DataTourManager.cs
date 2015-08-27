@@ -81,8 +81,10 @@ namespace TourForEverybuddy.Models
         {
             try
             {
-                DeletePictures(tourID, db.Tour_PictureOfTour.Where(x => x.TourID == tourID).Select(x => x.Id.ToString()).ToArray());
-                db.Tours.Remove(db.Tours.FirstOrDefault(x => x.Id == tourID));
+                //DeletePictures(tourID, db.Tour_PictureOfTour.Where(x => x.TourID == tourID).Select(x => x.Id.ToString()).ToArray());
+                //db.Tours.Remove(db.Tours.FirstOrDefault(x => x.Id == tourID));
+                var oldTour = db.Tours.FirstOrDefault(x => x.Id == tourID);
+                oldTour.disable =  true;
 
                 db.SaveChanges();
             }

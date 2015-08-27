@@ -93,18 +93,24 @@ namespace TourForEverybuddy.Models
                 return false;
 
             var oldUser = db.Users.FirstOrDefault(x => x.id == user.id);
+
             oldUser.Age = user.Age;
             oldUser.CountryId = user.CountryId;
             oldUser.Email = user.Email;
             oldUser.LastName = user.LastName;
             oldUser.Name = user.Name;
-            if (!string.IsNullOrEmpty(user.Password))
-                oldUser.Password = user.Password; 
             oldUser.Phone = user.Phone;
             oldUser.About = user.About;
-            oldUser.Photo = user.Photo;
-            oldUser.FileName = user.FileName;
-            oldUser.ContentType = user.ContentType;
+
+            if (!string.IsNullOrEmpty(user.Password))
+                oldUser.Password = user.Password; 
+
+            if (user.Photo != null)
+            {
+                oldUser.Photo = user.Photo;
+                oldUser.FileName = user.FileName;
+                oldUser.ContentType = user.ContentType;
+            }
 
             db.SaveChanges();
 
