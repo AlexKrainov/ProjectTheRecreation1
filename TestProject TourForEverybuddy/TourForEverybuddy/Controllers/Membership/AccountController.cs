@@ -26,8 +26,8 @@ namespace TourForEverybuddy.Controllers.Membership
         public ActionResult Index()
         {
             var user = Storage.currentUser;
-            ViewBag.UserLanguage = manager.GetUserLanguages(user.id).Select(x => x.Language.name).ToList(); 
-            
+            ViewBag.UserLanguage = manager.GetUserLanguages(user.id).Select(x => x.Language.name).ToList();
+
             //ToDo: add Langues
             return View(user);
         }
@@ -44,11 +44,12 @@ namespace TourForEverybuddy.Controllers.Membership
         }
 
         [HttpPost]
-        public ActionResult Edit(User user, string[] Language)
+        public ActionResult Edit(User user, string[] Language, HttpPostedFileBase Picture)
         {
             if (this.ModelState.IsValid)
             {
-                var updated = manager.UpdateUser(user, Language);
+                GetPictureForUser(user, Picture);
+                bool updated = manager.UpdateUser(user, Language);
 
                 if (updated)
                 {
@@ -82,7 +83,7 @@ namespace TourForEverybuddy.Controllers.Membership
             var user = Storage.currentUser;
 
             tour.userID = user.id;
-            GetPicture(tour, Pictures);
+            GetPictureForTour(tour, Pictures);
 
             if (!manager.CreateTour(tour))
             {
@@ -111,7 +112,7 @@ namespace TourForEverybuddy.Controllers.Membership
         public ActionResult EditTour(Tour tour, HttpPostedFileBase[] Pictures)
         {
 
-            GetPicture(tour, Pictures);
+            GetPictureForTour(tour, Pictures);
 
             if (ModelState.IsValid && manager.UpdateTour(tour))
                 return RedirectToAction("Index"); //, new { id = tour.Id });
@@ -151,7 +152,7 @@ namespace TourForEverybuddy.Controllers.Membership
 
         #region Get pictures
 
-        private void GetPicture(Tour tour, HttpPostedFileBase[] Pictures)
+        private void GetPictureForTour(Tour tour, HttpPostedFileBase[] Pictures)
         {
             if (Pictures.Count() > 0 && Pictures[0] != null)
             {
@@ -164,10 +165,24 @@ namespace TourForEverybuddy.Controllers.Membership
                     using (var reader = new BinaryReader(Pictures[i].InputStream))
                     {
                         //picture.Picture = reader.ReadBytes(Pictures[i].ContentLength);
-                        picture.Picture = PictureController.GetCroppedImage(reader.ReadBytes(Pictures[i].ContentLength), PictureController.GetFormatImage(Pictures[i].ContentType)); 
+                        picture.Picture = PictureController.GetCroppedImage(reader.ReadBytes(Pictures[i].ContentLength), PictureController.GetFormatImage(Pictures[i].ContentType));
                     }
 
                     tour.Tour_PictureOfTour.Add(picture);
+                }
+            }
+        }
+        private void GetPictureForUser(User user, HttpPostedFileBase Picture)
+        {
+            if (Picture != null)
+            {
+                user.FileName = Picture.FileName;
+                user.ContentType = Picture.ContentType;
+
+                using (var reader = new BinaryReader(Picture.InputStream))
+                {
+                    //picture.Picture = reader.ReadBytes(Pictures[i].ContentLength);
+                    user.Photo = PictureController.GetCroppedImage(reader.ReadBytes(Picture.ContentLength), PictureController.GetFormatImage(Picture.ContentType));
                 }
             }
         }
@@ -183,5 +198,9 @@ namespace TourForEverybuddy.Controllers.Membership
             var list = manager.GetUserLanguages(userID);
             ViewBag.ArrayLanguages = list;
         }
+
+
+
     }
+
 }

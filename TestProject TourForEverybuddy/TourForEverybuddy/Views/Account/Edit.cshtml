@@ -10,14 +10,28 @@
 @Html.ValidationMessage("EmailIsHave", new { @style = "color: red; font-size: large;" })
 @Html.ValidationMessage("ValidIsFailed", new { @style = "color: red; font-size: large;" })
 
-<div class="RegisterDiv">
-    <hr />
+<p>
+    @Html.ActionLink("Back to List", "Index", null, new { @style = "    margin-left: 25px;" })
+</p>
 
-    @using (Html.BeginForm())
+<div class="RegisterDiv">
+
+    @using (Html.BeginForm("Edit", "Account", null, FormMethod.Post, new { @class = "test", enctype = "multipart/form-data" }))
     {
         @Html.Hidden("id", Model.id)
 
+        <div class="ImagesProfile">
+            <img class="profileImage" src="@Url.Action("PictureForProfile", "Picture", new { userID = Model.id })"
+                 alt="" />
+        </div>
+        <div class="file-input-wrapper">
+            <button class="btn-file-input">Upload File</button>
+            <input type="file" id="Picture" name="Picture" value="Загрузить фотки" accept="image/*" onchange="handleFileSelect(this);" />
+        </div>
+        <div class="images"><br /></div>
+
         @Html.Partial("_AccountPartial")
+
         <div class="ArrayLanguageList">
             @Html.Label("Language")
 
@@ -37,7 +51,13 @@
 
             <a onclick="AddChoiceLanguage()">Add language </a>
         </div>
-        
+
+        <div>
+            @Html.LabelFor(model => model.About)
+            @Html.EditorFor(model => model.About)
+            @Html.ValidationMessageFor(model => model.About, "", new { @class = "text-danger" })
+        </div>
+
         <lable onclick="ShowOrHideContainerPwd()">Change password ? </lable>
         <div class="Passwords DisabledPassword">
             @Html.LabelFor(model => model.Password)
@@ -49,12 +69,11 @@
             @Html.ValidationMessage("PasswordCOnfirm", "", new { @id = "validPass", @class = "text-danger" })
         </div>
 
-        <input type="submit" value="click" />
+        <input type="submit" value="Save" />
     }
 
 </div>
-<p>
-    @Html.ActionLink("Back to List", "Index")
-</p>
+
 <script src="~/Scripts/Elements/Register.js"></script>
+<script src="~/Scripts/Elements/Profile.js"></script>
 

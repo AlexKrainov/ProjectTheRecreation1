@@ -31,6 +31,9 @@ namespace TourForEverybuddy.Models
         public Nullable<byte> RouleId { get; set; }
         public byte[] Photo { get; set; }
 
+        [DisplayName("About me ")]
+        [DataType(DataType.MultilineText)]
+        public string About { get; set; }
         //[DisplayName("Agreement")]
         //public bool Agreement { get; set; }
 

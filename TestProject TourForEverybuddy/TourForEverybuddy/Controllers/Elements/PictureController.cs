@@ -16,28 +16,52 @@ namespace TourForEverybuddy.Controllers.Elements
     using Image = System.Drawing.Image;
     public class PictureController : Controller
     {
-        // GET: Picture
-        public ActionResult Show(int id)
+        public ActionResult GetUrlFromTour(int id)
         {
             var tour = Storage.currentUser.Tours.FirstOrDefault(x => x.Id == id);
 
             if (tour.Tour_PictureOfTour.Count >= 0)
                 return File(tour.Tour_PictureOfTour.ElementAt(0).Picture, tour.Tour_PictureOfTour.ElementAt(0).ContentType);
 
-            return File("pic01.jpg", "image/jpeg");
+            return File("pic01.jpg", "image/jpeg"); 
         }
 
-        public ActionResult ShowPicture(int pictureId, int tourID)
+        public ActionResult GetUrlFromPictureOfTour(int pictureId, int tourID)
         {
             var picture = Storage.currentUser.Tours.FirstOrDefault(x => x.Id == tourID).Tour_PictureOfTour.FirstOrDefault(x => x.Id == pictureId);
-
+            
             if (picture != null)
                 return File(picture.Picture, picture.ContentType);
 
             return File("pic01.jpg", "image/jpeg");
         }
 
-        public  static byte[] GetCroppedImage(byte[] originalBytes, ImageFormat format) // Size size
+        public ActionResult PictureForProfile(int userID)
+        {
+            DataManager manager = new DataManager();
+            var user = manager.GetUser(userID);
+
+            if (user != null && user.Photo != null && !string.IsNullOrEmpty(user.ContentType))
+                return File(user.Photo, user.ContentType);
+            else
+            {
+                var path = Path.Combine(Server.MapPath("~/images/Profile"), Path.GetFileName("no_Profile_Image.png"));
+                
+                var bytes = new byte[1668];
+
+                using(FileStream fs = new FileStream(path, FileMode.Open)){
+                    using (var read = new BinaryReader(fs))
+                    {
+                        bytes = read.ReadBytes((int)fs.Length);
+                    }
+                }
+                return File(bytes , "image/png");
+            }
+        }
+
+
+        #region Compression and change size (don't work)
+        public static byte[] GetCroppedImage(byte[] originalBytes, ImageFormat format) // Size size
         {
             using (var streamOriginal = new MemoryStream(originalBytes))
             using (var imgOriginal = Image.FromStream(streamOriginal))
@@ -135,6 +159,6 @@ namespace TourForEverybuddy.Controllers.Elements
 
             return format;
         }
-
+        #endregion
     }
 }

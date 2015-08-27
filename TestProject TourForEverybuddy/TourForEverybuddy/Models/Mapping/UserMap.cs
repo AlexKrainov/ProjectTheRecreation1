@@ -27,6 +27,12 @@ namespace TourForEverybuddy.Models.Mapping
             this.Property(t => t.Phone)
                 .HasMaxLength(50);
 
+            this.Property(t => t.FileName)
+                .HasMaxLength(150);
+
+            this.Property(t => t.ContentType)
+                .HasMaxLength(25);
+
             // Table & Column Mappings
             this.ToTable("User");
             this.Property(t => t.id).HasColumnName("id");
@@ -38,9 +44,12 @@ namespace TourForEverybuddy.Models.Mapping
             this.Property(t => t.Phone).HasColumnName("Phone");
             this.Property(t => t.CountryId).HasColumnName("CountryId");
             this.Property(t => t.RouleId).HasColumnName("RouleId");
-            this.Property(t => t.Photo).HasColumnName("Photo");
             this.Property(t => t.DateRegister).HasColumnName("DateRegister");
             this.Property(t => t.LastAuthorization).HasColumnName("LastAuthorization");
+            this.Property(t => t.About).HasColumnName("About");
+            this.Property(t => t.Photo).HasColumnName("Photo");
+            this.Property(t => t.FileName).HasColumnName("FileName");
+            this.Property(t => t.ContentType).HasColumnName("ContentType");
 
             // Relationships
             this.HasOptional(t => t.Country)

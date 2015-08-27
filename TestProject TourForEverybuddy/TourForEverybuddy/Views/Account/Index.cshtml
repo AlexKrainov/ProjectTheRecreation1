@@ -11,53 +11,92 @@
 <section id="one" class="wrapper style1">
     @Html.ActionLink("Back to Home", "Index", "Home", null, new { @style = "    margin-left: 25px;" })
     <div class="inner">
-        <table class="ProfileUserTable">
-            <tr>
-                <th>@Html.DisplayNameFor(model => model.Name)</th>
-                <td>@Html.DisplayFor(model => model.Name)</td>
-            </tr>
-            <tr>
-                <th>@Html.DisplayNameFor(model => model.LastName)</th>
-                <td>@Html.DisplayFor(model => model.LastName)</td>
-            </tr>
-            <tr>
-                <th>@Html.DisplayNameFor(model => model.Age)</th>
-                <td>@Html.DisplayFor(model => model.Age)</td>
-            </tr>
-            <tr>
-                <th>@Html.DisplayNameFor(model => model.Email)</th>
-                <td>@Html.DisplayFor(model => model.Email)</td>
-            </tr>
-            <tr>
-                <th>@Html.DisplayNameFor(model => model.Phone)</th>
-                <td>@Html.DisplayFor(model => model.Phone)</td>
-            </tr>
-            <tr>
-                <th>@Html.DisplayNameFor(model => model.CountryId)</th>
-                <td>@Html.DisplayFor(model => model.Country.country_name)</td>
-            </tr>
-            <tr>
-                <th>Languages</th>
-                <td>
-                    <p>
-                        @{
-                            var listLanguage = ViewBag.UserLanguage as List<string>;
-                            for (int i = 0; i < listLanguage.Count; i++)
-                            {
-                                <i>  @listLanguage[i]</i>
+        <article class="feature left">
+
+            <div class="image">
+                <img class="profileImage" src="@Url.Action("PictureForProfile", "Picture", new { userID = Model.id })"
+                     alt="" />
+                
+            </div>
+            <div class="content">
+                <dl class="dl-horizontal">
+                    <dt>@Html.DisplayNameFor(model => model.Name)</dt>
+                    <dd>@Html.DisplayFor(model => model.Name)</dd>
+                    <dt>@Html.DisplayNameFor(model => model.LastName)</dt>
+                    <dd>@Html.DisplayFor(model => model.LastName)</dd>
+                    <dt>@Html.DisplayNameFor(model => model.Age)</dt>
+                    <dd>@Html.DisplayFor(model => model.Age)</dd>
+                    <dt>@Html.DisplayNameFor(model => model.Email)</dt>
+                    <dd>@Html.DisplayFor(model => model.Email)</dd>
+                    <dt>@Html.DisplayNameFor(model => model.Phone)</dt>
+                    <dd>@Html.DisplayFor(model => model.Phone)</dd>
+                    <dt>@Html.DisplayNameFor(model => model.CountryId)</dt>
+                    <dd>@Html.DisplayFor(model => model.Country.country_name)</dd>
+                    <dt>Languages</dt>
+                    <dd>
+                        <p>
+                            @{
+                                var listLanguage = ViewBag.UserLanguage as List<string>;
+                                for (int i = 0; i < listLanguage.Count; i++)
+                                {
+                                    <i>  @listLanguage[i]</i>
+                                }
                             }
-                        }
-                    </p>
-                </td>
-            </tr>
+                        </p>
+                    </dd>
+                    <dt>@Html.DisplayNameFor(model => model.About)</dt>
+                    <dd>@Html.DisplayFor(model => model.About)</dd>
+                </dl>
+            </div>
+        </article>
+        @*<table class="ProfileUserTable">
+                <tr>
+                    <th>@Html.DisplayNameFor(model => model.Name)</th>
+                    <td>@Html.DisplayFor(model => model.Name)</td>
+                </tr>
+                <tr>
+                    <th>@Html.DisplayNameFor(model => model.LastName)</th>
+                    <td>@Html.DisplayFor(model => model.LastName)</td>
+                </tr>
+                <tr>
+                    <th>@Html.DisplayNameFor(model => model.Age)</th>
+                    <td>@Html.DisplayFor(model => model.Age)</td>
+                </tr>
+                <tr>
+                    <th>@Html.DisplayNameFor(model => model.Email)</th>
+                    <td>@Html.DisplayFor(model => model.Email)</td>
+                </tr>
+                <tr>
+                    <th>@Html.DisplayNameFor(model => model.Phone)</th>
+                    <td>@Html.DisplayFor(model => model.Phone)</td>
+                </tr>
+                <tr>
+                    <th>@Html.DisplayNameFor(model => model.CountryId)</th>
+                    <td>@Html.DisplayFor(model => model.Country.country_name)</td>
+                </tr>
+                <tr>
+                    <th>Languages</th>
+                    <td>
+                        <p>
+                            @{
+                                var listLanguage = ViewBag.UserLanguage as List<string>;
+                                for (int i = 0; i < listLanguage.Count; i++)
+                                {
+                                    <i>  @listLanguage[i]</i>
+                                }
+                            }
+                        </p>
+                    </td>
+                </tr>
 
 
-        </table>
+            </table>*@
 
         <p class="userBtn">
             @Html.ActionLink("Edit profile", "Edit")
         </p>
     </div>
+
 </section>
 
 @if (Model.RouleId == 2)
@@ -94,7 +133,7 @@
         for (int i = 0; i < tour.Tour_PictureOfTour.Count; i++)
         {
             style = i == 0 ? "" : "display: none;";
-            <img src="@Url.Action("ShowPicture", "Picture", new { pictureId = arrayImage[i] = tour.Tour_PictureOfTour.ElementAt(i).Id, tourID = tour.Tour_PictureOfTour.ElementAt(i).TourID })"
+            <img src="@Url.Action("GetUrlFromPictureOfTour", "Picture", new { pictureId = arrayImage[i] = tour.Tour_PictureOfTour.ElementAt(i).Id, tourID = tour.Tour_PictureOfTour.ElementAt(i).TourID })"
                  alt="" style="@style" />
         }
         <ul class="slideSelectors">

@@ -4,8 +4,12 @@
     max-width: 55px;
 }
 
-.UserTable tr th:first-child {
+.profileImage {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
 }
+
 
 .userBtn {
     width: 1000px;
@@ -98,4 +102,9 @@
 .contentDescription {
     max-height: 170px;
     overflow: hidden;
+}
+
+
+.test div label:first-child{
+        /*margin-left: -100px;*/
 }

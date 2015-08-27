@@ -157,9 +157,11 @@
     <Content Include="Content\font-awesome.min.css" />
     <Content Include="Content\ie9.css" />
     <Content Include="Content\main.css" />
+    <Content Include="Error.html" />
     <Content Include="fonts\fontawesome-webfont.svg" />
     <Content Include="Global.asax" />
     <Content Include="images\24_em_cross.png" />
+    <Content Include="images\404.jpg" />
     <Content Include="images\banner.jpg" />
     <Content Include="images\overlay.png" />
     <Content Include="images\pic01.jpg" />
@@ -176,6 +178,7 @@
     <Content Include="images\Profile\edit.png" />
     <Content Include="images\Profile\left_grey-min.png" />
     <Content Include="images\Profile\magnifier-min.png" />
+    <Content Include="images\Profile\no_Profile_Image.png" />
     <Content Include="images\Profile\right_grey-min.png" />
     <Content Include="images\squeeze\24_em_cross.png" />
     <Content Include="images\squeeze\banner.jpg" />
@@ -332,8 +335,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\Picture\" />
-    <Folder Include="Views\Profile\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
@@ -350,7 +351,7 @@
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>2696</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://localhost:2696/</IISUrl>
+          <IISUrl>http://localhost:2697/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>

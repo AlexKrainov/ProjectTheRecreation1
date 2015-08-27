@@ -21,9 +21,12 @@ namespace TourForEverybuddy.Models
         public string Phone { get; set; }
         public Nullable<int> CountryId { get; set; }
         public Nullable<byte> RouleId { get; set; }
-        public byte[] Photo { get; set; }
         public Nullable<System.DateTime> DateRegister { get; set; }
         public Nullable<System.DateTime> LastAuthorization { get; set; }
+        public string About { get; set; }
+        public byte[] Photo { get; set; }
+        public string FileName { get; set; }
+        public string ContentType { get; set; }
         public virtual Country Country { get; set; }
         public virtual ICollection<Tour> Tours { get; set; }
         public virtual ICollection<Tour_CommentOfTour> Tour_CommentOfTour { get; set; }

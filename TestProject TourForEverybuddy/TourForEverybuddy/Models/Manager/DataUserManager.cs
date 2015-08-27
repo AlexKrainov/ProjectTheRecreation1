@@ -68,6 +68,10 @@ namespace TourForEverybuddy.Models
             return true;
         }
 
+        internal User GetUser(int userID)
+        {
+            return db.Users.FirstOrDefault(x => x.id == userID);
+        }
         internal User GetUser(string userID, string userName)
         {
             int id = Convert.ToInt32(userID);
@@ -94,8 +98,13 @@ namespace TourForEverybuddy.Models
             oldUser.Email = user.Email;
             oldUser.LastName = user.LastName;
             oldUser.Name = user.Name;
-            oldUser.Password = user.Password;
+            if (!string.IsNullOrEmpty(user.Password))
+                oldUser.Password = user.Password; 
             oldUser.Phone = user.Phone;
+            oldUser.About = user.About;
+            oldUser.Photo = user.Photo;
+            oldUser.FileName = user.FileName;
+            oldUser.ContentType = user.ContentType;
 
             db.SaveChanges();
 
