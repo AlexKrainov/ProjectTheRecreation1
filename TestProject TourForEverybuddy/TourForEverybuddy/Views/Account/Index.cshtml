@@ -8,53 +8,71 @@
 
 @*<div class="container">*@
 
-<section id="one" class="wrapper style1" style="padding-top: 0px; padding-bottom: 0px;">
+
+<section id="one" class="wrapper style1" style="padding-top: 0; padding-bottom: 0;">
     @Html.ActionLink("Back to Home", "Index", "Home", null, new { @style = "    margin-left: 25px;" })
     <div class="inner">
-        <article class="feature left" style=" margin-bottom: 0px;">
+        <article class="feature2" style=" margin-bottom: 0;">
 
-            <div class="image">
-                <img class="profileImage" src="@Url.Action("PictureForProfile", "Picture", new { userID = Model.id })"
-                     alt="" />
-
-            </div>
-            <div class="content">
-                <dl class="dl-horizontal">
-                    <dt>@Html.DisplayNameFor(model => model.Name)</dt>
-                    <dd>@Html.DisplayFor(model => model.Name)</dd>
-                    <dt>@Html.DisplayNameFor(model => model.LastName)</dt>
-                    <dd>@Html.DisplayFor(model => model.LastName)</dd>
-                    <dt>@Html.DisplayNameFor(model => model.Age)</dt>
-                    <dd>@Html.DisplayFor(model => model.Age)</dd>
-                    <dt>@Html.DisplayNameFor(model => model.Email)</dt>
-                    <dd>@Html.DisplayFor(model => model.Email)</dd>
-                    <dt>@Html.DisplayNameFor(model => model.Phone)</dt>
-                    <dd>@Html.DisplayFor(model => model.Phone)</dd>
-                    <dt>@Html.DisplayNameFor(model => model.CountryId)</dt>
-                    <dd>@Html.DisplayFor(model => model.Country.country_name)</dd>
-                    <dt>Languages</dt>
-                    <dd>
-                        <p>
+            @*<div class="image" style="display:inline-block;">*@
+            <img class="profileImage image" src="@Url.Action("PictureForProfile", "Picture", new { userID = Model.id })"
+                 alt="" style="display:inline-block;" />
+            @*</div>*@
+            <div class="content profileContent" style="display:inline-block;float: right; margin-right: 100px;">
+                <table class="ProfileUserTable">
+                    <tr>
+                        <th>@Html.DisplayNameFor(model => model.Name)</th>
+                        <td>@Html.DisplayFor(model => model.Name)</td>
+                    </tr>
+                    <tr>
+                        <th>@Html.DisplayNameFor(model => model.LastName)</th>
+                        <td>@Html.DisplayFor(model => model.LastName)</td>
+                    </tr>
+                    <tr>
+                        <th>@Html.DisplayNameFor(model => model.Age)</th>
+                        <td>@Html.DisplayFor(model => model.Age)</td>
+                    </tr>
+                    <tr>
+                        <th>@Html.DisplayNameFor(model => model.Email)</th>
+                        <td>@Html.DisplayFor(model => model.Email)</td>
+                    </tr>
+                    <tr>
+                        <th>@Html.DisplayNameFor(model => model.Phone)</th>
+                        <td>@Html.DisplayFor(model => model.Phone)</td>
+                    </tr>
+                    <tr>
+                        <th>@Html.DisplayNameFor(model => model.CountryId)</th>
+                        <td>@Html.DisplayFor(model => model.Country.country_name)</td>
+                    </tr>
+                    <tr>
+                        <th>Languages</th>
+                        <td>
                             @{
                                 var listLanguage = ViewBag.UserLanguage as List<string>;
                                 for (int i = 0; i < listLanguage.Count; i++)
                                 {
-                                    <i>  @listLanguage[i]</i>
+                                    <span>  @listLanguage[i]</span>
                                 }
                             }
-                        </p>
-                    </dd>
-                    <dt>@Html.DisplayNameFor(model => model.About)</dt>
-                    <dd>@Html.DisplayFor(model => model.About)</dd>
-                </dl>
+                        </td>
+                    </tr>
+
+
+                </table>
+
+
             </div>
+            <br />
+            <b style="margin-left: auto;margin-right: auto;display: table;">@Html.DisplayNameFor(model => model.About)</b>
+            <p style="text-indent: 51px;">@Html.DisplayFor(model => model.About)</p>
         </article>
-        @*<p class="userBtn">*@
         @Html.ActionLink("Edit profile", "Edit")
         @*</p>*@
     </div>
 
 </section>
+
+
 <br />
 @if (Model.RouleId == 2)
 {

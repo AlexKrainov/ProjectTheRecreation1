@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using TourForEverybuddy.Controllers.Static;
+using TourForEverybuddy.Models;
 
 namespace TourForEverybuddy.Controllers.Membership
 {
@@ -12,8 +13,9 @@ namespace TourForEverybuddy.Controllers.Membership
         // GET: Example
         public ActionResult Index()
         {
-            var tour = Storage.currentUser.Tours.FirstOrDefault(x => x.Id == 2);
-            return View(tour);
+            DataManager manager = new DataManager();
+            ViewBag.UserLanguage = manager.GetUserLanguages(Storage.currentUser.id).Select(x => x.Language.name).ToList();
+            return View(Storage.currentUser);
         }
     }
 }

@@ -1,7 +1,11 @@
-﻿.ProfileUserTable th {
-    text-align: right;
-    font-size: 1em;
-    max-width: 55px;
+﻿.ProfileUserTable {
+    margin-top: 55px;
+}
+
+.profileContent {
+    display: inline-block;
+    float: right;
+    margin-right: 100px;
 }
 
 .profileImage {
@@ -104,7 +108,15 @@
     overflow: hidden;
 }
 
-
-.test div label:first-child{
-        /*margin-left: -100px;*/
+.feature2 {
+    display: -moz-flex;
+    /* display: -webkit-flex; */
+    display: -ms-flex;
+    /* display: flex; */
+    -moz-align-items: center;
+    -webkit-align-items: center;
+    -ms-align-items: center;
+    align-items: center;
+    margin-bottom: 6em;
+    background-color: #fff;
 }
