@@ -252,6 +252,24 @@
         margin-left: 180px;
     }
 </style>
+
+<section>
+    <article>
+        <img src="@Url.Action("GetUrlFromPictureOfTour", "Picture", new { pictureId = Model.Tours.ElementAt(0).Tour_PictureOfTour.ElementAt(0).Id,
+                 tourID = Model.Tours.ElementAt(0).Tour_PictureOfTour.ElementAt(0).TourID })"
+             alt="" />
+        <div class="container">
+            <h2>Model.Tours.ElementAt(0).title </h2>
+            <p class="contentDescription">Model.Tours.ElementAt(0).description</p>
+        </div>
+    </article>
+</section>
+
+
+
+
+
+
 <section id="one" class="wrapper style1">
     <div class="inner">
         <article class="feature right">

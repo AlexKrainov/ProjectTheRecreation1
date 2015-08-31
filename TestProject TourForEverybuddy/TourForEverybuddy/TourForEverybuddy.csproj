@@ -270,6 +270,7 @@
     <Compile Include="Controllers\Membership\EmailsController.cs" />
     <Compile Include="Controllers\Membership\LoginController.cs" />
     <Compile Include="Controllers\Membership\UserController.cs" />
+    <Compile Include="Helpers\TourHelper.cs" />
     <Compile Include="Models\Country.cs" />
     <Compile Include="Models\Language.cs" />
     <Compile Include="Models\Manager\DataTourManager.cs" />
