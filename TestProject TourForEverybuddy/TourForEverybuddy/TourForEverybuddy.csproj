@@ -269,6 +269,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\Membership\EmailsController.cs" />
     <Compile Include="Controllers\Membership\LoginController.cs" />
+    <Compile Include="Controllers\Membership\UserController.cs" />
     <Compile Include="Models\Country.cs" />
     <Compile Include="Models\Language.cs" />
     <Compile Include="Models\Manager\DataTourManager.cs" />
@@ -326,6 +327,7 @@
     <Content Include="Views\Account\AddTour.cshtml" />
     <Content Include="Views\Account\EditTour.cshtml" />
     <Content Include="Views\Example\Index.cshtml" />
+    <Content Include="Views\User\Profile.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

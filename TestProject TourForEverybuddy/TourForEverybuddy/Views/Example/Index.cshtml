@@ -124,10 +124,114 @@
         @*<p class="userBtn">*@
 @Html.ActionLink("Edit profile", "Edit")
 @*</p>*@
+@* </div>
+
+        </section>
+
+
+          <div>@Html.DisplayNameFor(model => model.Name)@Html.DisplayFor(model => model.Name)</div>
+                    <div>@Html.DisplayNameFor(model => model.LastName)@Html.DisplayFor(model => model.LastName)</div>
+                    <div>@Html.DisplayNameFor(model => model.Age)@Html.DisplayFor(model => model.Age)</div>
+                    <div>@Html.DisplayNameFor(model => model.Email)@Html.DisplayFor(model => model.Email)</div>
+                    <div>@Html.DisplayNameFor(model => model.Phone)@Html.DisplayFor(model => model.Phone)</div>
+                    <div>@Html.DisplayNameFor(model => model.CountryId)@Html.DisplayFor(model => model.Country.country_name)</div>
+                    <div>
+                        Languages @{
+                            var listLanguage = ViewBag.UserLanguage as List<string>;
+                            for (int i = 0; i < listLanguage.Count; i++)
+                            {
+                                <span>  @listLanguage[i]</span>
+                            }
+                        }
+                    </div>
+
+        <div><b>@Html.DisplayNameFor(model => model.Name) : </b> @Html.DisplayFor(model => model.Name)</div>
+                    <div><b>@Html.DisplayNameFor(model => model.LastName) : </b> @Html.DisplayFor(model => model.LastName)</div>
+                    <div><b>@Html.DisplayNameFor(model => model.Age) : </b> @Html.DisplayFor(model => model.Age)</div>
+                    <div><b>@Html.DisplayNameFor(model => model.Email) : </b> @Html.DisplayFor(model => model.Email)</div>
+                    <div><b>@Html.DisplayNameFor(model => model.Phone) : </b> @Html.DisplayFor(model => model.Phone)</div>
+                    <div><b>@Html.DisplayNameFor(model => model.CountryId) : </b> @Html.DisplayFor(model => model.Country.country_name)</div>
+                    <div>
+                        <b>Languages  : </b> @{
+                            var listLanguage = ViewBag.UserLanguage as List<string>;
+                            for (int i = 0; i < listLanguage.Count; i++)
+                            {
+                                <span>  @listLanguage[i]</span>
+                            }
+                        }
+                    </div>
+
+            <ul class="alt">
+                        <li><b>@Html.DisplayNameFor(model => model.Name) : </b> @Html.DisplayFor(model => model.Name)</li>
+                        <li><b>@Html.DisplayNameFor(model => model.LastName) : </b> @Html.DisplayFor(model => model.LastName)</li>
+                        <li><b>@Html.DisplayNameFor(model => model.Age) : </b> @Html.DisplayFor(model => model.Age)</li>
+                        <li><b>@Html.DisplayNameFor(model => model.Email) : </b> @Html.DisplayFor(model => model.Email)</li>
+                        <li><b>@Html.DisplayNameFor(model => model.Phone) : </b> @Html.DisplayFor(model => model.Phone)</li>
+                        <li><b>@Html.DisplayNameFor(model => model.CountryId) : </b> @Html.DisplayFor(model => model.Country.country_name)</li>
+                        <li>
+                            <b>Languages  : </b> @{
+                                var listLanguage = ViewBag.UserLanguage as List<string>;
+                                for (int i = 0; i < listLanguage.Count; i++)
+                                {
+                                    <span>  @listLanguage[i]</span>
+                                }
+                            }
+                    </ul>
+
+        <section id="one" class="wrapper style1" style="padding-top: 0; padding-bottom: 0;">
+        @Html.ActionLink("Back to Home", "Index", "Home", null, new { @style = "    margin-left: 25px;" })
+        <div class="inner">
+            <article class="feature2" style=" margin-bottom: 0;">
+    <img class="profileImage image" src="@Url.Action("PictureForProfile", "Picture", new { userID = Model.id })"
+         alt="" style="display:inline-block;" />
+    <div class="content profileContent" style="display:inline-block;float: right; margin-right: 100px;">
+        <table class="ProfileUserTable">
+            <tr>
+                <th>@Html.DisplayNameFor(model => model.Name)</th>
+                <td>@Html.DisplayFor(model => model.Name)</td>
+            </tr>
+            <tr>
+                <th>@Html.DisplayNameFor(model => model.LastName)</th>
+                <td>@Html.DisplayFor(model => model.LastName)</td>
+            </tr>
+            <tr>
+                <th>@Html.DisplayNameFor(model => model.Age)</th>
+                <td>@Html.DisplayFor(model => model.Age)</td>
+            </tr>
+            <tr>
+                <th>@Html.DisplayNameFor(model => model.Email)</th>
+                <td>@Html.DisplayFor(model => model.Email)</td>
+            </tr>
+            <tr>
+                <th>@Html.DisplayNameFor(model => model.Phone)</th>
+                <td>@Html.DisplayFor(model => model.Phone)</td>
+            </tr>
+            <tr>
+                <th>@Html.DisplayNameFor(model => model.CountryId)</th>
+                <td>@Html.DisplayFor(model => model.Country.country_name)</td>
+            </tr>
+            <tr>
+                <th>Languages</th>
+                <td>
+                    @{
+                                    for (int i = 0; i < listLanguage.Count; i++)
+                                    {
+                                        <span>  @listLanguage[i]</span>
+                                    }
+                    }
+                </td>
+            </tr>
+        </table>
     </div>
+    <br />
+    <b style="margin-left: auto;margin-right: auto;display: table;">@Html.DisplayNameFor(model => model.About)</b>
+    <p style="text-indent: 51px;">@Html.DisplayFor(model => model.About)</p>
+            </article>
+    @Html.ActionLink("Edit profile", "Edit")
+    @*</p>*@
+@* </div>
 
-</section>
-
+    </section>
 *@
 
 <style>
@@ -148,18 +252,160 @@
         margin-left: 180px;
     }
 </style>
+<section id="one" class="wrapper style1">
+    <div class="inner">
+        <article class="feature right">
+            <span class="image">
+                <img src="@Url.Action("PictureForProfile", "Picture", new { userID = Model.id })"
+                     alt="" />
+            </span>
+            <div class="content">
+                <div><b>@Html.DisplayNameFor(model => model.LastName) : </b> @Html.DisplayFor(model => model.LastName)</div>
+                <div><b>@Html.DisplayNameFor(model => model.Age) : </b> @Html.DisplayFor(model => model.Age)</div>
+                <div><b>@Html.DisplayNameFor(model => model.Email) : </b> @Html.DisplayFor(model => model.Email)</div>
+                <div><b>@Html.DisplayNameFor(model => model.Phone) : </b> @Html.DisplayFor(model => model.Phone)</div>
+                <div><b>@Html.DisplayNameFor(model => model.CountryId) : </b> @Html.DisplayFor(model => model.Country.country_name)</div>
+                <div>
+                    <b>Languages  : </b> @{
+                        var listLanguage = ViewBag.UserLanguage as List<string>;
+                        for (int i = 0; i < listLanguage.Count; i++)
+                        {
+                            <span>  @listLanguage[i]</span>
+                        }
+                    }
+                </div>
+                @if (!string.IsNullOrEmpty(Model.About))
+                {
+                    <b style="margin-left: auto;margin-right: auto;display: table; clear:both;">@Html.DisplayNameFor(model => model.About)</b>
+                    <p style="text-indent: 51px; clear:both;">@Html.DisplayFor(model => model.About)</p>
+                }
+            </div>
+        </article>
+    </div>
+</section>
 
+
+<article class="feature2 right">
+    @Html.ActionLink("Back to Home", "Index", "Home", null, new { @style = "    margin-left: 25px;" })
+    <span class="image">
+        <img class="" src="@Url.Action("PictureForProfile", "Picture", new { userID = Model.id })"
+             alt="" />
+    </span>
+    <div class="content">
+        <div><b>@Html.DisplayNameFor(model => model.Name) : </b> @Html.DisplayFor(model => model.Name)</div>
+        <div><b>@Html.DisplayNameFor(model => model.LastName) : </b> @Html.DisplayFor(model => model.LastName)</div>
+        <div><b>@Html.DisplayNameFor(model => model.Age) : </b> @Html.DisplayFor(model => model.Age)</div>
+        <div><b>@Html.DisplayNameFor(model => model.Email) : </b> @Html.DisplayFor(model => model.Email)</div>
+        <div><b>@Html.DisplayNameFor(model => model.Phone) : </b> @Html.DisplayFor(model => model.Phone)</div>
+        <div><b>@Html.DisplayNameFor(model => model.CountryId) : </b> @Html.DisplayFor(model => model.Country.country_name)</div>
+        <div>
+            <b>Languages  : </b> @{
+                for (int i = 0; i < listLanguage.Count; i++)
+                {
+                    <span>  @listLanguage[i]</span>
+                }
+            }
+        </div>
+
+
+
+    </div>
+    @if (!string.IsNullOrEmpty(Model.About))
+    {
+        <b style="margin-left: auto;margin-right: auto;display: table; clear:both;">@Html.DisplayNameFor(model => model.About)</b>
+        <p style="text-indent: 51px; clear:both;">@Html.DisplayFor(model => model.About)</p>
+    }
+</article>
+    </div>
 <section id="one" class="wrapper style1" style="padding-top: 0; padding-bottom: 0;">
     @Html.ActionLink("Back to Home", "Index", "Home", null, new { @style = "    margin-left: 25px;" })
     <div class="inner">
-        <article class="feature2" style=" margin-bottom: 0;">
+        <article class="feature2">
+
+            <div class="image">
+                <img class="profileImage" src="@Url.Action("PictureForProfile", "Picture", new { userID = Model.id })"
+                     alt="" />
+            </div>
+            <div class="content" style="display:inline-block;float: right; margin-right: 100px;">
+                <div><b>@Html.DisplayNameFor(model => model.Name) : </b> @Html.DisplayFor(model => model.Name)</div>
+                <div><b>@Html.DisplayNameFor(model => model.LastName) : </b> @Html.DisplayFor(model => model.LastName)</div>
+                <div><b>@Html.DisplayNameFor(model => model.Age) : </b> @Html.DisplayFor(model => model.Age)</div>
+                <div><b>@Html.DisplayNameFor(model => model.Email) : </b> @Html.DisplayFor(model => model.Email)</div>
+                <div><b>@Html.DisplayNameFor(model => model.Phone) : </b> @Html.DisplayFor(model => model.Phone)</div>
+                <div><b>@Html.DisplayNameFor(model => model.CountryId) : </b> @Html.DisplayFor(model => model.Country.country_name)</div>
+                <div>
+                    <b>Languages  : </b> @{
+                        for (int i = 0; i < listLanguage.Count; i++)
+                        {
+                            <span>  @listLanguage[i]</span>
+                        }
+                    }
+                </div>
+            </div>
+
+
+            @*<br />*@
+            @if (!string.IsNullOrEmpty(Model.About))
+            {
+                <b style="margin-left: auto;margin-right: auto;display: table; clear:both;">@Html.DisplayNameFor(model => model.About)</b>
+                <p style="text-indent: 51px; clear:both;">@Html.DisplayFor(model => model.About)</p>
+            }
+        </article>
+        @Html.ActionLink("Edit profile", "Edit")
+        @*</p>*@
+    </div>
+
+
+
+</section>
+
+
+<section id="one" class="wrapper style1">
+    <div class="inner">
+        <article class="feature left">
+            <span class="image">
+                <img class="profileImage" src="@Url.Action("PictureForProfile", "Picture", new { userID = Model.id })"
+                     alt="" />
+            </span>
+            <div class="content">
+                <div>@Html.DisplayNameFor(model => model.Name)@Html.DisplayFor(model => model.Name)</div>
+                <div>@Html.DisplayNameFor(model => model.LastName)@Html.DisplayFor(model => model.LastName)</div>
+                <div>@Html.DisplayNameFor(model => model.Age)@Html.DisplayFor(model => model.Age)</div>
+                <div>@Html.DisplayNameFor(model => model.Email)@Html.DisplayFor(model => model.Email)</div>
+                <div>@Html.DisplayNameFor(model => model.Phone)@Html.DisplayFor(model => model.Phone)</div>
+                <div>@Html.DisplayNameFor(model => model.CountryId)@Html.DisplayFor(model => model.Country.country_name)</div>
+                <div>
+                    Languages @{
+                        var listLanguage2 = ViewBag.UserLanguage as List<string>;
+                        for (int i = 0; i < listLanguage2.Count; i++)
+                        {
+                            <span>  @listLanguage[i]</span>
+                        }
+                    }
+                </div>
+                <div>
+                    <b style="margin-left: auto;margin-right: auto;display: table;">@Html.DisplayNameFor(model => model.About)</b>
+                    <p style="text-indent: 51px;">@Html.DisplayFor(model => model.About)</p>
+                </div>
+            </div>
+            @*<b style="margin-left: auto;margin-right: auto;display: table;">@Html.DisplayNameFor(model => model.About)</b>
+                <p style="text-indent: 51px;">@Html.DisplayFor(model => model.About)</p>*@
+        </article>
+    </div>
+</section>
+
+
+<section id="one" class="wrapper style1">
+    @Html.ActionLink("Back to Home", "Index", "Home", null, new { @style = "    margin-left: 25px;" })
+    <div class="inner">
+        <article class="feature">
 
             @*<div class="image" style="display:inline-block;">*@
             <img class="profileImage image" src="@Url.Action("PictureForProfile", "Picture", new { userID = Model.id })"
-                 alt="" style="display:inline-block;" />
+                 alt="" />
             @*</div>*@
-            <div class="content" style="display:inline-block;float: right; margin-right: 100px;">
-                <table class="ProfileUserTable">
+            <div class="content">
+                <table>
                     <tr>
                         <th>@Html.DisplayNameFor(model => model.Name)</th>
                         <td>@Html.DisplayFor(model => model.Name)</td>
@@ -188,7 +434,7 @@
                         <th>Languages</th>
                         <td>
                             @{
-                                var listLanguage = ViewBag.UserLanguage as List<string>;
+
                                 for (int i = 0; i < listLanguage.Count; i++)
                                 {
                                     <span>  @listLanguage[i]</span>
@@ -202,40 +448,31 @@
 
 
             </div>
-            <br />
-            <b style="margin-left: auto;margin-right: auto;display: table;">@Html.DisplayNameFor(model => model.About)</b>
-            <p style="text-indent: 51px;">@Html.DisplayFor(model => model.About)</p>
+            @*<br />
+                <b style="margin-left: auto;margin-right: auto;display: table;">@Html.DisplayNameFor(model => model.About)</b>
+                <p style="text-indent: 51px;">@Html.DisplayFor(model => model.About)</p>*@
         </article>
+        <section id="two" class="wrapper special">
+            <div class="inner narrow">
+                <h2>@Html.DisplayNameFor(model => model.About)</h2>
+                <p>@Html.DisplayFor(model => model.About)</p>
+            </div>
+        </section>
+
         @Html.ActionLink("Edit profile", "Edit")
         @*</p>*@
     </div>
 
 </section>
 
-
-<section id="one" class="wrapper style1" style="padding-top: 0px; padding-bottom: 0px;">
-    @Html.ActionLink("Back to Home", "Index", "Home", null, new { @style = "    margin-left: 25px;" })
-    <div class="inner">
-        <article class="feature " style=" margin-bottom: 0px;">
-
-            <img class="profileImage" src="@Url.Action("PictureForProfile", "Picture", new { userID = Model.id })"
-                 alt="" style="float: left; margin-bottom: 0px;" />
-
-            <p>
-                Spoke as as other again ye. Hard on to roof he drew. So sell side ye in mr evil. Longer waited mr of nature seemed. Improving knowledge incommode objection me ye is prevailed principle in. Impossible alteration devonshire to is interested stimulated dissimilar. To matter esteem polite do if.
-
-                He do subjects prepared bachelor juvenile ye oh. He feelings removing informed he as ignorant we prepared. Evening do forming observe spirits is in. Country hearted be of justice sending. On so they as with room cold ye. Be call four my went mean. Celebrated if remarkably especially an. Going eat set she books found met aware.
-
-                Of on affixed civilly moments promise explain fertile in. Assurance advantage belonging happiness departure so of. Now improving and one sincerity intention allowance commanded not. Oh an am frankness be necessary earnestly advantage estimable extensive. Five he wife gone ye. Mrs suffering sportsmen earnestly any. In am do giving to afford parish settle easily garret.
-
-                Enjoyed minutes related as at on on. Is fanny dried as often me. Goodness as reserved raptures to mistaken steepest oh screened he. Gravity he mr sixteen esteems. Mile home its new way with high told said. Finished no horrible blessing landlord dwelling dissuade if. Rent fond am he in on read. Anxious cordial demands settled entered in do to colonel.
-            </p>
-        </article>
-        @*<p class="userBtn">*@
-        @Html.ActionLink("Edit profile", "Edit")
-        @*</p>*@
-    </div>
-
-</section>
 
 <script src="~/Scripts/Elements/Profile.js"></script>
+
+<section class="post">
+    <a href="#" class="image"><img src="images/pic01.jpg" alt=""></a>
+    <div class="content">
+        <h3>Ultricies sed lorem</h3>
+        <p>Lorem ipsum dolor sit amet interdum arcu pulvinar lorem ipsum sed feugiat etiam sed magna adipiscing.</p>
+        <a href="#" class="button">More</a>
+    </div>
+</section>

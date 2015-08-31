@@ -8,78 +8,46 @@
 
 @*<div class="container">*@
 
-
 <section id="one" class="wrapper style1" style="padding-top: 0; padding-bottom: 0;">
     @Html.ActionLink("Back to Home", "Index", "Home", null, new { @style = "    margin-left: 25px;" })
     <div class="inner">
-        <article class="feature2" style=" margin-bottom: 0;">
-
-            @*<div class="image" style="display:inline-block;">*@
-            <img class="profileImage image" src="@Url.Action("PictureForProfile", "Picture", new { userID = Model.id })"
-                 alt="" style="display:inline-block;" />
-            @*</div>*@
-            <div class="content profileContent" style="display:inline-block;float: right; margin-right: 100px;">
-                <table class="ProfileUserTable">
-                    <tr>
-                        <th>@Html.DisplayNameFor(model => model.Name)</th>
-                        <td>@Html.DisplayFor(model => model.Name)</td>
-                    </tr>
-                    <tr>
-                        <th>@Html.DisplayNameFor(model => model.LastName)</th>
-                        <td>@Html.DisplayFor(model => model.LastName)</td>
-                    </tr>
-                    <tr>
-                        <th>@Html.DisplayNameFor(model => model.Age)</th>
-                        <td>@Html.DisplayFor(model => model.Age)</td>
-                    </tr>
-                    <tr>
-                        <th>@Html.DisplayNameFor(model => model.Email)</th>
-                        <td>@Html.DisplayFor(model => model.Email)</td>
-                    </tr>
-                    <tr>
-                        <th>@Html.DisplayNameFor(model => model.Phone)</th>
-                        <td>@Html.DisplayFor(model => model.Phone)</td>
-                    </tr>
-                    <tr>
-                        <th>@Html.DisplayNameFor(model => model.CountryId)</th>
-                        <td>@Html.DisplayFor(model => model.Country.country_name)</td>
-                    </tr>
-                    <tr>
-                        <th>Languages</th>
-                        <td>
-                            @{
-                                var listLanguage = ViewBag.UserLanguage as List<string>;
-                                for (int i = 0; i < listLanguage.Count; i++)
-                                {
-                                    <span>  @listLanguage[i]</span>
-                                }
-                            }
-                        </td>
-                    </tr>
-
-
-                </table>
-
-
+        <article class="feature right">
+            <span class="image">
+                <img src="@Url.Action("PictureForProfile", "Picture", new { userID = Model.id })"
+                     alt="" />
+            </span>
+            <div class="content">
+                <div><b>@Html.DisplayNameFor(model => model.LastName) : </b> @Html.DisplayFor(model => model.LastName)</div>
+                <div><b>@Html.DisplayNameFor(model => model.Age) : </b> @Html.DisplayFor(model => model.Age)</div>
+                <div><b>@Html.DisplayNameFor(model => model.Email) : </b> @Html.DisplayFor(model => model.Email)</div>
+                <div><b>@Html.DisplayNameFor(model => model.Phone) : </b> @Html.DisplayFor(model => model.Phone)</div>
+                <div><b>@Html.DisplayNameFor(model => model.CountryId) : </b> @Html.DisplayFor(model => model.Country.country_name)</div>
+                <div>
+                    <b>Languages  : </b> @{
+                        var listLanguage = ViewBag.UserLanguage as List<string>;
+                        for (int i = 0; i < listLanguage.Count; i++)
+                        {
+                            <span>  @listLanguage[i]</span>
+                        }
+                    }
+                </div>
+                @if (!string.IsNullOrEmpty(Model.About))
+                {
+                    <b style="margin-left: auto;margin-right: auto;display: table; clear:both;">@Html.DisplayNameFor(model => model.About)</b>
+                    <p style="text-indent: 51px; clear:both;">@Html.DisplayFor(model => model.About)</p>
+                }
             </div>
-            <br />
-            <b style="margin-left: auto;margin-right: auto;display: table;">@Html.DisplayNameFor(model => model.About)</b>
-            <p style="text-indent: 51px;">@Html.DisplayFor(model => model.About)</p>
         </article>
         @Html.ActionLink("Edit profile", "Edit")
-        @*</p>*@
     </div>
-
 </section>
+
 
 
 <br />
 @if (Model.RouleId == 2)
 {
-    @*<hr />*@
-
     <section id="one" class="wrapper style1" style="padding-top: 0px; padding-bottom: 0px;">
-
         <div class="inner">
             @Html.ActionLink("Add new tour", "AddTour") @*, null, new { @style = "margin-left: 25px;" })*@
             @{
@@ -98,12 +66,9 @@
             iterator--;
         }
         <article class="feature @side">
-
             <div class="image">
                 @{
-
-        int[] arrayImage = new int[tour.Tour_PictureOfTour.Count];
-        string style = "";
+        int[] arrayImage = new int[tour.Tour_PictureOfTour.Count]; string style = "";
         for (int i = 0; i < tour.Tour_PictureOfTour.Count; i++)
         {
             style = i == 0 ? "" : "display: none;";

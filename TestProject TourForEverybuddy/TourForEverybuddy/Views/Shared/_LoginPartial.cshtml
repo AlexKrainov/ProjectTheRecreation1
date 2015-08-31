@@ -3,7 +3,6 @@
 {
     //ToDo: ActionLink to Profil
     @Html.ActionLink(HttpContext.Current.User.Identity.Name, "Index", "Account")
-    <a>@HttpContext.Current.User.Identity.Name</a>
     @Html.ActionLink("Exit", "Exit", "Home", null, new { @style = "color: #51BAA4;" })
 }
 else

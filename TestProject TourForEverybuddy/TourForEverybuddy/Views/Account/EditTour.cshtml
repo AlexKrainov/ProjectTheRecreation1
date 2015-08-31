@@ -11,7 +11,7 @@
 
 </div>
 <div id="tourDialog" class="container tourDialog">
-    <section id="two" class="wrapper special" style="padding-top: 0px;">
+    <section id="two" class="wrapper special" style="padding-top: 0; padding-bottom: 0;">
         <div class="inner">
             @using (Html.BeginForm("EditTour", "Account", null, FormMethod.Post, new { enctype = "multipart/form-data" }))
             {
@@ -56,23 +56,24 @@
             <div class="inner">
                 <header class="major narrow">
                     <h2>Album</h2>
-
                     <p>Select the pictures to delete</p>
                     <input id="RemoveBtn" type="submit" class="button disabled" value="Delete images" onclick="return RemovePicture(this);" />
                     @Html.ValidationMessage("DeletePicture", new { @style = "color: red; font-size: large;", @id = "DeletePicture" })
                 </header>
-                <div class="image-grid">
-                    @{
-        foreach (TourForEverybuddy.Models.Tour_PictureOfTour picture in Model.Tour_PictureOfTour)
-        {
-            @*<img src="@Url.Action("GetUrlFromPictureOfTour", "Picture", new { id = picture.Id } )" alt="" />*@
-                        <a class="image" id="@picture.Id" onclick="SelectPicture(this)">
+                <div class="box alt">
+                    <div class="row 50% uniform">
+                        @foreach (TourForEverybuddy.Models.Tour_PictureOfTour picture in Model.Tour_PictureOfTour)
+                        {
+                            <div class="4u">
+                                @*<a class="image" id="@picture.Id" onclick="SelectPicture(this)">*@
+                                <span class="image fit" id="@picture.Id" onclick="SelectPicture(this)">
+                                    <img src="@string.Concat("data:",picture.ContentType,";base64,") @Convert.ToBase64String(picture.Picture, 0, picture.Picture.Length)"
+                                         alt="" />
+                                </span>
+                            </div>
+                        }
 
-                            <img src="@string.Concat("data:",picture.ContentType,";base64,") @Convert.ToBase64String(picture.Picture, 0, picture.Picture.Length)"
-                                 alt="" />
-                        </a>
-        }
-                    }
+                    </div>
                 </div>
             </div>
         </section>
@@ -80,5 +81,5 @@
 
 </div>
 
-
+@*<img src="@Url.Action("GetUrlFromPictureOfTour", "Picture", new { id = picture.Id } )" alt="" />*@
 <script src="~/Scripts/Elements/Profile.js"></script>

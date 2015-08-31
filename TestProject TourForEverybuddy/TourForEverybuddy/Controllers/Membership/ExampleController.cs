@@ -14,8 +14,11 @@ namespace TourForEverybuddy.Controllers.Membership
         public ActionResult Index()
         {
             DataManager manager = new DataManager();
-            ViewBag.UserLanguage = manager.GetUserLanguages(Storage.currentUser.id).Select(x => x.Language.name).ToList();
-            return View(Storage.currentUser);
+            //var user = Storage.currentUser;
+           var  user = manager.GetUser(3);
+            
+            ViewBag.UserLanguage = manager.GetUserLanguages(user.id).Select(x => x.Language.name).ToList();
+            return View(user);
         }
     }
 }
