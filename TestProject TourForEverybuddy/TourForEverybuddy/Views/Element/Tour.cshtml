@@ -1,0 +1,37 @@
+﻿@model TourForEverybuddy.Models.Tour
+@{
+    ViewBag.Title = "Tour";
+}
+
+<section class="post">
+    <div class="img">
+        @if (Model.Tour_PictureOfTour.Count != 0)
+        {
+            <img id="img" src="@Url.Action("GetUrlFromPictureOfTour", "Picture", new { pictureId = Model.Tour_PictureOfTour.ElementAt(0).Id,
+                 tourID = Model.Tour_PictureOfTour.ElementAt(0).TourID })"
+                 alt="" />
+        }
+        else
+        {
+            <img id="img" src="~/images/Beautiful-Moscow-City-Wallpaper-min.jpg" alt="" />
+        }
+
+    </div>
+    <div class="content">
+        @*@Html.ActionLink(Model.title, "ActionName", "controllerName", null, new { @class = "titleTour" })*@
+        <b class="titleTour">@Model.title</b>
+        <p class="contentDescription">
+            @Model.description
+        </p>
+        @if (ViewBag.Edit)
+        {
+            @Html.ActionLink("Edit", "EditTour", "Account", new { id = Model.Id }, new { id = Model.Id, @class = "button alt small tourBtn" })
+            @Html.ActionLink("Delete", "DeleteTour", "Account", new { id = Model.Id }, new { @class = "button small tourBtn" })
+        }
+        else
+        {
+            @Html.ActionLink("View", "TourView", "Tour", new { id = Model.Id }, new { @class = "button alt small" })
+        }
+
+    </div>
+</section>

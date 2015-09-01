@@ -154,6 +154,7 @@
     <Content Include="Content\Elements\Login.css" />
     <Content Include="Content\Elements\Profile.css" />
     <Content Include="Content\Elements\Regiser.css" />
+    <Content Include="Content\Elements\TourStyle.css" />
     <Content Include="Content\font-awesome.min.css" />
     <Content Include="Content\ie9.css" />
     <Content Include="Content\main.css" />
@@ -163,6 +164,7 @@
     <Content Include="images\24_em_cross.png" />
     <Content Include="images\404.jpg" />
     <Content Include="images\banner.jpg" />
+    <Content Include="images\Beautiful-Moscow-City-Wallpaper-min.jpg" />
     <Content Include="images\overlay.png" />
     <Content Include="images\pic01.jpg" />
     <Content Include="images\pic02.jpg" />
@@ -175,6 +177,7 @@
     <Content Include="images\pic09.jpg" />
     <Content Include="images\pic10.jpg" />
     <Content Include="images\pic11.jpg" />
+    <Content Include="images\Profile\default_avatar-min.jpg" />
     <Content Include="images\Profile\edit.png" />
     <Content Include="images\Profile\left_grey-min.png" />
     <Content Include="images\Profile\magnifier-min.png" />
@@ -260,6 +263,7 @@
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
+    <Compile Include="Controllers\Elements\ElementController.cs" />
     <Compile Include="Controllers\Elements\PictureController.cs" />
     <Compile Include="Controllers\Membership\AccountController.cs" />
     <Compile Include="Controllers\Membership\ExampleController.cs" />
@@ -329,6 +333,7 @@
     <Content Include="Views\Account\EditTour.cshtml" />
     <Content Include="Views\Example\Index.cshtml" />
     <Content Include="Views\User\Profile.cshtml" />
+    <Content Include="Views\Element\Tour.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

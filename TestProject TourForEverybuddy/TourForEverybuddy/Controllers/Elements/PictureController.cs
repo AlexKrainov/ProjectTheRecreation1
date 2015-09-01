@@ -13,6 +13,7 @@ using TourForEverybuddy.Models;
 
 namespace TourForEverybuddy.Controllers.Elements
 {
+    using TourForEverybuddy.Models.Filters;
     using Image = System.Drawing.Image;
     public class PictureController : Controller
     {
@@ -25,11 +26,13 @@ namespace TourForEverybuddy.Controllers.Elements
 
             return File("pic01.jpg", "image/jpeg"); 
         }
-
+        [MyAuthentication]
         public ActionResult GetUrlFromPictureOfTour(int pictureId, int tourID)
         {
             var picture = Storage.currentUser.Tours.FirstOrDefault(x => x.Id == tourID).Tour_PictureOfTour.FirstOrDefault(x => x.Id == pictureId);
-            
+            //var picture = Storage.currentUser.Tours.FirstOrDefault(x => x.Id == tourID).Tour_PictureOfTour.FirstOrDefault(x => x.Id == pictureId);
+
+
             if (picture != null)
                 return File(picture.Picture, picture.ContentType);
 

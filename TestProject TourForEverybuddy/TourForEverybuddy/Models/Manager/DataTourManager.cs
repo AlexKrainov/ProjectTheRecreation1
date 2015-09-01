@@ -96,5 +96,9 @@ namespace TourForEverybuddy.Models
             return true;
         }
 
+        internal Tour GetTour(int tourID)
+        {
+            return db.Tours.FirstOrDefault(x => x.Id == tourID);
+        }
     }
 }
