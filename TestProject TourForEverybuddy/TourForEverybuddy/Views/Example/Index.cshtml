@@ -14,20 +14,21 @@
 
 <style>
     .profileContent {
-        width: 330px;
-        margin: 0 auto 0 auto;
-        border: 1px solid black;
+        width: 430px;
+        margin: 0 0 69px 244px;
+        /* border: 1px solid black; */
     }
 
     .wrapImg {
         display: inline-block;
-        width: 100px;
+        width: 200px;
     }
 
     #imgProfile {
         width: 100%;
-        border-radius: 85px;
-        margin: 0 auto -35px auto;
+        border-radius: 185px;
+        margin: 0 auto -58px auto;
+        box-shadow: 12px 8px 12px -5px;
     }
 
     .userData {
@@ -35,13 +36,16 @@
         width: 200px;
         color: #4d5968;
         margin: 0 0 0 15px;
+        font-family: 'Century Gothic', CenturyGothic, AppleGothic, sans-serif;
+        font-size: larger;
+        font-weight: bold;
     }
 </style>
 <section class="profileContent">
     <div class="wrapImg">
         @if (Model.Photo != null)
         {
-            <img id="img" src="@Url.Action("PictureForProfile", "Picture", new { userID = Model.id })" alt="" />
+            <img id="imgProfile" src="@Url.Action("PictureForProfile", "Picture", new { userID = Model.id })" alt="" />
         }
         else
         {
@@ -54,16 +58,24 @@
         <div>@Model.Age, @Model.Country.country_name</div>
         <div>
             @{
-                //ToDo: тут ошибка 
-                var languageCollection = (List<TourForEverybuddy.Models.UserLanguage>)ViewBag.UserLanguage;
-                for (int i = 0; i < languageCollection.Count; i++)
+                //ToDo: тут ошибка
+                var listLanguage = ViewBag.UserLanguage as List<string>;
+                if (listLanguage == null)
                 {
-                    <span>languageCollection[i]</span>
+                    listLanguage = new List<string>();
+                }
+                
+                for (int i = 0; i < listLanguage.Count; i++)
+                {
+                    <span>@listLanguage[i],</span>
                 }
             }
         </div>
     </div>
 </section>
+
+
+
 
 
 @*</p>*@
