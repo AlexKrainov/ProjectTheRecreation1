@@ -103,10 +103,10 @@
 
 /*#endregion */
 
-.contentDescription {
+/*.contentDescription {
     max-height: 170px;
     overflow: hidden;
-}
+}*/
 
 .feature2 {
     display: -moz-flex;
@@ -120,3 +120,167 @@
     margin-bottom: 6em;
     background-color: #fff;
 }
+
+
+
+/*#region Tour control */
+
+.inner {
+    width: 81em;
+    margin: 0 auto;
+}
+
+.posts {
+    display: -moz-flex;
+    display: -webkit-flex;
+    display: -ms-flex;
+    display: flex;
+    -moz-flex-wrap: wrap;
+    -webkit-flex-wrap: wrap;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+}
+
+.post {
+    width: 588px;
+    margin: 5px auto 5px auto;
+    /*display: -moz-flex;
+    display: -webkit-flex;
+    display: -ms-flex;
+    display: flex;*/
+}
+
+.img {
+    width: 40%;
+    display: inline-block;
+    margin: 0 auto 0 auto;
+}
+
+#img {
+    display: block;
+    width: 100%;
+    border-radius: 15px;
+}
+
+
+.content {
+    width: 300px;
+    display: inline-block;
+}
+
+.contentDescription {
+    height: 80px;
+    overflow: hidden;
+}
+
+.button {
+    display: inline-block;
+    margin: 0 60% 0px 40%;
+}
+
+
+.titleTour {
+    color: #5f9dd2;
+    font-variant: small-caps;
+    font-weight: 800;
+    font-size: 1.2em;
+}
+
+@media screen and (max-width: 1280px) {
+    .post {
+        width: 525px;
+        margin: 0 -36px 0 14px;
+    }
+}
+
+@media screen and (max-width: 1025px) {
+    .content {
+        width: 200px;
+    }
+}
+
+@media screen and (max-width: 980px) {
+    .posts {
+        display: block;
+    }
+
+    .content {
+        width: 59%;
+    }
+
+    .post {
+        width: 705px;
+        margin: 5px 0 5px 30px;
+    }
+
+    #img {
+        margin: 16px 10px -3px 0;
+    }
+}
+
+@media screen and (max-width: 736px) {
+    .posts {
+        display: flex;
+    }
+
+    .content {
+        width: 350px;
+    }
+}
+
+@media screen and (max-width: 670px) {
+    .posts {
+        display: flex;
+    }
+
+    .content {
+        width: 300px;
+    }
+
+    .img {
+        width: 29%;
+    }
+
+    #img {
+        margin: 17px 10px 25px 0;
+    }
+}
+
+@media screen and (max-width: 550px) {
+    .posts {
+        display: inline-block;
+    }
+
+    .img {
+        width: 100%;
+    }
+
+    .content {
+        width: 100%;
+    }
+
+    .post {
+        width: 350px;
+        margin: 0 auto 0 35px;
+    }
+}
+
+
+
+@media screen and (max-width: 1680px) {
+}
+
+@media screen and (max-width: 1280px) {
+}
+
+@media screen and (max-width: 980px) {
+}
+
+@media screen and (max-width: 736px) {
+}
+
+@media screen and (max-width: 480px) {
+}
+
+
+/*#endregion */

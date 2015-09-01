@@ -252,245 +252,281 @@
         margin-left: 180px;
     }
 </style>
-
-<section>
-    <article>
-        <img src="@Url.Action("GetUrlFromPictureOfTour", "Picture", new { pictureId = Model.Tours.ElementAt(0).Tour_PictureOfTour.ElementAt(0).Id,
+<div class="inner">
+    <div class="posts">
+        <section class="post">
+            <div class="img">
+                <img id="img" src="@Url.Action("GetUrlFromPictureOfTour", "Picture", new { pictureId = Model.Tours.ElementAt(0).Tour_PictureOfTour.ElementAt(0).Id,
                  tourID = Model.Tours.ElementAt(0).Tour_PictureOfTour.ElementAt(0).TourID })"
-             alt="" />
-        <div class="container">
-            <h2>Model.Tours.ElementAt(0).title </h2>
-            <p class="contentDescription">Model.Tours.ElementAt(0).description</p>
-        </div>
-    </article>
-</section>
-
-
-
-
-
-
-<section id="one" class="wrapper style1">
-    <div class="inner">
-        <article class="feature right">
-            <span class="image">
-                <img src="@Url.Action("PictureForProfile", "Picture", new { userID = Model.id })"
                      alt="" />
-            </span>
+            </div>
             <div class="content">
-                <div><b>@Html.DisplayNameFor(model => model.LastName) : </b> @Html.DisplayFor(model => model.LastName)</div>
-                <div><b>@Html.DisplayNameFor(model => model.Age) : </b> @Html.DisplayFor(model => model.Age)</div>
-                <div><b>@Html.DisplayNameFor(model => model.Email) : </b> @Html.DisplayFor(model => model.Email)</div>
-                <div><b>@Html.DisplayNameFor(model => model.Phone) : </b> @Html.DisplayFor(model => model.Phone)</div>
-                <div><b>@Html.DisplayNameFor(model => model.CountryId) : </b> @Html.DisplayFor(model => model.Country.country_name)</div>
-                <div>
-                    <b>Languages  : </b> @{
-                        var listLanguage = ViewBag.UserLanguage as List<string>;
-                        for (int i = 0; i < listLanguage.Count; i++)
-                        {
-                            <span>  @listLanguage[i]</span>
+                @Html.ActionLink(Model.Tours.ElementAt(0).title, "ActionName", "controllerName", null, new { @class = "titleTour" })
+                @*<b class="titleTour">Same text from title tour and text from title tour</b>*@
+                <p class="contentDescription">
+                    There's a funny blog post about how to download SQL Server Express from Long Zheng.
+                    It surprisingly how complex some companies make downloading things. I've always thought that a giant Download Now button is the best way, but perhaps that's just me?
+                </p>
+
+                @*<input class="button" type="submit" value="View" />*@
+            </div>
+        </section>
+        <section class="post">
+            <div class="img">
+                <img id="img" src="@Url.Action("GetUrlFromPictureOfTour", "Picture", new { pictureId = Model.Tours.ElementAt(0).Tour_PictureOfTour.ElementAt(0).Id,
+                 tourID = Model.Tours.ElementAt(0).Tour_PictureOfTour.ElementAt(0).TourID })"
+                     alt="" />
+            </div>
+            <div class="content">
+                @Html.ActionLink(Model.Tours.ElementAt(0).title, "ActionName", "controllerName", null, new { @class = "titleTour" })
+                @*<b class="titleTour">Same text from title tour and text from title tour</b>*@
+                <p class="contentDescription">
+                    @Model.Tours.ElementAt(0).description
+                    </p>
+
+                    @*<input class="button" type="submit" value="View" />*@
+                </div>
+            </section>
+        </div>
+    </div>
+    @*<section>
+            <article>
+                <img src="@Url.Action("GetUrlFromPictureOfTour", "Picture", new { pictureId = Model.Tours.ElementAt(0).Tour_PictureOfTour.ElementAt(0).Id,
+                     tourID = Model.Tours.ElementAt(0).Tour_PictureOfTour.ElementAt(0).TourID })"
+                     alt="" />
+                <div class="container">
+                    <h2>Model.Tours.ElementAt(0).title </h2>
+                    <p class="contentDescription">Model.Tours.ElementAt(0).description</p>
+                </div>
+            </article>
+        </section>*@
+
+
+
+
+
+
+    <section id="one" class="wrapper style1">
+        <div class="inner">
+            <article class="feature right">
+                <span class="image">
+                    <img src="@Url.Action("PictureForProfile", "Picture", new { userID = Model.id })"
+                         alt="" />
+                </span>
+                <div class="content">
+                    <div><b>@Html.DisplayNameFor(model => model.LastName) : </b> @Html.DisplayFor(model => model.LastName)</div>
+                    <div><b>@Html.DisplayNameFor(model => model.Age) : </b> @Html.DisplayFor(model => model.Age)</div>
+                    <div><b>@Html.DisplayNameFor(model => model.Email) : </b> @Html.DisplayFor(model => model.Email)</div>
+                    <div><b>@Html.DisplayNameFor(model => model.Phone) : </b> @Html.DisplayFor(model => model.Phone)</div>
+                    <div><b>@Html.DisplayNameFor(model => model.CountryId) : </b> @Html.DisplayFor(model => model.Country.country_name)</div>
+                    <div>
+                        <b>Languages  : </b> @{
+                            var listLanguage = ViewBag.UserLanguage as List<string>;
+                            for (int i = 0; i < listLanguage.Count; i++)
+                            {
+                                <span>  @listLanguage[i]</span>
+                            }
                         }
+                    </div>
+                    @if (!string.IsNullOrEmpty(Model.About))
+                    {
+                        <b style="margin-left: auto;margin-right: auto;display: table; clear:both;">@Html.DisplayNameFor(model => model.About)</b>
+                        <p style="text-indent: 51px; clear:both;">@Html.DisplayFor(model => model.About)</p>
                     }
                 </div>
+            </article>
+        </div>
+    </section>
+
+
+    <article class="feature2 right">
+        @Html.ActionLink("Back to Home", "Index", "Home", null, new { @style = "    margin-left: 25px;" })
+        <span class="image">
+            <img class="" src="@Url.Action("PictureForProfile", "Picture", new { userID = Model.id })"
+                 alt="" />
+        </span>
+        <div class="content">
+            <div><b>@Html.DisplayNameFor(model => model.Name) : </b> @Html.DisplayFor(model => model.Name)</div>
+            <div><b>@Html.DisplayNameFor(model => model.LastName) : </b> @Html.DisplayFor(model => model.LastName)</div>
+            <div><b>@Html.DisplayNameFor(model => model.Age) : </b> @Html.DisplayFor(model => model.Age)</div>
+            <div><b>@Html.DisplayNameFor(model => model.Email) : </b> @Html.DisplayFor(model => model.Email)</div>
+            <div><b>@Html.DisplayNameFor(model => model.Phone) : </b> @Html.DisplayFor(model => model.Phone)</div>
+            <div><b>@Html.DisplayNameFor(model => model.CountryId) : </b> @Html.DisplayFor(model => model.Country.country_name)</div>
+            <div>
+                <b>Languages  : </b> @{
+                    for (int i = 0; i < listLanguage.Count; i++)
+                    {
+                        <span>  @listLanguage[i]</span>
+                    }
+                }
+            </div>
+
+
+
+        </div>
+        @if (!string.IsNullOrEmpty(Model.About))
+        {
+            <b style="margin-left: auto;margin-right: auto;display: table; clear:both;">@Html.DisplayNameFor(model => model.About)</b>
+            <p style="text-indent: 51px; clear:both;">@Html.DisplayFor(model => model.About)</p>
+        }
+    </article>
+    </div>
+    <section id="one" class="wrapper style1" style="padding-top: 0; padding-bottom: 0;">
+        @Html.ActionLink("Back to Home", "Index", "Home", null, new { @style = "    margin-left: 25px;" })
+        <div class="inner">
+            <article class="feature2">
+
+                <div class="image">
+                    <img class="profileImage" src="@Url.Action("PictureForProfile", "Picture", new { userID = Model.id })"
+                         alt="" />
+                </div>
+                <div class="content" style="display:inline-block;float: right; margin-right: 100px;">
+                    <div><b>@Html.DisplayNameFor(model => model.Name) : </b> @Html.DisplayFor(model => model.Name)</div>
+                    <div><b>@Html.DisplayNameFor(model => model.LastName) : </b> @Html.DisplayFor(model => model.LastName)</div>
+                    <div><b>@Html.DisplayNameFor(model => model.Age) : </b> @Html.DisplayFor(model => model.Age)</div>
+                    <div><b>@Html.DisplayNameFor(model => model.Email) : </b> @Html.DisplayFor(model => model.Email)</div>
+                    <div><b>@Html.DisplayNameFor(model => model.Phone) : </b> @Html.DisplayFor(model => model.Phone)</div>
+                    <div><b>@Html.DisplayNameFor(model => model.CountryId) : </b> @Html.DisplayFor(model => model.Country.country_name)</div>
+                    <div>
+                        <b>Languages  : </b> @{
+                            for (int i = 0; i < listLanguage.Count; i++)
+                            {
+                                <span>  @listLanguage[i]</span>
+                            }
+                        }
+                    </div>
+                </div>
+
+
+                @*<br />*@
                 @if (!string.IsNullOrEmpty(Model.About))
                 {
                     <b style="margin-left: auto;margin-right: auto;display: table; clear:both;">@Html.DisplayNameFor(model => model.About)</b>
                     <p style="text-indent: 51px; clear:both;">@Html.DisplayFor(model => model.About)</p>
                 }
-            </div>
-        </article>
-    </div>
-</section>
-
-
-<article class="feature2 right">
-    @Html.ActionLink("Back to Home", "Index", "Home", null, new { @style = "    margin-left: 25px;" })
-    <span class="image">
-        <img class="" src="@Url.Action("PictureForProfile", "Picture", new { userID = Model.id })"
-             alt="" />
-    </span>
-    <div class="content">
-        <div><b>@Html.DisplayNameFor(model => model.Name) : </b> @Html.DisplayFor(model => model.Name)</div>
-        <div><b>@Html.DisplayNameFor(model => model.LastName) : </b> @Html.DisplayFor(model => model.LastName)</div>
-        <div><b>@Html.DisplayNameFor(model => model.Age) : </b> @Html.DisplayFor(model => model.Age)</div>
-        <div><b>@Html.DisplayNameFor(model => model.Email) : </b> @Html.DisplayFor(model => model.Email)</div>
-        <div><b>@Html.DisplayNameFor(model => model.Phone) : </b> @Html.DisplayFor(model => model.Phone)</div>
-        <div><b>@Html.DisplayNameFor(model => model.CountryId) : </b> @Html.DisplayFor(model => model.Country.country_name)</div>
-        <div>
-            <b>Languages  : </b> @{
-                for (int i = 0; i < listLanguage.Count; i++)
-                {
-                    <span>  @listLanguage[i]</span>
-                }
-            }
+            </article>
+            @Html.ActionLink("Edit profile", "Edit")
+            @*</p>*@
         </div>
 
 
 
-    </div>
-    @if (!string.IsNullOrEmpty(Model.About))
-    {
-        <b style="margin-left: auto;margin-right: auto;display: table; clear:both;">@Html.DisplayNameFor(model => model.About)</b>
-        <p style="text-indent: 51px; clear:both;">@Html.DisplayFor(model => model.About)</p>
-    }
-</article>
-    </div>
-<section id="one" class="wrapper style1" style="padding-top: 0; padding-bottom: 0;">
-    @Html.ActionLink("Back to Home", "Index", "Home", null, new { @style = "    margin-left: 25px;" })
-    <div class="inner">
-        <article class="feature2">
-
-            <div class="image">
-                <img class="profileImage" src="@Url.Action("PictureForProfile", "Picture", new { userID = Model.id })"
-                     alt="" />
-            </div>
-            <div class="content" style="display:inline-block;float: right; margin-right: 100px;">
-                <div><b>@Html.DisplayNameFor(model => model.Name) : </b> @Html.DisplayFor(model => model.Name)</div>
-                <div><b>@Html.DisplayNameFor(model => model.LastName) : </b> @Html.DisplayFor(model => model.LastName)</div>
-                <div><b>@Html.DisplayNameFor(model => model.Age) : </b> @Html.DisplayFor(model => model.Age)</div>
-                <div><b>@Html.DisplayNameFor(model => model.Email) : </b> @Html.DisplayFor(model => model.Email)</div>
-                <div><b>@Html.DisplayNameFor(model => model.Phone) : </b> @Html.DisplayFor(model => model.Phone)</div>
-                <div><b>@Html.DisplayNameFor(model => model.CountryId) : </b> @Html.DisplayFor(model => model.Country.country_name)</div>
-                <div>
-                    <b>Languages  : </b> @{
-                        for (int i = 0; i < listLanguage.Count; i++)
-                        {
-                            <span>  @listLanguage[i]</span>
-                        }
-                    }
-                </div>
-            </div>
+    </section>
 
 
-            @*<br />*@
-            @if (!string.IsNullOrEmpty(Model.About))
-            {
-                <b style="margin-left: auto;margin-right: auto;display: table; clear:both;">@Html.DisplayNameFor(model => model.About)</b>
-                <p style="text-indent: 51px; clear:both;">@Html.DisplayFor(model => model.About)</p>
-            }
-        </article>
-        @Html.ActionLink("Edit profile", "Edit")
-        @*</p>*@
-    </div>
-
-
-
-</section>
-
-
-<section id="one" class="wrapper style1">
-    <div class="inner">
-        <article class="feature left">
-            <span class="image">
-                <img class="profileImage" src="@Url.Action("PictureForProfile", "Picture", new { userID = Model.id })"
-                     alt="" />
-            </span>
-            <div class="content">
-                <div>@Html.DisplayNameFor(model => model.Name)@Html.DisplayFor(model => model.Name)</div>
-                <div>@Html.DisplayNameFor(model => model.LastName)@Html.DisplayFor(model => model.LastName)</div>
-                <div>@Html.DisplayNameFor(model => model.Age)@Html.DisplayFor(model => model.Age)</div>
-                <div>@Html.DisplayNameFor(model => model.Email)@Html.DisplayFor(model => model.Email)</div>
-                <div>@Html.DisplayNameFor(model => model.Phone)@Html.DisplayFor(model => model.Phone)</div>
-                <div>@Html.DisplayNameFor(model => model.CountryId)@Html.DisplayFor(model => model.Country.country_name)</div>
-                <div>
-                    Languages @{
-                        var listLanguage2 = ViewBag.UserLanguage as List<string>;
-                        for (int i = 0; i < listLanguage2.Count; i++)
-                        {
-                            <span>  @listLanguage[i]</span>
-                        }
-                    }
-                </div>
-                <div>
-                    <b style="margin-left: auto;margin-right: auto;display: table;">@Html.DisplayNameFor(model => model.About)</b>
-                    <p style="text-indent: 51px;">@Html.DisplayFor(model => model.About)</p>
-                </div>
-            </div>
-            @*<b style="margin-left: auto;margin-right: auto;display: table;">@Html.DisplayNameFor(model => model.About)</b>
-                <p style="text-indent: 51px;">@Html.DisplayFor(model => model.About)</p>*@
-        </article>
-    </div>
-</section>
-
-
-<section id="one" class="wrapper style1">
-    @Html.ActionLink("Back to Home", "Index", "Home", null, new { @style = "    margin-left: 25px;" })
-    <div class="inner">
-        <article class="feature">
-
-            @*<div class="image" style="display:inline-block;">*@
-            <img class="profileImage image" src="@Url.Action("PictureForProfile", "Picture", new { userID = Model.id })"
-                 alt="" />
-            @*</div>*@
-            <div class="content">
-                <table>
-                    <tr>
-                        <th>@Html.DisplayNameFor(model => model.Name)</th>
-                        <td>@Html.DisplayFor(model => model.Name)</td>
-                    </tr>
-                    <tr>
-                        <th>@Html.DisplayNameFor(model => model.LastName)</th>
-                        <td>@Html.DisplayFor(model => model.LastName)</td>
-                    </tr>
-                    <tr>
-                        <th>@Html.DisplayNameFor(model => model.Age)</th>
-                        <td>@Html.DisplayFor(model => model.Age)</td>
-                    </tr>
-                    <tr>
-                        <th>@Html.DisplayNameFor(model => model.Email)</th>
-                        <td>@Html.DisplayFor(model => model.Email)</td>
-                    </tr>
-                    <tr>
-                        <th>@Html.DisplayNameFor(model => model.Phone)</th>
-                        <td>@Html.DisplayFor(model => model.Phone)</td>
-                    </tr>
-                    <tr>
-                        <th>@Html.DisplayNameFor(model => model.CountryId)</th>
-                        <td>@Html.DisplayFor(model => model.Country.country_name)</td>
-                    </tr>
-                    <tr>
-                        <th>Languages</th>
-                        <td>
-                            @{
-
-                                for (int i = 0; i < listLanguage.Count; i++)
-                                {
-                                    <span>  @listLanguage[i]</span>
-                                }
+    <section id="one" class="wrapper style1">
+        <div class="inner">
+            <article class="feature left">
+                <span class="image">
+                    <img class="profileImage" src="@Url.Action("PictureForProfile", "Picture", new { userID = Model.id })"
+                         alt="" />
+                </span>
+                <div class="content">
+                    <div>@Html.DisplayNameFor(model => model.Name)@Html.DisplayFor(model => model.Name)</div>
+                    <div>@Html.DisplayNameFor(model => model.LastName)@Html.DisplayFor(model => model.LastName)</div>
+                    <div>@Html.DisplayNameFor(model => model.Age)@Html.DisplayFor(model => model.Age)</div>
+                    <div>@Html.DisplayNameFor(model => model.Email)@Html.DisplayFor(model => model.Email)</div>
+                    <div>@Html.DisplayNameFor(model => model.Phone)@Html.DisplayFor(model => model.Phone)</div>
+                    <div>@Html.DisplayNameFor(model => model.CountryId)@Html.DisplayFor(model => model.Country.country_name)</div>
+                    <div>
+                        Languages @{
+                            var listLanguage2 = ViewBag.UserLanguage as List<string>;
+                            for (int i = 0; i < listLanguage2.Count; i++)
+                            {
+                                <span>  @listLanguage[i]</span>
                             }
-                        </td>
-                    </tr>
+                        }
+                    </div>
+                    <div>
+                        <b style="margin-left: auto;margin-right: auto;display: table;">@Html.DisplayNameFor(model => model.About)</b>
+                        <p style="text-indent: 51px;">@Html.DisplayFor(model => model.About)</p>
+                    </div>
+                </div>
+                @*<b style="margin-left: auto;margin-right: auto;display: table;">@Html.DisplayNameFor(model => model.About)</b>
+                    <p style="text-indent: 51px;">@Html.DisplayFor(model => model.About)</p>*@
+            </article>
+        </div>
+    </section>
 
 
-                </table>
+    <section id="one" class="wrapper style1">
+        @Html.ActionLink("Back to Home", "Index", "Home", null, new { @style = "    margin-left: 25px;" })
+        <div class="inner">
+            <article class="feature">
+
+                @*<div class="image" style="display:inline-block;">*@
+                <img class="profileImage image" src="@Url.Action("PictureForProfile", "Picture", new { userID = Model.id })"
+                     alt="" />
+                @*</div>*@
+                <div class="content">
+                    <table>
+                        <tr>
+                            <th>@Html.DisplayNameFor(model => model.Name)</th>
+                            <td>@Html.DisplayFor(model => model.Name)</td>
+                        </tr>
+                        <tr>
+                            <th>@Html.DisplayNameFor(model => model.LastName)</th>
+                            <td>@Html.DisplayFor(model => model.LastName)</td>
+                        </tr>
+                        <tr>
+                            <th>@Html.DisplayNameFor(model => model.Age)</th>
+                            <td>@Html.DisplayFor(model => model.Age)</td>
+                        </tr>
+                        <tr>
+                            <th>@Html.DisplayNameFor(model => model.Email)</th>
+                            <td>@Html.DisplayFor(model => model.Email)</td>
+                        </tr>
+                        <tr>
+                            <th>@Html.DisplayNameFor(model => model.Phone)</th>
+                            <td>@Html.DisplayFor(model => model.Phone)</td>
+                        </tr>
+                        <tr>
+                            <th>@Html.DisplayNameFor(model => model.CountryId)</th>
+                            <td>@Html.DisplayFor(model => model.Country.country_name)</td>
+                        </tr>
+                        <tr>
+                            <th>Languages</th>
+                            <td>
+                                @{
+
+                                    for (int i = 0; i < listLanguage.Count; i++)
+                                    {
+                                        <span>  @listLanguage[i]</span>
+                                    }
+                                }
+                            </td>
+                        </tr>
 
 
-            </div>
-            @*<br />
-                <b style="margin-left: auto;margin-right: auto;display: table;">@Html.DisplayNameFor(model => model.About)</b>
-                <p style="text-indent: 51px;">@Html.DisplayFor(model => model.About)</p>*@
-        </article>
-        <section id="two" class="wrapper special">
-            <div class="inner narrow">
-                <h2>@Html.DisplayNameFor(model => model.About)</h2>
-                <p>@Html.DisplayFor(model => model.About)</p>
-            </div>
-        </section>
-
-        @Html.ActionLink("Edit profile", "Edit")
-        @*</p>*@
-    </div>
-
-</section>
+                    </table>
 
 
-<script src="~/Scripts/Elements/Profile.js"></script>
+                </div>
+                @*<br />
+                    <b style="margin-left: auto;margin-right: auto;display: table;">@Html.DisplayNameFor(model => model.About)</b>
+                    <p style="text-indent: 51px;">@Html.DisplayFor(model => model.About)</p>*@
+            </article>
+            <section id="two" class="wrapper special">
+                <div class="inner narrow">
+                    <h2>@Html.DisplayNameFor(model => model.About)</h2>
+                    <p>@Html.DisplayFor(model => model.About)</p>
+                </div>
+            </section>
 
-<section class="post">
-    <a href="#" class="image"><img src="images/pic01.jpg" alt=""></a>
-    <div class="content">
-        <h3>Ultricies sed lorem</h3>
-        <p>Lorem ipsum dolor sit amet interdum arcu pulvinar lorem ipsum sed feugiat etiam sed magna adipiscing.</p>
-        <a href="#" class="button">More</a>
-    </div>
-</section>
+            @Html.ActionLink("Edit profile", "Edit")
+            @*</p>*@
+        </div>
+
+    </section>
+
+
+    <script src="~/Scripts/Elements/Profile.js"></script>
+
+    <section class="post">
+        <a href="#" class="image"><img src="images/pic01.jpg" alt=""></a>
+        <div class="content">
+            <h3>Ultricies sed lorem</h3>
+            <p>Lorem ipsum dolor sit amet interdum arcu pulvinar lorem ipsum sed feugiat etiam sed magna adipiscing.</p>
+            <a href="#" class="button">More</a>
+        </div>
+    </section>
