@@ -29,5 +29,15 @@ namespace TourForEverybuddy.Controllers.Elements
             //manager.GetTour(tourID);
             return PartialView(manager.GetTour(tourID));
         }
+
+
+        [ChildActionOnly]
+        public ActionResult User(int userID)
+        {
+            ViewBag.UserLanguage = manager.GetUserLanguages(userID).Select(x => x.Language.name).ToList();
+
+            return PartialView(manager.GetUser(userID));
+        }
+
     }
 }

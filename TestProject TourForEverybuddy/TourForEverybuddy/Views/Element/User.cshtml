@@ -1,0 +1,34 @@
+﻿@model TourForEverybuddy.Models.User
+@{
+    ViewBag.Title = "User";
+}
+
+<section>  @*class="profileContent">*@
+    <div class="wrapImg">
+        @if (Model.Photo != null)
+        {
+            <img id="imgProfile" src="@Url.Action("PictureForProfile", "Picture", new { userID = Model.id })" alt="" />
+        }
+        else
+        {
+            <img id="imgProfile" src="~/images/Profile/default_avatar-min.jpg" alt="" />
+        }
+    </div>
+    <div class="userData">
+        @Html.ActionLink(Model.Name + " " + Model.LastName, "User", "Profile", new { userID = Model.id })
+        @*<h3>Anna Popova</h3>*@
+        <div>@Model.Age, @Model.Country.country_name</div>
+        <div>
+            @{
+                var listLanguage = ViewBag.UserLanguage as List<string>;
+
+
+                for (int i = 0; i < listLanguage.Count; i++)
+                {
+                    <span>@listLanguage[i],</span>
+                }
+            }
+        </div>
+    </div>
+</section>
+

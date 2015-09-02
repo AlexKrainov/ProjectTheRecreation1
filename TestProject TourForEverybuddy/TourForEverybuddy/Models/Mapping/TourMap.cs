@@ -12,7 +12,11 @@ namespace TourForEverybuddy.Models.Mapping
 
             // Properties
             this.Property(t => t.title)
-                .IsRequired();
+                .IsRequired()
+                .HasMaxLength(100);
+
+            this.Property(t => t.description)
+                .HasMaxLength(256);
 
             // Table & Column Mappings
             this.ToTable("Tour");
@@ -21,9 +25,24 @@ namespace TourForEverybuddy.Models.Mapping
             this.Property(t => t.description).HasColumnName("description");
             this.Property(t => t.userID).HasColumnName("userID");
             this.Property(t => t.disable).HasColumnName("disable");
+            this.Property(t => t.cityID).HasColumnName("cityID");
+            this.Property(t => t.fullDescription).HasColumnName("fullDescription");
+            this.Property(t => t.MaximumTravelers).HasColumnName("MaximumTravelers");
+            this.Property(t => t.price).HasColumnName("price");
+            this.Property(t => t.durationID).HasColumnName("durationID");
+            this.Property(t => t.startAtID).HasColumnName("startAtID");
 
             // Relationships
-            this.HasOptional(t => t.User)
+            this.HasRequired(t => t.Tour_Cities)
+                .WithMany(t => t.Tours)
+                .HasForeignKey(d => d.cityID);
+            this.HasOptional(t => t.Tour_Duration)
+                .WithMany(t => t.Tours)
+                .HasForeignKey(d => d.durationID);
+            this.HasOptional(t => t.Tour_StartsAt)
+                .WithMany(t => t.Tours)
+                .HasForeignKey(d => d.startAtID);
+            this.HasRequired(t => t.User)
                 .WithMany(t => t.Tours)
                 .HasForeignKey(d => d.userID);
 

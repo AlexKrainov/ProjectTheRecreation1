@@ -6,57 +6,61 @@
 }
 <link rel="stylesheet" href="~/Content/Elements/Profile.css" />
 <link rel="stylesheet" href="~/Content/Elements/TourStyle.css" />
+<link rel="stylesheet" href="~/Content/Elements/UserStyle.css" />
 
-@*<div class="container">*@
+<br />
+@Html.ActionLink("Back to Home", "Index", "Home", null, new { @style = "    margin-left: 25px;" })
 
-<section id="one" class="wrapper style1" style="padding-top: 0; padding-bottom: 0;">
-    @Html.ActionLink("Back to Home", "Index", "Home", null, new { @style = "    margin-left: 25px;" })
-    <div class="inner">
-        <article class="feature right">
-            <span class="image">
-                <img src="@Url.Action("PictureForProfile", "Picture", new { userID = Model.id })"
-                     alt="" />
-            </span>
-            <div class="content">
-                <div><b>@Html.DisplayNameFor(model => model.LastName) : </b> @Html.DisplayFor(model => model.LastName)</div>
-                <div><b>@Html.DisplayNameFor(model => model.Age) : </b> @Html.DisplayFor(model => model.Age)</div>
-                <div><b>@Html.DisplayNameFor(model => model.Email) : </b> @Html.DisplayFor(model => model.Email)</div>
-                <div><b>@Html.DisplayNameFor(model => model.Phone) : </b> @Html.DisplayFor(model => model.Phone)</div>
-                <div><b>@Html.DisplayNameFor(model => model.CountryId) : </b> @Html.DisplayFor(model => model.Country.country_name)</div>
-                <div>
-                    <b>Languages  : </b> @{
-                        var listLanguage = ViewBag.UserLanguage as List<string>;
-                        for (int i = 0; i < listLanguage.Count; i++)
-                        {
-                            <span>  @listLanguage[i]</span>
-                        }
-                    }
-                </div>
-                @if (!string.IsNullOrEmpty(Model.About))
-                {
-                    <b style="margin-left: auto;margin-right: auto;display: table; clear:both;">@Html.DisplayNameFor(model => model.About)</b>
-                    <p style="text-indent: 51px; clear:both;">@Html.DisplayFor(model => model.About)</p>
-                }
+<section class="wrapper" id="main">
+    <div class="container">
+        
+
+        <section class="row">
+            <div class="leftSideContainer">
+                @Html.Action("User", "Element", new { userID = Model.id })
             </div>
-        </article>
-        @Html.ActionLink("Edit profile", "Edit")
+            <div class="6u 12u$(xsmall) rightContainer">
+                @*rightSideContainer">*@
+                <table class="alt">
+                    <tr>
+                        <th>@Html.DisplayNameFor(model => model.Email)</th>
+                        <td>@Html.DisplayFor(model => model.Email)</td>
+                    </tr>
+                    <tr>
+                        <th>@Html.DisplayNameFor(model => model.Phone)</th>
+                        <td>@Html.DisplayFor(model => model.Phone)</td>
+                    </tr>
+                </table>
+
+            </div>
+            <div class="container">
+                <header class="major special">
+                    <h4>@Html.DisplayNameFor(model => model.About)</h4>
+                </header>
+                <p>@Html.DisplayFor(model => model.About)</p>
+            </div>
+                <div class="row">
+                    @Html.ActionLink("Edit profile", "Edit", null, new { @class = "button alt" })
+                </div>
+        </section>
+
+        <br />
+        @if (Model.RouleId == 2)
+        {
+            <div class="inner">
+                <div class="row">
+                    @Html.ActionLink("Add new tour", "AddTour", null, new { @class = "button alt" })
+                </div>
+                <div class="posts">
+                    @for (int i = 0; i < Model.Tours.Count; i++)
+                    {
+                        @Html.Action("Tour", "Element", new { tourID = Model.Tours.ElementAt(i).Id, edit = true })
+                    }
+
+                </div>
+            </div>
+        }
     </div>
 </section>
 
-<br />
-@if (Model.RouleId == 2)
-{
-    <div class="inner">
-        <div class="posts">
-            @for (int i = 0; i < Model.Tours.Count; i++)
-            {
-                @Html.Action("Tour", "Element", new { tourID = Model.Tours.ElementAt(i).Id, edit = true })
-            }
-
-        </div>
-    </div>
-}
-    @*</div>*@
-
-
-    <script src="~/Scripts/Elements/Profile.js"></script>
+<script src="~/Scripts/Elements/Profile.js"></script>

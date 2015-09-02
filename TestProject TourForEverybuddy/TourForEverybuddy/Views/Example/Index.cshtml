@@ -58,12 +58,8 @@
         <div>@Model.Age, @Model.Country.country_name</div>
         <div>
             @{
-                //ToDo: тут ошибка
                 var listLanguage = ViewBag.UserLanguage as List<string>;
-                if (listLanguage == null)
-                {
-                    listLanguage = new List<string>();
-                }
+                
                 
                 for (int i = 0; i < listLanguage.Count; i++)
                 {
@@ -283,7 +279,6 @@
                 <div><b>@Html.DisplayNameFor(model => model.CountryId) : </b> @Html.DisplayFor(model => model.Country.country_name)</div>
                 <div>
                     <b>Languages  : </b> @{
-                        var listLanguage = ViewBag.UserLanguage as List<string>;
                         for (int i = 0; i < listLanguage.Count; i++)
                         {
                             <span>  @listLanguage[i]</span>
@@ -546,22 +541,58 @@
                         }
 @*<img src="@Url.Action("Show", "Picture", new { id = tour.Id } )" alt="" />*@
 @*<img src="@string.Concat("data:",tour.Tour_PictureOfTour.ElementAt(0).ContentType,";base64,") @Convert.ToBase64String(tour.Tour_PictureOfTour.ElementAt(0).Picture, 0, tour.Tour_PictureOfTour.ElementAt(0).Picture.Length)" alt="" />
-                        </div>
+                            </div>
 
-                        <div class="content">
-                            <h2>@tour.title </h2>
-                            <p class="contentDescription">@tour.description</p>
-                            <ul class="actions">
-                                <li>
-                                    @Html.ActionLink("Edit tour", "EditTour", new { id = tour.Id }, new { @class = "button alt" })
-                                </li>
-                                <li>
-                                    @Html.ActionLink("Delete tour", "DeleteTour", new { id = tour.Id }, new { @class = "button" })
-                                </li>
-                            </ul>
-                        </div>
-                    </article>
+                            <div class="content">
+                                <h2>@tour.title </h2>
+                                <p class="contentDescription">@tour.description</p>
+                                <ul class="actions">
+                                    <li>
+                                        @Html.ActionLink("Edit tour", "EditTour", new { id = tour.Id }, new { @class = "button alt" })
+                                    </li>
+                                    <li>
+                                        @Html.ActionLink("Delete tour", "DeleteTour", new { id = tour.Id }, new { @class = "button" })
+                                    </li>
+                                </ul>
+                            </div>
+                        </article>
+                    }
                 }
-            }
+            </div>
+        </section>
+
+        <section id="one" class="wrapper style1" style="padding-top: 0; padding-bottom: 0;">
+        @Html.ActionLink("Back to Home", "Index", "Home", null, new { @style = "    margin-left: 25px;" })
+        <div class="inner">
+            <article class="feature right">
+                <span class="image">
+                    <img src="@Url.Action("PictureForProfile", "Picture", new { userID = Model.id })"
+                         alt="" />
+                </span>
+                <div class="content">
+                    <div><b>@Html.DisplayNameFor(model => model.LastName) : </b> @Html.DisplayFor(model => model.LastName)</div>
+                    <div><b>@Html.DisplayNameFor(model => model.Age) : </b> @Html.DisplayFor(model => model.Age)</div>
+                    <div><b>@Html.DisplayNameFor(model => model.Email) : </b> @Html.DisplayFor(model => model.Email)</div>
+                    <div><b>@Html.DisplayNameFor(model => model.Phone) : </b> @Html.DisplayFor(model => model.Phone)</div>
+                    <div><b>@Html.DisplayNameFor(model => model.CountryId) : </b> @Html.DisplayFor(model => model.Country.country_name)</div>
+                    <div>
+                        <b>Languages  : </b> @{
+                            var listLanguage = ViewBag.UserLanguage as List<string>;
+                            for (int i = 0; i < listLanguage.Count; i++)
+                            {
+                                <span>  @listLanguage[i]</span>
+                            }
+                        }
+                    </div>
+                    @if (!string.IsNullOrEmpty(Model.About))
+                    {
+                        <b style="margin-left: auto;margin-right: auto;display: table; clear:both;">@Html.DisplayNameFor(model => model.About)</b>
+                        <p style="text-indent: 51px; clear:both;">@Html.DisplayFor(model => model.About)</p>
+                    }
+                </div>
+            </article>
+            @Html.ActionLink("Edit profile", "Edit")
         </div>
-    </section>*@
+    </section>
+
+*@

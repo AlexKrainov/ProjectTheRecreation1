@@ -15,10 +15,10 @@ namespace TourForEverybuddy.Controllers.Membership
         {
             DataManager manager = new DataManager();
             //var user = Storage.currentUser;
-           var  user = manager.GetUser(1);
-            
-            
-            ViewBag.UserLanguage = manager.GetUserLanguages(user.id).Select(x => x.Language.name).ToList();
+           var  user = manager.GetUser(3);
+
+           var list = manager.GetUserLanguages(user.id).Select(x => x.Language.name).ToList();
+           ViewBag.UserLanguage = list;
             return View(user);
         }
     }

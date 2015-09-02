@@ -1,0 +1,27 @@
+﻿.profileContent {
+    width: 430px;
+    margin: 0 0 69px 244px;
+    /* border: 1px solid black; */
+}
+
+.wrapImg {
+    display: inline-block;
+    width: 200px;
+}
+
+#imgProfile {
+    width: 100%;
+    border-radius: 185px;
+    margin: 0 auto -58px auto;
+    box-shadow: 12px 8px 12px -5px;
+}
+
+.userData {
+    display: inline-block;
+    width: 200px;
+    color: #4d5968;
+    margin: 0 0 0 15px;
+    font-family: 'Century Gothic', CenturyGothic, AppleGothic, sans-serif;
+    font-size: larger;
+    font-weight: bold;
+}
