@@ -18,6 +18,9 @@ namespace TourForEverybuddy.Models.Mapping
             this.Property(t => t.description)
                 .HasMaxLength(256);
 
+            this.Property(t => t.startsAt)
+                .HasMaxLength(20);
+
             // Table & Column Mappings
             this.ToTable("Tour");
             this.Property(t => t.Id).HasColumnName("Id");
@@ -30,7 +33,7 @@ namespace TourForEverybuddy.Models.Mapping
             this.Property(t => t.MaximumTravelers).HasColumnName("MaximumTravelers");
             this.Property(t => t.price).HasColumnName("price");
             this.Property(t => t.durationID).HasColumnName("durationID");
-            this.Property(t => t.startAtID).HasColumnName("startAtID");
+            this.Property(t => t.startsAt).HasColumnName("startsAt");
 
             // Relationships
             this.HasRequired(t => t.Tour_Cities)
@@ -39,9 +42,6 @@ namespace TourForEverybuddy.Models.Mapping
             this.HasOptional(t => t.Tour_Duration)
                 .WithMany(t => t.Tours)
                 .HasForeignKey(d => d.durationID);
-            this.HasOptional(t => t.Tour_StartsAt)
-                .WithMany(t => t.Tours)
-                .HasForeignKey(d => d.startAtID);
             this.HasRequired(t => t.User)
                 .WithMany(t => t.Tours)
                 .HasForeignKey(d => d.userID);

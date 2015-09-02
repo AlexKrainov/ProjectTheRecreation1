@@ -123,3 +123,30 @@ function pagePicture(o) {
 }
 
 //end Slide picture
+
+// Add tour 
+
+function AnyTimeClick(o) {
+    if ($(o).prop("checked") == true) {
+        $("#displayNameStartsAt").css("opacity", ".2");
+        $("#startsAt").css("opacity", ".2");
+    }else
+    {
+        $("#displayNameStartsAt").css("opacity", "1");
+        $("#startsAt").css("opacity", "1");
+    }
+}
+
+function SelectDaysOfTheWeek(o) {
+
+    if($(o).css("opacity") != "1")
+    {
+        $(o).css("opacity", "1");
+    }else
+    {
+        $(o).css("opacity", ".2");
+    }
+}
+
+
+//

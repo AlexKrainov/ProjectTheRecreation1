@@ -22,13 +22,12 @@ namespace TourForEverybuddy.Models
         public Nullable<byte> MaximumTravelers { get; set; }
         public Nullable<int> price { get; set; }
         public Nullable<byte> durationID { get; set; }
-        public Nullable<int> startAtID { get; set; }
+        public string startsAt { get; set; }
         public virtual ICollection<Tour_CommentOfTour> Tour_CommentOfTour { get; set; }
         public virtual ICollection<Tour_DaysOfTheWeek> Tour_DaysOfTheWeek { get; set; }
         public virtual ICollection<Tour_PictureOfTour> Tour_PictureOfTour { get; set; }
         public virtual Tour_Cities Tour_Cities { get; set; }
         public virtual Tour_Duration Tour_Duration { get; set; }
-        public virtual Tour_StartsAt Tour_StartsAt { get; set; }
         public virtual User User { get; set; }
     }
 }

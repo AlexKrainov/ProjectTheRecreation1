@@ -100,5 +100,14 @@ namespace TourForEverybuddy.Models
         {
             return db.Tours.FirstOrDefault(x => x.Id == tourID);
         }
+
+        internal IQueryable<Tour_Cities> GetCities()
+        {
+            return db.Tour_Cities;
+        }
+        internal IQueryable<Tour_Duration> GetDuration()
+        {
+            return db.Tour_Duration;
+        }
     }
 }

@@ -75,15 +75,21 @@ namespace TourForEverybuddy.Controllers.Membership
         [HttpGet]
         public ActionResult AddTour()
         {
+            //SelectList selectedList = new SelectList(manager.GetCities(), "id","Name");
+            ViewBag.Cities = manager.GetCities();
+            ViewBag.Duration = manager.GetDuration();
+
             return View();
         }
 
         [HttpPost]
-        public ActionResult AddTour(Tour tour, HttpPostedFileBase[] Pictures)
+        public ActionResult AddTour(Tour tour,bool isAnyTime, HttpPostedFileBase[] Pictures)
         {
             var user = Storage.currentUser;
 
             tour.userID = user.id;
+            if (isAnyTime)
+                tour.startsAt = "Any time";
             GetPictureForTour(tour, Pictures);
 
             if (!manager.CreateTour(tour))
