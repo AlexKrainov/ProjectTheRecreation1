@@ -34,14 +34,15 @@ function handleFileSelect(e) {
 
 }
 
-function CheckEmptyFild() {
+function CheckEmptyFildEdit() {
     if ($("#title").val().length == 0 || $("#description").val().length == 0) {
-        $("#ValidIsFailed").text("Field title or the message can not be empty.");
+        $("#ValidIsFailed").text("Same field can not be empty.");
         $("#submitCreate").addClass("disabled");
         return false;
     }
     return true;
 }
+
 function TextBoxChange() {
     $("#ValidIsFailed").text("");
     $("#submitCreate").removeClass("disabled");
@@ -62,10 +63,9 @@ function AddHiddenID() {
     $(".image").each(function () {
         if ($(this).css("opacity") != "1") {
             array += $(this).attr("id") + ",";
-            console.log(array);
         }
     });
-    console.log(array);
+
     $("#PictureArray").val(array);
 
     if ($("#PictureArray").val().length != 0) {
@@ -126,6 +126,12 @@ function pagePicture(o) {
 
 // Add tour 
 
+$(document).ready(function () {
+    if ($("#startsAt") != undefined) {
+        $("#startsAt").val("12:00");
+    }
+});
+
 function AnyTimeClick(o) {
     if ($(o).prop("checked") == true) {
         $("#displayNameStartsAt").css("opacity", ".2");
@@ -146,7 +152,24 @@ function SelectDaysOfTheWeek(o) {
     {
         $(o).css("opacity", ".2");
     }
-}
 
+    AddHiddenIDEditTour();
+}
+function AddHiddenIDEditTour() {
+    var array = "";
+    $(".imgsDays").children().each(function () {
+        if ($(this).css("opacity") == "1") {
+            array += $(this).attr("id") + ",";
+        }
+    });
+    $("#DaysOfTheWeek").val(array);
+
+    //if ($("#DaysOfTheWeek").val().length != 0) {
+    //  //  $("#RemoveBtn").removeClass("disabled");
+    //    $("#DeletePicture").text("");
+    //}
+    //else
+    //    $("#RemoveBtn").addClass("disabled");
+}
 
 //

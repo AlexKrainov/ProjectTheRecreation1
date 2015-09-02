@@ -12,7 +12,7 @@
     display: block;
     margin-left: auto;
     margin-right: auto;
-        border-radius: 255px;
+    border-radius: 255px;
 }
 
 
@@ -126,6 +126,23 @@
     margin-top: 45px;
     margin-bottom: 40px;
 }
+
+/*#region Add tour */
+.imgsDays {
+    margin-left: 15px;
+}
+.imgsDays > img {
+    cursor: pointer;
+}
+
+.rowTour {
+    width: 49%;
+    display: inline-block;
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
+
+/*#endregion */
 
 
 /*@media screen and (max-width: 1680px) {

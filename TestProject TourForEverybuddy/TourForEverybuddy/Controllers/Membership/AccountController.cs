@@ -38,7 +38,7 @@ namespace TourForEverybuddy.Controllers.Membership
         {
             var user = Storage.currentUser;
 
-            FillDropDownList(user.id);
+            FillDropDownListCountriesAndLanguages(user.id);
 
             return View(user);
         }
@@ -59,7 +59,7 @@ namespace TourForEverybuddy.Controllers.Membership
                 }
                 else
                 {
-                    FillDropDownList(user.id);
+                    FillDropDownListCountriesAndLanguages(user.id);
                     ModelState.AddModelError("EmailIsHave", "This user is already registered.");
                 }
             }
@@ -75,24 +75,22 @@ namespace TourForEverybuddy.Controllers.Membership
         [HttpGet]
         public ActionResult AddTour()
         {
-            //SelectList selectedList = new SelectList(manager.GetCities(), "id","Name");
-            ViewBag.Cities = manager.GetCities();
-            ViewBag.Duration = manager.GetDuration();
-
+            FillDDLCitiesDurationDay();
             return View();
         }
 
         [HttpPost]
-        public ActionResult AddTour(Tour tour,bool isAnyTime, HttpPostedFileBase[] Pictures)
+        public ActionResult AddTour(Tour tour,bool isAnyTime, string DaysOfTheWeek, HttpPostedFileBase[] Pictures)
         {
             var user = Storage.currentUser;
 
             tour.userID = user.id;
             if (isAnyTime)
                 tour.startsAt = "Any time";
+
             GetPictureForTour(tour, Pictures);
 
-            if (!manager.CreateTour(tour))
+            if (!manager.CreateTour(tour, DaysOfTheWeek.Split(',')))
             {
                 ModelState.AddModelError(
 @"TourIsHave", "Sorry , this tour already exists. Please, change the title of the tour. ");
@@ -195,7 +193,7 @@ namespace TourForEverybuddy.Controllers.Membership
         }
         #endregion
 
-        private void FillDropDownList(int userID)
+        private void FillDropDownListCountriesAndLanguages(int userID)
         {
             ViewBag.Countries =
               manager.GetCountries().Select(x => new SelectListItem { Text = x.country_name, Value = x.id.ToString() }).ToList();
@@ -206,6 +204,13 @@ namespace TourForEverybuddy.Controllers.Membership
             ViewBag.ArrayLanguages = list;
         }
 
+        private void FillDDLCitiesDurationDay()
+        {
+            ViewBag.Cities = manager.GetCities();
+            ViewBag.Duration = manager.GetDuration();
+            ViewBag.DayOfTheWeek = manager.GetDayOfTheWeek().ToList();
+
+        }
 
 
     }

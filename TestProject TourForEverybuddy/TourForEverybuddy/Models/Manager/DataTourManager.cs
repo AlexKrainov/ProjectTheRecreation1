@@ -8,7 +8,7 @@ namespace TourForEverybuddy.Models
 {
     public partial class DataManager
     {
-        internal bool CreateTour(Tour tour)
+        internal bool CreateTour(Tour tour, string[] arrayDaysOfTheWeek)
         {
             //ToDo: Проверка
             if (db.Tours.FirstOrDefault(x => x.title == tour.title) != null)
@@ -18,8 +18,15 @@ namespace TourForEverybuddy.Models
             {
                 db.Tours.Add(tour);
                 db.SaveChanges();
+
+                for (int i = 0; i < arrayDaysOfTheWeek.Length; i++)
+                    if (!string.IsNullOrEmpty(arrayDaysOfTheWeek[i]))
+                        db.Tour_DaysOfTheWeek.Add(
+                            new Tour_DaysOfTheWeek { DaysOfTheWeekID = Convert.ToByte(arrayDaysOfTheWeek[i]), TourID = tour.Id });
+
+                db.SaveChanges();
             }
-            catch (Exception)
+            catch (Exception ex)
             {
                 return false;
             }
@@ -41,9 +48,8 @@ namespace TourForEverybuddy.Models
 
                 db.SaveChanges();
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-
                 return false;
             }
 
@@ -84,7 +90,7 @@ namespace TourForEverybuddy.Models
                 //DeletePictures(tourID, db.Tour_PictureOfTour.Where(x => x.TourID == tourID).Select(x => x.Id.ToString()).ToArray());
                 //db.Tours.Remove(db.Tours.FirstOrDefault(x => x.Id == tourID));
                 var oldTour = db.Tours.FirstOrDefault(x => x.Id == tourID);
-                oldTour.disable =  true;
+                oldTour.disable = true;
 
                 db.SaveChanges();
             }
@@ -108,6 +114,16 @@ namespace TourForEverybuddy.Models
         internal IQueryable<Tour_Duration> GetDuration()
         {
             return db.Tour_Duration;
+        }
+
+        internal IQueryable<DaysOfTheWeek> GetDayOfTheWeek()
+        {
+            return db.DaysOfTheWeeks;
+        }
+
+        internal IQueryable<Tour_DaysOfTheWeek> GetDayOfTheWeek(int tourID)
+        {
+            return db.Tour_DaysOfTheWeek.Where(x => x.TourID == tourID);
         }
     }
 }

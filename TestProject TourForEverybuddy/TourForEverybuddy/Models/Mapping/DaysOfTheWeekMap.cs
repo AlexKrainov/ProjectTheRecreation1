@@ -23,12 +23,16 @@ namespace TourForEverybuddy.Models.Mapping
                 .IsRequired()
                 .HasMaxLength(4);
 
+            this.Property(t => t.Path)
+                .HasMaxLength(100);
+
             // Table & Column Mappings
             this.ToTable("DaysOfTheWeek");
             this.Property(t => t.Id).HasColumnName("Id");
             this.Property(t => t.Name).HasColumnName("Name");
             this.Property(t => t.NameRus).HasColumnName("NameRus");
             this.Property(t => t.Code).HasColumnName("Code");
+            this.Property(t => t.Path).HasColumnName("Path");
         }
     }
 }

@@ -20,6 +20,15 @@
     <div class="content">
         @*@Html.ActionLink(Model.title, "ActionName", "controllerName", null, new { @class = "titleTour" })*@
         <b class="titleTour">@Model.title</b>
+        <div class="elements_tour">
+            @{
+                var week = (List<TourForEverybuddy.Models.Tour_DaysOfTheWeek>)ViewBag.DaysOfTheWeek;
+                for (int i = 0; i < week.Count; i++)
+                {
+                    <img src="@week[i].DaysOfTheWeek.Path" title="@week[i].DaysOfTheWeek.Name" />
+                }
+            }
+        </div>
         <p class="contentDescription">
             @Model.description
         </p>

@@ -10,7 +10,7 @@
 
     @using (Html.BeginForm("AddTour", "Account", null, FormMethod.Post, new { enctype = "multipart/form-data" }))
     {
-        <section id="two" class="wrapper special" style="padding-top: 0px;">
+        <section id="one" class="wrapper" style="padding-top: 0;">
             <div class="inner">
                 <div class="file-input-wrapper">
                     <button class="btn-file-input">Upload File</button>
@@ -18,46 +18,52 @@
                 </div>
                 @*<input class="button alt small" id="Pictures" name="Pictures" type="file" value="Загрузить фотки" multiple onchange="handleFileSelect(this);" />*@
                 <div class="images"><br /></div>
+                <b>@Html.DisplayNameFor(model => model.title)</b>
                 @Html.TextBox("title", null, new { @placeholder = "Enter you title", @onchange = "TextBoxChange()", @style = "margin: 10px auto 10px 0px;" })
-                <div >
+                <div>
+                    <b>@Html.DisplayNameFor(model => model.description)</b>
                     @Html.TextArea("description", null, new { @rows = "2", @placeholder = "Enter your massage ... ", @onchange = "TextBoxChange()" })
                 </div>
-                <div >
+                <div>
+                    <b>@Html.DisplayNameFor(model => model.fullDescription)</b>
                     @Html.TextArea("fullDescription", null, new { @rows = "6", @placeholder = "Enter your full description ... ", @onchange = "TextBoxChange()" })
                 </div>
-                <div >
-                    @Html.DisplayNameFor(model => model.cityID)
+                <div class="rowTour">
+                    <b>@Html.DisplayNameFor(model => model.cityID)</b>
                     @Html.DropDownList("cityID", new SelectList(ViewBag.Cities, "id", "Name"))
                 </div>
-                <div >
-                    @Html.DisplayNameFor(model => model.MaximumTravelers)
-                    @Html.TextBox("MaximumTravelers", "1", new { @type = "number" })
-                </div>
-                <div>
-                    @Html.DisplayNameFor(model => model.price)
-                    @Html.TextBox("price", "1", new { @type = "number" }) $
-                </div>
-                <div>
-                    @Html.DisplayNameFor(model => model.durationID)
+                <div class="rowTour">
+                    <b>@Html.DisplayNameFor(model => model.durationID)</b>
                     @Html.DropDownList("durationID", new SelectList(ViewBag.Duration, "Id", "Time"))
                 </div>
-                <div>
-                    @Html.Hidden("DaysOfTheWeek")
-                    <img id="sun" src="~/images/Days of the week and months/daysofweek_sun-min.png" alt="" onclick="SelectDaysOfTheWeek(this)" style="opacity: .2" />
-                    <img id="mon" src="~/images/Days of the week and months/daysofweek_mon-min.png" alt="" onclick="SelectDaysOfTheWeek(this)" style="opacity: .2" />
-                    <img id="tue" src="~/images/Days of the week and months/daysofweek_tue-min.png" alt="" onclick="SelectDaysOfTheWeek(this)" style="opacity: .2" />
-                    <img id="wed" src="~/images/Days of the week and months/daysofweek_ wein.png" alt="" onclick="SelectDaysOfTheWeek(this)" style="opacity: .2" />
-                    <img id="thu" src="~/images/Days of the week and months/daysofweek_thu-min.png" alt="" onclick="SelectDaysOfTheWeek(this)" style="opacity: .2" />
-                    <img id="fri" src="~/images/Days of the week and months/daysofweek_fri-min.png" alt="" onclick="SelectDaysOfTheWeek(this)" style="opacity: .2" />
-                    <img id="sat" src="~/images/Days of the week and months/daysofweek_sat-min.png" alt="" onclick="SelectDaysOfTheWeek(this)" style="opacity: .2" />
+                <div class="rowTour">
+                    <b>@Html.DisplayNameFor(model => model.MaximumTravelers)</b>
+                    @Html.TextBox("MaximumTravelers", "1", new { @type = "number" })
                 </div>
-                <div>
-                    <span id="displayNameStartsAt">@Html.DisplayNameFor(model => model.startsAt)</span>
-                    @Html.TextBox("startsAt", null, new { @type = "time" }) or 
-                    @Html.CheckBox("isAnyTime", false, new { @onclick = "AnyTimeClick(this)" } ) Any time ?
+                <div class="rowTour">
+                    <b>@Html.DisplayNameFor(model => model.price)</b>
+                    @Html.TextBox("price", "1", new { @type = "number" }) $
+                </div>
+                <div style="display: table; margin: 0 auto;">
+                    @Html.Hidden("DaysOfTheWeek")
+                    <div class="imgsDays" title="Select day of the week ... ">
+                        @{
+        var week = (List<TourForEverybuddy.Models.DaysOfTheWeek>)ViewBag.DayOfTheWeek;
+        for (int i = 0; i < week.Count; i++)
+        {
+            <img id="@week[i].Id" src="@week[i].Path" title="@week[i].Name" onclick="SelectDaysOfTheWeek(this)" style="opacity: .3" />
+        }
+}
+                    </div>
+                    <div>
+                        <b id="displayNameStartsAt">@Html.DisplayNameFor(model => model.startsAt)  &nbsp;&nbsp;</b>
+                        @Html.TextBox("startsAt", null, new { @type = "time" })<b>&nbsp;&nbsp;&nbsp;&nbsp;or&nbsp;</b>
+                        @Html.CheckBox("isAnyTime", false, new { @onclick = "AnyTimeClick(this)", @value = "12:00" })<b>any time ?</b>
+                    </div>
                 </div>
             </div>
-            <input class="button special" id="submitCreate" type="submit" style="margin-top: 15px;" value="Create" onclick="return CheckEmptyFild()" />
+            <input class="button special" id="submitCreate" type="submit" style="margin: 15px auto; display: block;"
+                   value="Create" onclick="return CheckEmptyFildEdit()" />
             @Html.ValidationMessage("TourIsHave", new { @style = "color: red; font-size: large;" })
             @Html.ValidationMessage("ValidIsFailed", new { @style = "color: red; font-size: large;", @id = "ValidIsFailed" })
         </section>
