@@ -85,7 +85,7 @@ namespace TourForEverybuddy.Controllers.Membership
             var user = Storage.currentUser;
 
             tour.userID = user.id;
-            if (isAnyTime)
+            if (isAnyTime || string.IsNullOrEmpty(tour.startsAt))
                 tour.startsAt = "Any time";
 
             GetPictureForTour(tour, Pictures);

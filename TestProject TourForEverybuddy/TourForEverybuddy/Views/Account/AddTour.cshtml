@@ -18,31 +18,31 @@
                 </div>
                 @*<input class="button alt small" id="Pictures" name="Pictures" type="file" value="Загрузить фотки" multiple onchange="handleFileSelect(this);" />*@
                 <div class="images"><br /></div>
-                <b>@Html.DisplayNameFor(model => model.title)</b>
+                <em class="em_for_editor_tour">@Html.DisplayNameFor(model => model.title)</em>
                 @Html.TextBox("title", null, new { @placeholder = "Enter you title", @onchange = "TextBoxChange()", @style = "margin: 10px auto 10px 0px;" })
                 <div>
-                    <b>@Html.DisplayNameFor(model => model.description)</b>
+                    <em class="em_for_editor_tour">@Html.DisplayNameFor(model => model.description)</em>
                     @Html.TextArea("description", null, new { @rows = "2", @placeholder = "Enter your massage ... ", @onchange = "TextBoxChange()" })
                 </div>
                 <div>
-                    <b>@Html.DisplayNameFor(model => model.fullDescription)</b>
+                    <em class="em_for_editor_tour">@Html.DisplayNameFor(model => model.fullDescription)</em>
                     @Html.TextArea("fullDescription", null, new { @rows = "6", @placeholder = "Enter your full description ... ", @onchange = "TextBoxChange()" })
                 </div>
                 <div class="rowTour">
-                    <b>@Html.DisplayNameFor(model => model.cityID)</b>
+                    <em class="em_for_editor_tour">@Html.DisplayNameFor(model => model.cityID)</em>
                     @Html.DropDownList("cityID", new SelectList(ViewBag.Cities, "id", "Name"))
                 </div>
                 <div class="rowTour">
-                    <b>@Html.DisplayNameFor(model => model.durationID)</b>
+                    <em class="em_for_editor_tour">@Html.DisplayNameFor(model => model.durationID)</em>
                     @Html.DropDownList("durationID", new SelectList(ViewBag.Duration, "Id", "Time"))
                 </div>
                 <div class="rowTour">
-                    <b>@Html.DisplayNameFor(model => model.MaximumTravelers)</b>
+                    <em class="em_for_editor_tour">@Html.DisplayNameFor(model => model.MaximumTravelers)</em>
                     @Html.TextBox("MaximumTravelers", "1", new { @type = "number" })
                 </div>
                 <div class="rowTour">
-                    <b>@Html.DisplayNameFor(model => model.price)</b>
-                    @Html.TextBox("price", "1", new { @type = "number" }) $
+                    <em class="em_for_editor_tour">@Html.DisplayNameFor(model => model.price)</em>
+                    @Html.TextBox("price", "1", new { @type = "number" }) <em class="em_for_editor_tour">$</em>
                 </div>
                 <div style="display: table; margin: 0 auto;">
                     @Html.Hidden("DaysOfTheWeek")
@@ -53,12 +53,12 @@
         {
             <img id="@week[i].Id" src="@week[i].Path" title="@week[i].Name" onclick="SelectDaysOfTheWeek(this)" style="opacity: .3" />
         }
-}
+                        }
                     </div>
                     <div>
-                        <b id="displayNameStartsAt">@Html.DisplayNameFor(model => model.startsAt)  &nbsp;&nbsp;</b>
-                        @Html.TextBox("startsAt", null, new { @type = "time" })<b>&nbsp;&nbsp;&nbsp;&nbsp;or&nbsp;</b>
-                        @Html.CheckBox("isAnyTime", false, new { @onclick = "AnyTimeClick(this)", @value = "12:00" })<b>any time ?</b>
+                        <em id="displayNameStartsAt" class="em_for_editor_tour">@Html.DisplayNameFor(model => model.startsAt)  &nbsp;&nbsp;</em>
+                        @Html.TextBox("startsAt", null, new { @type = "time" })<em class="em_for_editor_tour">&nbsp;&nbsp;&nbsp;&nbsp;or&nbsp;</em>
+                        @Html.CheckBox("isAnyTime", false, new { @onclick = "AnyTimeClick(this)", @value = "12:00" })<em class="em_for_editor_tour">any time ?</em>
                     </div>
                 </div>
             </div>

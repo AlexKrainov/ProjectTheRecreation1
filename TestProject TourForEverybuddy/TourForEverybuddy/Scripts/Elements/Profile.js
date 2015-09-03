@@ -35,13 +35,64 @@ function handleFileSelect(e) {
 }
 
 function CheckEmptyFildEdit() {
-    if ($("#title").val().length == 0 || $("#description").val().length == 0) {
-        $("#ValidIsFailed").text("Same field can not be empty.");
+    var result = SetBorderForEmptyControls();
+
+    if (result == false) {
+        $("#ValidIsFailed").text("Same fields can not be empty.");
         $("#submitCreate").addClass("disabled");
         return false;
     }
     return true;
 }
+function SetBorderForEmptyControls()
+{
+    var result = true;
+    if ($("#title").val().length == 0) {
+        $("#title").css("border", "1px solid red");
+        result = false;
+    }else
+    {
+        $("#title").css("border", "");
+    }
+
+    if ($("#description").val().length == 0) {
+        $("#description").css("border", "1px solid red");
+        result = false;
+    } else {
+        $("#description").css("border", "");
+    }
+
+    if ($("#MaximumTravelers").val().length == 0) {
+        $("#MaximumTravelers").css("border", "1px solid red");
+        result = false;
+    } else {
+        $("#MaximumTravelers").css("border", "");
+    }
+
+    if ($("#price").val().length == 0) {
+        $("#price").css("border", "1px solid red");
+        result = false;
+    } else {
+        $("#price").css("border", "");
+    }
+
+    if ($("#DaysOfTheWeek").val().length == 0) {
+        $(".imgsDays").css("border", "1px solid red");
+        result = false;
+    } else {
+        $(".imgsDays").css("border", "");
+    }
+
+    if ($("#startsAt").val().length == 0 && $("#isAnyTime").prop("checked") == false) {
+        $("#startsAt").css("border", "1px solid red");
+        result = false;
+    } else {
+        $("#startsAt").css("border", "");
+    }
+
+    return result;
+}
+
 
 function TextBoxChange() {
     $("#ValidIsFailed").text("");
