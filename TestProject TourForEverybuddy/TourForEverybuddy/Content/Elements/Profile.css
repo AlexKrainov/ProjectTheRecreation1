@@ -129,11 +129,14 @@
 
 /*#region Add tour */
 .imgsDays {
-    margin-left: 15px;
+    /*margin-left: 15px;*/
+    margin: 15px 0 15px 0;
 }
-.imgsDays > img {
-    cursor: pointer;
-}
+
+    .imgsDays > img {
+        width: 3.7%;
+        cursor: pointer;
+    }
 
 .rowTour {
     width: 49%;

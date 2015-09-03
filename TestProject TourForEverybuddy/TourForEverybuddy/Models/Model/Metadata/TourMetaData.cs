@@ -14,10 +14,10 @@ namespace TourForEverybuddy.Models
     public class TourMetaDate
     {
         [Required]
-        [DisplayName("Title")]
+        [DisplayName("Tour name")]
         public string title { get; set; }
         [Required]
-        [DisplayName("Minimum description")]
+        [DisplayName("Tour description (Max 150 symbols)")]
         public string description { get; set; }
         public int userID { get; set; }
         public Nullable<bool> disable { get; set; }
