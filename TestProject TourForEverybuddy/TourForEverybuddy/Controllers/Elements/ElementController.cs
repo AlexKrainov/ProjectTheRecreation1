@@ -26,7 +26,7 @@ namespace TourForEverybuddy.Controllers.Elements
         public ActionResult Tour(int tourID, bool edit = false)
         {
             ViewBag.Edit = edit;
-            ViewBag.DaysOfTheWeek = manager.GetDayOfTheWeek(tourID).ToList();
+            ViewBag.DaysOfTheWeek = manager.GetTour_DaysOfTheWeek(tourID).ToList();
             return PartialView(manager.GetTour(tourID));
         }
 

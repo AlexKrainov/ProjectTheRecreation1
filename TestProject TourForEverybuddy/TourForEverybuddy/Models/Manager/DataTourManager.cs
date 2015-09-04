@@ -34,7 +34,7 @@ namespace TourForEverybuddy.Models
             return true;
         }
 
-        internal bool UpdateTour(Tour tour)
+        internal bool UpdateTour(Tour tour, string[] arrayDaysOfTheWeek)
         {
             try
             {
@@ -42,11 +42,31 @@ namespace TourForEverybuddy.Models
 
                 oldTour.title = tour.title;
                 oldTour.description = tour.description;
+                oldTour.cityID = tour.cityID;
+                oldTour.durationID = tour.durationID;
+                oldTour.fullDescription = tour.fullDescription;
+                oldTour.MaximumTravelers = tour.MaximumTravelers;
+                oldTour.price = tour.price;
+                oldTour.startsAt = tour.startsAt;
 
                 for (int i = 0; i < tour.Tour_PictureOfTour.Count; i++)
                     oldTour.Tour_PictureOfTour.Add(tour.Tour_PictureOfTour.ElementAt(i));
 
                 db.SaveChanges();
+
+                #region Update days of the week
+
+                db.Tour_DaysOfTheWeek.RemoveRange(db.Tour_DaysOfTheWeek.Where(x => x.TourID == oldTour.Id));
+
+                db.SaveChanges();
+
+                for (int i = 0; i < arrayDaysOfTheWeek.Length; i++)
+                    if (!string.IsNullOrEmpty(arrayDaysOfTheWeek[i]))
+                        db.Tour_DaysOfTheWeek.Add(
+                            new Tour_DaysOfTheWeek { DaysOfTheWeekID = Convert.ToByte(arrayDaysOfTheWeek[i]), TourID = tour.Id });
+
+                db.SaveChanges();
+                #endregion
             }
             catch (Exception ex)
             {
@@ -121,9 +141,11 @@ namespace TourForEverybuddy.Models
             return db.DaysOfTheWeeks;
         }
 
-        internal IQueryable<Tour_DaysOfTheWeek> GetDayOfTheWeek(int tourID)
+        internal IQueryable<Tour_DaysOfTheWeek> GetTour_DaysOfTheWeek(int tourID)
         {
             return db.Tour_DaysOfTheWeek.Where(x => x.TourID == tourID);
         }
+
+
     }
 }

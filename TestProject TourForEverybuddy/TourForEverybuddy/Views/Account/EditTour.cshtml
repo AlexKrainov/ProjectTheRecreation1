@@ -17,7 +17,7 @@
             {
                 @Html.AntiForgeryToken()
                 <div class="file-input-wrapper">
-                    <button class="btn-file-input">Upload File</button>
+                    <button class="btn-file-input">Upload image</button>
                     <input type="file" id="Pictures" name="Pictures" value="Загрузить фотки" multiple accept="image/*" onchange="handleFileSelect(this);" />
                 </div>
                 <div class="images"><br /></div>
@@ -26,33 +26,111 @@
                     @Html.HiddenFor(model => model.Id)
 
                     <div>
-                        <em>@Html.Label("Title")</em>
+                        <em>@Html.DisplayNameFor(model => model.title)</em>
                         <div>
                             @Html.TextBoxFor(model => model.title, new { @placeholder = "Enter you title", @onchange = "TextBoxChange()", @style = "margin: 10px auto 10px 0px;" })
-                            @Html.ValidationMessageFor(model => model.title, "", new { @class = "text-danger" })
                         </div>
                     </div>
 
                     <div>
-                        <em>@Html.Label("Massage")</em>
+                        <em>@Html.DisplayNameFor(model => model.description)</em>
                         <div>
                             @Html.TextAreaFor(model => model.description, new { @rows = "6", @placeholder = "Enter your massage", @onchange = "TextBoxChange()" })
-                            @Html.ValidationMessageFor(model => model.description, "", new { @class = "text-danger" })
                         </div>
                     </div>
+                    <div>
+                        <em class="em_for_editor_tour">@Html.DisplayNameFor(model => model.fullDescription)</em>
+                        @Html.TextAreaFor(model => model.fullDescription, new { @rows = "6", @placeholder = "Enter your full description ... ", @onchange = "TextBoxChange()" })
+                    </div>
+                    <div class="rowTour">
+                        <em class="em_for_editor_tour">@Html.DisplayNameFor(model => model.cityID)</em>
+                        @Html.DropDownList("cityID", new SelectList(ViewBag.Cities, "id", "Name", Model.cityID))
+                        @*@{
 
+                            var arrayLanguages = (ViewBag.ArrayLanguages as IQueryable<TourForEverybuddy.Models.UserLanguage>).ToList();
+                            for (int i = 0; i < arrayLanguages.Count(); i++)
+                            {
+                                @Html.DropDownList("Language", new SelectList(ViewBag.Languages, "id", "name", arrayLanguages[i].LanguageID))
+                            }
+
+                                    }*@
+                    </div>
+                    <div class="rowTour">
+                        <em class="em_for_editor_tour">@Html.DisplayNameFor(model => model.durationID)</em>
+                        @Html.DropDownList("durationID", new SelectList(ViewBag.Duration, "Id", "Time", Model.durationID))
+                    </div>
+                    <div class="rowTour">
+                        <em class="em_for_editor_tour">@Html.DisplayNameFor(model => model.MaximumTravelers)</em>
+                        @Html.TextBoxFor(model => model.MaximumTravelers, new { @type = "number" })
+                    </div>
+                    <div class="rowTour">
+                        <em class="em_for_editor_tour">@Html.DisplayNameFor(model => model.price)</em>
+                        @Html.TextBoxFor(model => model.price, new { @type = "number" }) <em class="em_for_editor_tour">$</em>
+                    </div>
+                    <div>
+                        @*style="display: table; margin: 0 auto;"*@
+                        @Html.Hidden("DaysOfTheWeek")
+                        <div class="imgsDays" title="Select day of the week ... ">
+                            @{
+                var week = (List<TourForEverybuddy.Models.DaysOfTheWeek>)ViewBag.DayOfTheWeek;
+                var weekTour = (List<TourForEverybuddy.Models.Tour_DaysOfTheWeek>)ViewBag.DaysOfTheWeekTour;
+                for (int i = 0; i < week.Count; i++)
+                {
+                    var isSame = weekTour.FirstOrDefault(x => x.DaysOfTheWeekID == week[i].Id);
+                    if (isSame != null)
+                    {
+                        <img id="@week[i].Id" src="@week[i].Path" title="@week[i].Name" onclick="SelectDaysOfTheWeek(this)" style="opacity: 1;" />
+                    }
+                    else
+                    {
+                        <img id="@week[i].Id" src="@week[i].Path" title="@week[i].Name" onclick="SelectDaysOfTheWeek(this)" style="opacity: .3;" />
+                    }
+                }
+                            }
+                        </div>
+                        <div>
+                            <div style="display: initial;">
+                                <em id="displayNameStartsAt" class="em_for_editor_tour">@Html.DisplayNameFor(model => model.startsAt)  &nbsp;&nbsp;</em>
+                                
+                                @Html.TextBox("startsAt", @Model.startsAt, new { @type = "time" })@*<em class="em_for_editor_tour">&nbsp;&nbsp;&nbsp;&nbsp;or&nbsp;</em>*@
+
+                                @if (Model.startsAt == "Any time")
+                                {
+                                    @Html.Hidden("startAtHidden", "");
+                                    @Html.CheckBox("isAnyTime", true, new { @onclick = "AnyTimeClick(this)" })
+                                }
+                                else
+                                {
+                                    @Html.Hidden("startAtHidden", Model.startsAt);
+                                    @Html.CheckBox("isAnyTime", false, new { @onclick = "AnyTimeClick(this)" })
+                                }
+                                
+                                @*<input type="checkbox" id="isAnyTime" name="isAnyTime" onclick="AnyTimeClick(this)" style="display:none;" />*@
+                                <label for="isAnyTime"><em class="em_for_editor_tour">any time </em></label>
+                            </div>
+
+                            @*@Html.CheckBox("isAnyTime", false, new { @onclick = "AnyTimeClick(this)", @value = "12:00" })<em class="em_for_editor_tour">any time </em>*@
+                        </div>
+                    </div>
                     <input class="button special" id="submitCreate" type="submit" style="margin-top: 15px;" value="Save" onclick="return CheckEmptyFild()" />
                     @Html.ValidationMessage("ValidIsFailed", new { @style = "color: red; font-size: large;", @id = "ValidIsFailed" })
                 </div>
             }
         </div>
     </section>
+
+
+
+
+
+
+
     @using (Html.BeginForm("DeleteImages", "Account"))
     {
         @Html.Hidden("id", Model.Id);
         @Html.Hidden("PictureArray");
                    <!-- Two -->
-        <section id="two" class="wrapper special" style="padding-top: 0px;">
+        <section id="two" class="wrapper special" style="padding-top: 0;">
             <div class="inner">
                 <header class="major narrow">
                     <h2>Album</h2>
@@ -80,6 +158,9 @@
     }
 
 </div>
+
+
+
 
 @*<img src="@Url.Action("GetUrlFromPictureOfTour", "Picture", new { id = picture.Id } )" alt="" />*@
 <script src="~/Scripts/Elements/Profile.js"></script>

@@ -13,8 +13,8 @@ namespace TourForEverybuddy.Models
     }
     public class TourMetaDate
     {
-        [Required]
         [DisplayName("Tour name")]
+        [Required(ErrorMessage = "Title is required.")]
         public string title { get; set; }
         [Required]
         [DisplayName("Tour description (Max 150 symbols)")]

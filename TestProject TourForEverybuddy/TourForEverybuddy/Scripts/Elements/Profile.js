@@ -179,7 +179,7 @@ function pagePicture(o) {
 
 $(document).ready(function () {
     if ($("#startsAt") != undefined) {
-        $("#startsAt").val("12:00");
+        $("#startsAt").val($("#startAtHidden").val());
     }
 });
 

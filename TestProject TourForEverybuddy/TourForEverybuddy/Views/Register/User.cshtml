@@ -30,7 +30,7 @@
         @Html.Partial("_AccountPartial")
 
         <div class="ArrayLanguageList">
-            @Html.LabelFor(model => model.LanguageId)
+            @Html.Label("")
             @Html.DropDownList("Language", ViewBag.Languages as IEnumerable<SelectListItem>, "Not chosen")
             @for (int i = 0; i < 10; i++)
             {

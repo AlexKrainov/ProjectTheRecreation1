@@ -80,12 +80,12 @@ namespace TourForEverybuddy.Controllers.Membership
         }
 
         [HttpPost]
-        public ActionResult AddTour(Tour tour,bool isAnyTime, string DaysOfTheWeek, HttpPostedFileBase[] Pictures)
+        public ActionResult AddTour(Tour tour, bool isAnyTime, string DaysOfTheWeek, HttpPostedFileBase[] Pictures)
         {
             var user = Storage.currentUser;
 
             tour.userID = user.id;
-            if (isAnyTime || string.IsNullOrEmpty(tour.startsAt))
+            if (isAnyTime)// || string.IsNullOrEmpty(tour.startsAt))
                 tour.startsAt = "Any time";
 
             GetPictureForTour(tour, Pictures);
@@ -108,23 +108,29 @@ namespace TourForEverybuddy.Controllers.Membership
             var tour = Storage.currentUser.Tours.FirstOrDefault(x => x.Id == id);
 
             if (tour != null)
+            {
+                FillDDLCitiesDurationDay(id);
                 return View(tour);
+            }
             else
                 return RedirectToAction("Index");
         }
 
         [HttpPost]
-        public ActionResult EditTour(Tour tour, HttpPostedFileBase[] Pictures)
+        public ActionResult EditTour(Tour tour,bool isAnyTime, string DaysOfTheWeek, HttpPostedFileBase[] Pictures)
         {
+            if (isAnyTime) // || string.IsNullOrEmpty(tour.startsAt))
+                tour.startsAt = "Any time";
 
             GetPictureForTour(tour, Pictures);
 
-            if (ModelState.IsValid && manager.UpdateTour(tour))
+            if (ModelState.IsValid && manager.UpdateTour(tour, DaysOfTheWeek.Split(',')))
                 return RedirectToAction("Index"); //, new { id = tour.Id });
             else
                 return View(tour);
         }
 
+#region Delete images in tour
         [HttpPost]
         public ActionResult DeleteImages(int id, string PictureArray)
         {
@@ -143,7 +149,9 @@ namespace TourForEverybuddy.Controllers.Membership
             //Storage.currentUser = null; Нужно ли , что бы обновить информацию ?
             return RedirectToAction("EditTour", new { id = id });
         }
+#endregion
 
+#region Delete tour
         [HttpGet]
         public ActionResult DeleteTour(int id)
         {
@@ -152,6 +160,7 @@ namespace TourForEverybuddy.Controllers.Membership
 
             return RedirectToAction("Index");
         }
+#endregion
 
         #endregion
 
@@ -204,11 +213,14 @@ namespace TourForEverybuddy.Controllers.Membership
             ViewBag.ArrayLanguages = list;
         }
 
-        private void FillDDLCitiesDurationDay()
+        private void FillDDLCitiesDurationDay(int id = -1)
         {
             ViewBag.Cities = manager.GetCities();
             ViewBag.Duration = manager.GetDuration();
             ViewBag.DayOfTheWeek = manager.GetDayOfTheWeek().ToList();
+
+            if (id != -1)
+                ViewBag.DaysOfTheWeekTour = manager.GetTour_DaysOfTheWeek(id).ToList();
 
         }
 
