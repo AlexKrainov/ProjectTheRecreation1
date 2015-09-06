@@ -8,12 +8,6 @@
     margin-right: 100px;*/
 }
 
-.profileImage {
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-    border-radius: 255px;
-}
 
 
 .userBtn {
@@ -126,6 +120,22 @@
     margin-top: 45px;
     margin-bottom: 40px;
 }
+
+
+
+/*#region Edit profile */
+
+.circle-close-profile {
+    width: 4%;
+    position: relative;
+    top: -13px;
+}
+
+/*#endregion */
+
+
+
+
 
 /*#region Add tour */
 .imgsDays {

@@ -207,6 +207,8 @@
     <Content Include="images\Profile\magnifier-min.png" />
     <Content Include="images\Profile\no_Profile_Image.png" />
     <Content Include="images\Profile\right_grey-min.png" />
+    <Content Include="images\Profile\user-min.png" />
+    <Content Include="images\Site images\circle-close-min.png" />
     <Content Include="images\squeeze\24_em_cross.png" />
     <Content Include="images\squeeze\banner.jpg" />
     <Content Include="images\squeeze\overlay.png" />
@@ -221,6 +223,7 @@
     <Content Include="images\squeeze\pic09.jpg" />
     <Content Include="images\squeeze\pic10.jpg" />
     <Content Include="images\squeeze\pic11.jpg" />
+    <Content Include="images\Tour\camera-photo-min.png" />
     <Content Include="images\Tour\clock.png" />
     <Content Include="images\Tour\clock1.png" />
     <Content Include="images\Tour\dollar.png" />

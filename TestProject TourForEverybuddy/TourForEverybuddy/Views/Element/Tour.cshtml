@@ -3,7 +3,15 @@
     ViewBag.Title = "Tour";
 }
 @*https://www.iconfinder.com/iconsets/sympletts-free-sampler image from <-
-    фотошоп -> http://editor.0lik.ru/*@
+        фотошоп -> http://editor.0lik.ru/
+        media="all"
+    ::selection
+    {
+    background: #cd2122;
+    color: #fff;
+    text-shadow: none;
+    }
+*@
 <section class="post">
     <div class="img">
         @if (Model.Tour_PictureOfTour.Count != 0)
@@ -14,7 +22,7 @@
         }
         else
         {
-            <img id="img" src="~/images/Beautiful-Moscow-City-Wallpaper-min.jpg" alt="" />
+            <img id="img" src="~/images/Tour/camera-photo-min.png" alt="" style=" width: 50%; margin: 0 auto 0 auto;" />
         }
 
     </div>
@@ -24,7 +32,7 @@
         <div class="elements_tour">
             @if (Model.Tour_Duration == null)
             {
-                <img src="~/images/Tour/clock1.png" /> <em>5 hours</em>
+                <img src="~/images/Tour/clock1.png" /> <em>Any time</em>
             }
             else
             {
@@ -32,7 +40,7 @@
             }
             @if (Model.price == null)
             {
-                <img src="~/images/Tour/dollar1.png" /> <em>50</em>
+                <img src="~/images/Tour/dollar1.png" /> <em>no money :)</em>
             }
             else
             {

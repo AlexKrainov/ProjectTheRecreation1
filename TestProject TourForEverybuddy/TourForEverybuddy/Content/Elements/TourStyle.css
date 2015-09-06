@@ -30,6 +30,7 @@
     width: 40%;
     display: inline-block;
     margin: 0 auto 0 auto;
+    padding: 5px 0 5px 0;
 }
 
 #img {
@@ -40,7 +41,7 @@
 
 
 .content {
-    width: 300px;
+    width: 319px;
     display: inline-block;
     margin: 0 auto 0 20px;
 }
@@ -58,8 +59,8 @@
 
 
 .titleTour {
-    color: #5f9dd2;
-    /*color: #4d5968;*/
+    /*color: #5f9dd2;*/
+    color: #4d5968;
     font-variant: small-caps;
     font-weight: 800;
     font-size: 1.2em;

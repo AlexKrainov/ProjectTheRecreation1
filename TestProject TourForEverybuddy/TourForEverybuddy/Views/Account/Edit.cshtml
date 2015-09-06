@@ -6,6 +6,7 @@
 }
 <link rel="stylesheet" href="~/Content/Elements/Profile.css" />
 <link rel="stylesheet" href="~/Content/Elements/Regiser.css" />
+<link rel="stylesheet" href="~/Content/Elements/UserStyle.css" />
 
 @Html.ValidationMessage("EmailIsHave", new { @style = "color: red; font-size: large;" })
 @Html.ValidationMessage("ValidIsFailed", new { @style = "color: red; font-size: large;" })
@@ -25,7 +26,7 @@
                  alt="" />
         </div>
         <div class="file-input-wrapper">
-            <button class="btn-file-input">Upload File</button>
+            <button class="btn-file-input">Upload image</button>
             <input type="file" id="Picture" name="Picture" value="Загрузить фотки" accept="image/*" onchange="handleFileSelect(this);" />
         </div>
         <div class="images"><br /></div>
@@ -33,17 +34,24 @@
         @Html.Partial("_AccountPartial")
 
         <div class="ArrayLanguageList">
-            @Html.Label("Language")
-
-            @{
+            <em>@Html.Label("Language")</em>
+            @Html.Hidden("RemoveLanguage")
+            <div>
+                @{
 
         var arrayLanguages = (ViewBag.ArrayLanguages as IQueryable<TourForEverybuddy.Models.UserLanguage>).ToList();
         for (int i = 0; i < arrayLanguages.Count(); i++)
         {
-            @Html.DropDownList("Language", new SelectList(ViewBag.Languages, "id", "name", arrayLanguages[i].LanguageID))
+            @Html.DropDownList("Language", new SelectList(ViewBag.Languages, "id", "name", arrayLanguages[i].LanguageID), new { @name = arrayLanguages[i].LanguageID })
+            var languageID = "del" + @arrayLanguages[i].LanguageID;
+            <span id="@languageID" onclick="RemoveLanguage(this)">
+                <img src="~/images/Site images/circle-close-min.png" title="Delete the language ?"
+                     class="circle-close-profile" />
+            </span>
         }
 
-            }
+}
+            </div>
             @for (int i = 0; i < (10 - arrayLanguages.Count); i++)
             {
                 @Html.DropDownList("Language", new SelectList(ViewBag.Languages, "id", "name"), "Not chosen", new { @style = "display: none" })
@@ -53,16 +61,17 @@
         </div>
 
         <div>
-            @Html.LabelFor(model => model.About)
-            @Html.EditorFor(model => model.About)
+            <em>@Html.LabelFor(model => model.About)</em>
+            @Html.TextAreaFor(model => model.About, new { @rows = "6", @placeholder = "Enter about you ..." })
+
             @Html.ValidationMessageFor(model => model.About, "", new { @class = "text-danger" })
         </div>
 
         <lable onclick="ShowOrHideContainerPwd()">Change password ? </lable>
         <div class="Passwords DisabledPassword">
-            @Html.LabelFor(model => model.Password)
+            <em>@Html.LabelFor(model => model.Password)</em>
             @Html.TextBox("Password", null, new { @type = "password", @onfocusout = "onFocusOutPassword()" })
-            @Html.LabelFor(model => model.Password, "Confirm password")
+            <em>@Html.LabelFor(model => model.Password, "Confirm password")</em>
             @Html.TextBox("Password", null, new { @id = "PasswordConfirm", @type = "password", @onfocusout = "onFocusOutPassword()" })
 
             @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })

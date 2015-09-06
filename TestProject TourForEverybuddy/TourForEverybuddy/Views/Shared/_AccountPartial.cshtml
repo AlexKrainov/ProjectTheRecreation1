@@ -4,37 +4,36 @@
 }
 
 <div>
-    @Html.LabelFor(model => model.Name)
+    <em>@Html.LabelFor(model => model.Name)</em>
     @Html.EditorFor(model => model.Name)
     @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
 </div>
 <div>
-    @Html.LabelFor(model => model.LastName)
+    <em>@Html.LabelFor(model => model.LastName)</em>
     @Html.EditorFor(model => model.LastName)
     @Html.ValidationMessageFor(model => model.LastName, "", new { @class = "text-danger" })
 </div>
 
 <div>
-    @Html.LabelFor(model => model.Age)
+    <em>@Html.LabelFor(model => model.Age)</em>
     @Html.EditorFor(model => model.Age)
     @Html.ValidationMessageFor(model => model.Age, "", new { @class = "text-danger" })
 </div>
 
 <div>
-    @Html.LabelFor(model => model.Email)
-
+    <em>@Html.LabelFor(model => model.Email)</em>
     @Html.EditorFor(model => model.Email)
     @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
 </div>
 
 <div>
-    @Html.LabelFor(model => model.Phone)
+    <em>@Html.LabelFor(model => model.Phone)</em>
     @Html.EditorFor(model => model.Phone)
     @Html.ValidationMessageFor(model => model.Phone, "", new { @class = "text-danger" })
 
 </div>
 <div>
-    @Html.LabelFor(model => model.CountryId)
+    <em>@Html.LabelFor(model => model.CountryId)</em>
     @Html.DropDownListFor(model => model.CountryId, ViewBag.Countries as IEnumerable<SelectListItem>, "Not chosen")
     @Html.ValidationMessageFor(model => model.CountryId, "", new { @class = "text-danger" })
 </div>

@@ -44,14 +44,12 @@ function CheckEmptyFildEdit() {
     }
     return true;
 }
-function SetBorderForEmptyControls()
-{
+function SetBorderForEmptyControls() {
     var result = true;
     if ($("#title").val().length == 0) {
         $("#title").css("border", "1px solid red");
         result = false;
-    }else
-    {
+    } else {
         $("#title").css("border", "");
     }
 
@@ -187,8 +185,7 @@ function AnyTimeClick(o) {
     if ($(o).prop("checked") == true) {
         $("#displayNameStartsAt").css("opacity", ".2");
         $("#startsAt").css("opacity", ".2");
-    }else
-    {
+    } else {
         $("#displayNameStartsAt").css("opacity", "1");
         $("#startsAt").css("opacity", "1");
     }
@@ -196,11 +193,9 @@ function AnyTimeClick(o) {
 
 function SelectDaysOfTheWeek(o) {
 
-    if($(o).css("opacity") != "1")
-    {
+    if ($(o).css("opacity") != "1") {
         $(o).css("opacity", "1");
-    }else
-    {
+    } else {
         $(o).css("opacity", ".2");
     }
 
@@ -222,5 +217,18 @@ function AddHiddenIDEditTour() {
     //else
     //    $("#RemoveBtn").addClass("disabled");
 }
+
+
+/* Edit Profile */
+
+function RemoveLanguage(o) {
+    var id = $(o).prop("id");
+    var currentLanguageID = id.replace("del", "");
+    currentLanguageID = "#" + currentLanguageID;
+    $(currentLanguageID).css("display", "none");
+    $(o).css("display", "none");
+}
+
+/* end edit profile*/
 
 //

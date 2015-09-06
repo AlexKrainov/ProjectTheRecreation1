@@ -25,3 +25,11 @@
     font-size: larger;
     font-weight: bold;
 }
+
+.profileImage {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    border-radius: 255px;
+    width: 50%;
+}

@@ -24,8 +24,10 @@
     margin: 20px auto auto 230px;
 }
 
-#Language{
+#Language {
     margin-top: 5px;
+    display: inline-block;
+    width: 94%;
 }
 
 /*#region Media screen */
