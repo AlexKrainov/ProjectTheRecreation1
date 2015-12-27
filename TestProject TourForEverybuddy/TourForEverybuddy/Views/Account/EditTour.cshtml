@@ -5,6 +5,7 @@
     this.Layout = "~/Views/Shared/_GenericLayout.cshtml";
 }
 <link href="~/Content/Elements/Profile.css" rel="stylesheet" />
+<link href="~/Content/Elements/Add_Edit_TourStyle.css" rel="stylesheet" />
 
 <div>
     @Html.ActionLink("Back to List", "Index", null, new { @style = "    margin-left: 25px;" })
@@ -79,11 +80,13 @@
                     var isSame = weekTour.FirstOrDefault(x => x.DaysOfTheWeekID == week[i].Id);
                     if (isSame != null)
                     {
-                        <img id="@week[i].Id" src="@week[i].Path" title="@week[i].Name" onclick="SelectDaysOfTheWeek(this)" style="opacity: 1;" />
+                        <img id="@week[i].Id" src="@week[i].Path" title="@week[i].Name"
+                             onclick="SelectDaysOfTheWeek(this)" style="opacity: 1;" />
                     }
                     else
                     {
-                        <img id="@week[i].Id" src="@week[i].Path" title="@week[i].Name" onclick="SelectDaysOfTheWeek(this)" style="opacity: .3;" />
+                        <img id="@week[i].Id" src="@week[i].Path" title="@week[i].Name"
+                             onclick="SelectDaysOfTheWeek(this)" style="opacity: .3;" />
                     }
                 }
                             }
@@ -91,7 +94,7 @@
                         <div>
                             <div style="display: initial;">
                                 <em id="displayNameStartsAt" class="em_for_editor_tour">@Html.DisplayNameFor(model => model.startsAt)  &nbsp;&nbsp;</em>
-                                
+
                                 @Html.TextBox("startsAt", @Model.startsAt, new { @type = "time" })@*<em class="em_for_editor_tour">&nbsp;&nbsp;&nbsp;&nbsp;or&nbsp;</em>*@
 
                                 @if (Model.startsAt == "Any time")
@@ -104,7 +107,7 @@
                                     @Html.Hidden("startAtHidden", Model.startsAt);
                                     @Html.CheckBox("isAnyTime", false, new { @onclick = "AnyTimeClick(this)" })
                                 }
-                                
+
                                 @*<input type="checkbox" id="isAnyTime" name="isAnyTime" onclick="AnyTimeClick(this)" style="display:none;" />*@
                                 <label for="isAnyTime"><em class="em_for_editor_tour">any time </em></label>
                             </div>
