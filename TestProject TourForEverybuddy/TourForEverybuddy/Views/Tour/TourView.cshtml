@@ -1,0 +1,68 @@
+﻿@model TourForEverybuddy.Models.Tour
+@{
+    ViewBag.Title = "TourView";
+    this.Layout = "~/Views/Shared/_GenericLayout.cshtml";
+}
+<link rel="stylesheet" href="~/Content/Elements/TourStyle.css" />
+<link rel="stylesheet" href="~/Content/Elements/UserStyle.css" />
+
+<h2>TourView</h2>
+<section class="wrapper" id="main">
+    <div class="container">
+        <section class="row img">
+            @if (Model.Tour_PictureOfTour.Count != 0)
+            {
+                <img id="img" src="@Url.Action("GetUrlFromPictureOfTour", "Picture", new { pictureId = Model.Tour_PictureOfTour.ElementAt(0).Id,
+                 tourID = Model.Tour_PictureOfTour.ElementAt(0).TourID })"
+                     alt="" />
+            }
+            else
+            {
+                <img id="img" src="~/images/Tour/camera-photo-min.png" alt="" style=" width: 50%; margin: 0 auto 0 auto;" />
+            }
+
+        </section>
+        <div class="left-side content elements_tour">
+            @if (Model.Tour_Duration == null)
+            {
+                <img src="~/images/Tour/clock1.png" /> <em>Any time</em>
+            }
+            else
+            {
+                <img src="~/images/Tour/clock1.png" /> <em>@Model.Tour_Duration.Time</em>
+            }
+            <br />
+            @if (Model.price == null)
+            {
+                <img src="~/images/Tour/dollar1.png" /> <em>no money :)</em>
+            }
+            else
+            {
+                <img src="~/images/Tour/dollar1.png" /> <em>@Model.price</em>
+            }
+            <br />
+            @{
+                var week = (List<TourForEverybuddy.Models.Tour_DaysOfTheWeek>)ViewBag.DaysOfTheWeek;
+                for (int i = 0; i < week.Count; i++)
+                {
+                    <img src="@week[i].DaysOfTheWeek.Path" title="@week[i].DaysOfTheWeek.Name" />
+                }
+            }
+        </div>
+        <div class="avtor">
+            @Html.Action("_User", "Element", new { userID = Model.userID })
+        </div>
+        <div class="summary_tour">
+            <b class="titleTour">@Model.title</b>
+            <blockquote>
+                @Model.description
+            </blockquote>
+        </div>
+        <div class="btn_заказать">
+            @Html.ActionLink("Заказать", "", "", new { tourID = Model.Id }, new { @class = "button alt small" })
+        </div>
+        <div class="comment_tour">
+
+        </div>
+    </div>
+</section>

@@ -12,6 +12,8 @@
     text-shadow: none;
     }
 *@
+
+
 <section class="post">
     <div class="img">
         @if (Model.Tour_PictureOfTour.Count != 0)
@@ -65,7 +67,7 @@
         }
         else
         {
-            @Html.ActionLink("View", "TourView", "Tour", new { id = Model.Id }, new { @class = "button alt small" })
+            @Html.ActionLink("View", "TourView", "Tour", new { tourID = Model.Id }, new { @class = "button alt small" })
         }
 
     </div>

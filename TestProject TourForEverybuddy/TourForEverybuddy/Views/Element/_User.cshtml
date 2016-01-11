@@ -1,9 +1,11 @@
 ﻿@model TourForEverybuddy.Models.User
+
 @{
-    ViewBag.Title = "User";
+    ViewBag.Title = "_User";
 }
 
-<section>  @*class="profileContent">*@
+
+<section>
     <div class="wrapImg">
         @if (Model.Photo != null)
         {
@@ -11,13 +13,15 @@
         }
         else
         {
-            @*<img id="imgProfile" src="~/images/Profile/user-min.png" alt="" />*@
+            //<img id="imgProfile" src="~/images/Profile/user-min.png" alt="" />
             <img id="imgProfile" src="~/images/Profile/default_avatar-min2.jpg" alt="" />
         }
     </div>
+
     <div class="userData">
-        @Html.ActionLink(Model.Name + " " + Model.LastName, "User", "Profile", new { userID = Model.id })
-        @*<h3>Anna Popova</h3>*@
+        @Html.ActionLink(Model.Name + " " + Model.LastName, "UserProfile", "ProfilePage",
+        new { userID = Model.id }, new { id = Model.id, userID = Model.id })
+
         <div>@Model.Age, @Model.Country.country_name</div>
         <div>
             @{
@@ -32,4 +36,3 @@
         </div>
     </div>
 </section>
-

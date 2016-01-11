@@ -148,7 +148,7 @@
         cursor: pointer;
     }
 
-        
+
 
 .rowTour {
     width: 49%;
@@ -161,6 +161,10 @@
 
 .em_for_editor_tour {
     font-weight: 800;
+}
+
+.label_AnyTime {
+    display: inline;
 }
 
 /*@media screen and (max-width: 1680px) {

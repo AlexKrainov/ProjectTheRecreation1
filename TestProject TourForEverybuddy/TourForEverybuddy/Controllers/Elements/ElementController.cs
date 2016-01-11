@@ -3,19 +3,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using TourForEverybuddy.Controllers.BasicControllers;
 using TourForEverybuddy.Controllers.Static;
 using TourForEverybuddy.Models;
 
 namespace TourForEverybuddy.Controllers.Elements
 {
-    public class ElementController : Controller
+    public class ElementController : BaseController
     {
-        private DataManager manager;
-        public ElementController()
-        {
-            manager = new DataManager();
-        }
-
         /// <summary>
         /// Control a tour
         /// </summary>
@@ -31,8 +26,8 @@ namespace TourForEverybuddy.Controllers.Elements
         }
 
 
-        [ChildActionOnly]
-        public ActionResult User(int userID)
+       [ChildActionOnly]
+        public ActionResult _User(int userID)
         {
             ViewBag.UserLanguage = manager.GetUserLanguages(userID).Select(x => x.Language.name).ToList();
 

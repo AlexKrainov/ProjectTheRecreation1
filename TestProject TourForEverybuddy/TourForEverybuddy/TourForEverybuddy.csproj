@@ -28,6 +28,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <UseVSHostingProcess>true</UseVSHostingProcess>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -295,6 +296,7 @@
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
+    <Compile Include="Controllers\BasicControllers\BaseController.cs" />
     <Compile Include="Controllers\Elements\ElementController.cs" />
     <Compile Include="Controllers\Elements\PictureController.cs" />
     <Compile Include="Controllers\Membership\AccountController.cs" />
@@ -306,6 +308,8 @@
     <Compile Include="Controllers\Membership\EmailsController.cs" />
     <Compile Include="Controllers\Membership\LoginController.cs" />
     <Compile Include="Controllers\Membership\UserController.cs" />
+    <Compile Include="Controllers\View\ProfilePageController.cs" />
+    <Compile Include="Controllers\View\TourController.cs" />
     <Compile Include="Helpers\TourHelper.cs" />
     <Compile Include="Models\Model\Country.cs" />
     <Compile Include="Models\Model\DaysOfTheWeek.cs" />
@@ -379,7 +383,9 @@
     <Content Include="Views\Example\Index.cshtml" />
     <Content Include="Views\User\Profile.cshtml" />
     <Content Include="Views\Element\Tour.cshtml" />
-    <Content Include="Views\Element\User.cshtml" />
+    <Content Include="Views\Element\_User.cshtml" />
+    <Content Include="Views\ProfilePage\UserProfile.cshtml" />
+    <Content Include="Views\Tour\TourView.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

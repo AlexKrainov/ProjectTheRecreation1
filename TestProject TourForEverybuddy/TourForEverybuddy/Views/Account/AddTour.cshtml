@@ -65,7 +65,7 @@
                             @Html.TextBox("startsAt", null, new { @type = "time" })@*<em class="em_for_editor_tour">&nbsp;&nbsp;&nbsp;&nbsp;or&nbsp;</em>*@
                             @Html.CheckBox("isAnyTime", false, new { @onclick = "AnyTimeClick(this)" })
                             @*<input type="checkbox" id="isAnyTime" name="isAnyTime" onclick="AnyTimeClick(this)" style="display:none;"/>*@
-                            <label for="isAnyTime"><em class="em_for_editor_tour">any time </em></label>
+                            <label class="label_AnyTime" style="opacity:.3;" for="isAnyTime"><em class="em_for_editor_tour">any time </em></label>
                         </div>
                        
                         @*@Html.CheckBox("isAnyTime", false, new { @onclick = "AnyTimeClick(this)", @value = "12:00" })<em class="em_for_editor_tour">any time </em>*@

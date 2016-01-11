@@ -1,7 +1,7 @@
 ﻿@model TourForEverybuddy.Models.User
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "";
     this.Layout = "~/Views/Shared/_GenericLayout.cshtml";
 }
 <link rel="stylesheet" href="~/Content/Elements/Profile.css" />
@@ -36,25 +36,24 @@
                 <header class="major special">
                     <h4>@Html.DisplayNameFor(model => model.About)</h4>
                 </header>
-                @*<p>@Html.DisplayFor(model => model.About)</p>*@
-                <blockquote>@Html.DisplayFor(model => model.About)</blockquote>
+                <p>@Html.DisplayFor(model => model.About)</p>
             </div>
-                <div class="row">
-                    @Html.ActionLink("Edit profile", "Edit", null, new { @class = "button alt" })
-                </div>
+            @*<div class="row">
+                @Html.ActionLink("Edit profile", "Edit", null, new { @class = "button alt" })
+            </div>*@
         </section>
 
         <br />
         @if (Model.RouleId == 2)
         {
             <div class="inner">
-                <div class="row">
+                @*<div class="row">
                     @Html.ActionLink("Add new tour", "AddTour", null, new { @class = "button alt" })
-                </div>
+                </div>*@
                 <div class="posts">
                     @for (int i = 0; i < Model.Tours.Count; i++)
                     {
-                        @Html.Action("Tour", "Element", new { tourID = Model.Tours.ElementAt(i).Id, edit = true })
+                        @Html.Action("Tour", "Element", new { tourID = Model.Tours.ElementAt(i).Id, edit = false })
                     }
 
                 </div>

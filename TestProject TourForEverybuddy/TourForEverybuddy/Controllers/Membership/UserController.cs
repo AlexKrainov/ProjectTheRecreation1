@@ -18,7 +18,7 @@ namespace TourForEverybuddy.Controllers.Membership
             ViewBag.UserLanguage = manager.GetUserLanguages(currentUser.id).Select(x => x.Language.name).ToList();
             return View(currentUser);
 
-            return View();
+          //  return View();
         }
     }
 }

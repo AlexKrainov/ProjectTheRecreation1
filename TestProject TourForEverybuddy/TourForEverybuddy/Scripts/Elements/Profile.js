@@ -185,9 +185,11 @@ function AnyTimeClick(o) {
     if ($(o).prop("checked") == true) {
         $("#displayNameStartsAt").css("opacity", ".2");
         $("#startsAt").css("opacity", ".2");
+        $(".label_AnyTime").css("opacity", "1");
     } else {
         $("#displayNameStartsAt").css("opacity", "1");
         $("#startsAt").css("opacity", "1");
+        $(".label_AnyTime").css("opacity", ".3");
     }
 }
 
